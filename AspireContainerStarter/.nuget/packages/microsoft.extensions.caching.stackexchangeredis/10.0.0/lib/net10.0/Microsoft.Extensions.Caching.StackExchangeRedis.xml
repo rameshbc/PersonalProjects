@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Extensions.Caching.StackExchangeRedis</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache">
+            <summary>
+            Distributed cache implementation using Redis.
+            <para>Uses <c>StackExchange.Redis</c> as the Redis client.</para>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions})">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache"/>.
+            </summary>
+            <param name="optionsAccessor">The configuration options.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.#ctor(Microsoft.Extensions.Options.IOptions{Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions},Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache"/>.
+            </summary>
+            <param name="optionsAccessor">The configuration options.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.Get(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.GetAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.Set(System.String,System.Byte[],Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.SetAsync(System.String,System.Byte[],Microsoft.Extensions.Caching.Distributed.DistributedCacheEntryOptions,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.Refresh(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.RefreshAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.Remove(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.RemoveAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions">
+            <summary>
+            Configuration options for <see cref="T:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.Configuration">
+            <summary>
+            The configuration used to connect to Redis.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.ConfigurationOptions">
+            <summary>
+            The configuration used to connect to Redis.
+            This is preferred over Configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.ConnectionMultiplexerFactory">
+            <summary>
+            Gets or sets a delegate to create the ConnectionMultiplexer instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.InstanceName">
+            <summary>
+            The Redis instance name. Allows partitioning a single backend cache for use with multiple apps/services.
+            If set, the cache keys are prefixed with this value.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.ProfilingSession">
+            <summary>
+            The Redis profiling session
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions">
+            <summary>
+            Extension methods for setting up Redis distributed cache related services in an <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions})">
+            <summary>
+            Adds Redis distributed caching services to the specified <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to.</param>
+            <param name="setupAction">An <see cref="T:System.Action`1"/> to configure the provided
+            <see cref="T:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions"/>.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> so that additional calls can be chained.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Shared.ArgumentNullThrowHelper.ThrowIfNull(System.Object,System.String)">
+            <summary>Throws an <see cref="T:System.ArgumentNullException"/> if <paramref name="argument"/> is null.</summary>
+            <param name="argument">The reference type argument to validate as non-null.</param>
+            <param name="paramName">The name of the parameter with which <paramref name="argument"/> corresponds.</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Shared.ArgumentNullThrowHelper.ThrowIfNullOrEmpty(System.String,System.String)">
+            <summary>Throws an <see cref="T:System.ArgumentException"/> if <paramref name="argument"/> is null or empty.</summary>
+            <param name="argument">The <see cref="T:System.String"/> argument to validate as non-null and non-empty.</param>
+            <param name="paramName">The name of the parameter with which <paramref name="argument"/> corresponds.</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Shared.ObjectDisposedThrowHelper.ThrowIf(System.Boolean,System.Object)">
+            <summary>Throws an <see cref="T:System.ObjectDisposedException"/> if the specified <paramref name="condition"/> is <see langword="true"/>.</summary>
+            <param name="condition">The condition to evaluate.</param>
+            <param name="instance">The object whose type's full name should be included in any resulting <see cref="T:System.ObjectDisposedException"/>.</param>
+            <exception cref="T:System.ObjectDisposedException">The <paramref name="condition"/> is <see langword="true"/>.</exception>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Shared.ObjectDisposedThrowHelper.ThrowIf(System.Boolean,System.Type)">
+            <summary>Throws an <see cref="T:System.ObjectDisposedException"/> if the specified <paramref name="condition"/> is <see langword="true"/>.</summary>
+            <param name="condition">The condition to evaluate.</param>
+            <param name="type">The type whose full name should be included in any resulting <see cref="T:System.ObjectDisposedException"/>.</param>
+            <exception cref="T:System.ObjectDisposedException">The <paramref name="condition"/> is <see langword="true"/>.</exception>
+        </member>
+    </members>
+</doc>

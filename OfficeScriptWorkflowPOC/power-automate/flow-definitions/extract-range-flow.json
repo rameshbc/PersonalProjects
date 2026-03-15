@@ -1,0 +1,52 @@
+{
+  "_comment": "Reference definition for the ExtractRange Power Automate flow. Handles both static ranges and dynamic array spill extraction.",
+
+  "HTTP_Trigger_Request_Schema": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "sheetName":    { "type": "string"  },
+      "anchorCell":   { "type": "string"  },
+      "rangeAddress": { "type": "string"  },
+      "includeFormulas": { "type": "boolean" }
+    },
+    "required": ["sheetName"]
+  },
+
+  "Script_Selection_Logic": {
+    "_comment": "Use a Condition action to route to the correct script based on which parameter is present.",
+    "Condition": "empty(triggerBody()?['anchorCell']) is false",
+    "If_True_Script": "ExtractDynamicArrayScript",
+    "If_False_Script": "ExtractRangeScript"
+  },
+
+  "Run_DynamicArray_Script_Action": {
+    "parameters": {
+      "ScriptName": "ExtractDynamicArrayScript",
+      "ScriptParameters/sheetName": "@{triggerBody()?['sheetName']}",
+      "ScriptParameters/anchorCell": "@{triggerBody()?['anchorCell']}"
+    }
+  },
+
+  "Run_StaticRange_Script_Action": {
+    "parameters": {
+      "ScriptName": "ExtractRangeScript",
+      "ScriptParameters/sheetName":    "@{triggerBody()?['sheetName']}",
+      "ScriptParameters/rangeAddress": "@{triggerBody()?['rangeAddress']}",
+      "ScriptParameters/includeFormulas": "@{coalesce(triggerBody()?['includeFormulas'], false)}"
+    }
+  },
+
+  "Success_Response_Body": {
+    "status": "success",
+    "scriptOutput": "@{body('Run_Script')?['result']?['body']?['returnValue']}",
+    "timestamp": "@{utcNow()}"
+  },
+
+  "Error_Response_Body": {
+    "status": "error",
+    "errorCode": "@{outputs('Run_Script')?['statusCode']}",
+    "errorMessage": "@{body('Run_Script')?['error']?['message']}",
+    "timestamp": "@{utcNow()}"
+  }
+}

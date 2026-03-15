@@ -1,0 +1,14 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- Applies to every project in the repo. Override per-project where needed. -->
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>preview</LangVersion>
+    <!-- Surface warnings as errors so quality issues cannot be ignored. -->
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Suppress XML-doc warnings for non-library projects (library sets its own). -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+</Project>

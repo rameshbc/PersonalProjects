@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+
+    <!-- NuGet package metadata -->
+    <PackageId>AspireContainerStarter.Infrastructure</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Your Organisation</Authors>
+    <Description>
+      Shared Azure infrastructure extensions for .NET 10 services.
+      Provides Managed Identity (MI) auth for Azure SQL, Azure Service Bus,
+      Azure Redis Cache, Azure App Configuration, and Azure Key Vault
+      with built-in Polly resilience pipelines and health checks.
+    </Description>
+    <PackageTags>azure;managed-identity;sql;servicebus;redis;appconfiguration;keyvault;resilience;aspire</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Azure Identity — DefaultAzureCredential (MI in Azure, CLI/VS locally) -->
+    <PackageReference Include="Azure.Identity" Version="1.14.2" />
+
+    <!-- Azure SQL / EF Core -->
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.0" />
+
+    <!-- Azure Service Bus -->
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.18.4" />
+
+    <!-- Azure Redis Cache with Entra ID auth -->
+    <PackageReference Include="Microsoft.Azure.StackExchangeRedis" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="10.0.0" />
+
+    <!-- Azure App Configuration -->
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureAppConfiguration" Version="8.0.0" />
+
+    <!-- Azure Key Vault secrets config provider -->
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.4.0" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.7.0" />
+
+    <!-- EF Core design-time tooling (migrations) — not included in consuming packages -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+
+    <!-- Resilience (Polly v8 via Microsoft.Extensions) -->
+    <PackageReference Include="Microsoft.Extensions.Resilience" Version="10.3.0" />
+
+    <!-- Health checks -->
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.Redis" Version="9.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.AzureServiceBus" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" Condition="Exists('README.md')" />
+  </ItemGroup>
+
+</Project>

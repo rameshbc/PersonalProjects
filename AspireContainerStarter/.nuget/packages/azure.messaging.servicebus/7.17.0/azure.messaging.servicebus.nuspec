@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Azure.Messaging.ServiceBus</id>
+    <version>7.17.0</version>
+    <authors>Microsoft</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>azureicon.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.17.0/sdk/servicebus/Azure.Messaging.ServiceBus/README.md</projectUrl>
+    <description>Azure Service Bus is a fully managed enterprise integration message broker. Service Bus can decouple applications and services. Service Bus offers a reliable and secure platform for asynchronous transfer of data and state. This client library allows for both sending and receiving messages using Azure Service Bus. For more information about Service Bus, see https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview</description>
+    <releaseNotes>https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.17.0/sdk/servicebus/Azure.Messaging.ServiceBus/CHANGELOG.md</releaseNotes>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>Azure Service Bus ServiceBus .NET AMQP windowsazureofficial azureofficial</tags>
+    <repository type="git" url="https://github.com/Azure/azure-sdk-for-net" commit="3dca00655dbfb6779c0c3fc842e973614df9d57e" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Azure.Core" version="1.36.0" exclude="Build,Analyzers" />
+        <dependency id="Azure.Core.Amqp" version="1.3.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Azure.Amqp" version="2.6.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Bcl.AsyncInterfaces" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="System.Memory.Data" version="1.0.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HealthChecks.AzureServiceBus</name>
+    </assembly>
+    <members>
+        <member name="M:HealthChecks.AzureServiceBus.AzureServiceBusQueueHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:HealthChecks.AzureServiceBus.AzureServiceBusQueueMessageCountThresholdHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:HealthChecks.AzureServiceBus.AzureServiceBusSubscriptionHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:HealthChecks.AzureServiceBus.AzureServiceBusTopicHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusHealthCheckOptions">
+            <summary>
+            Base class for configuration options for descendants of the <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusHealthCheck`1"/> class.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusHealthCheckOptions.ConnectionString">
+            <summary>
+            The azure service bus connection string.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusHealthCheckOptions.FullyQualifiedNamespace">
+            <summary>
+            The azure service bus fully qualified namespace.
+            </summary>
+            <remarks>
+            Must be used in conjunction with the <see cref="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusHealthCheckOptions.Credential"/> property.
+            </remarks>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusHealthCheckOptions.Credential">
+            <summary>
+            The token credential for authentication.
+            </summary>
+            <remarks>
+            Must be used in conjunction with the <see cref="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusHealthCheckOptions.FullyQualifiedNamespace"/> property.
+            </remarks>
+        </member>
+        <member name="T:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueHealthCheckOptions">
+            <summary>
+            Configuration options for <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusQueueHealthCheck"/>.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueHealthCheckOptions.QueueName">
+            <summary>
+            The name of the queue to check.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueHealthCheckOptions.UsePeekMode">
+            <summary>
+            Will use <c>PeekMessageAsync</c> method to determine status if set to <see langword="true"/> (default),
+            otherwise; will use <c>GetProperties*</c> method.
+            </summary>
+            <remarks>
+            Peek requires Listen claim to work. However, if only Sender claim using the Azure built-in roles (RBAC)
+            <see href="https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#azure-service-bus-data-sender">Azure Service Bus Data Sender</see>
+            is used set this to <see langword="false"/>. By default <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="T:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueMessagesCountThreshold">
+            <summary>
+            Threshold configuration options for <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusQueueMessageCountThresholdHealthCheck"/>.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueMessagesCountThreshold.DegradedThreshold">
+            <summary>
+            Number of active/dead letter Service Bus messages in the queue before message health check returned <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded"/>.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueMessagesCountThreshold.UnhealthyThreshold">
+            <summary>
+            Number of active/dead letter Service Bus messages in the queue before message health check returned <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/>.
+            </summary>
+        </member>
+        <member name="T:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueMessagesCountThresholdHealthCheckOptions">
+            <summary>
+            Configuration options for <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusQueueMessageCountThresholdHealthCheck"/>.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueMessagesCountThresholdHealthCheckOptions.ActiveMessages">
+            <summary>
+            Threshold configuration for active messages queue.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueMessagesCountThresholdHealthCheckOptions.DeadLetterMessages">
+            <summary>
+            Threshold configuration for dead letter messages queue.
+            </summary>
+        </member>
+        <member name="T:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusSubscriptionHealthCheckHealthCheckOptions">
+            <summary>
+            Configuration options for <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusSubscriptionHealthCheck"/>.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusSubscriptionHealthCheckHealthCheckOptions.SubscriptionName">
+            <summary>
+            The subscription name of the topic subscription to check.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusSubscriptionHealthCheckHealthCheckOptions.UsePeekMode">
+            <summary>
+            Will use <c>PeekMessageAsync</c> method to determine status if set to <see langword="true"/> (default),
+            otherwise; will use <c>GetProperties*</c> method.
+            </summary>
+            <remarks>
+            Peek requires Listen claim to work. However, if only Sender claim using the Azure built-in roles (RBAC)
+            <see href="https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#azure-service-bus-data-sender">Azure Service Bus Data Sender</see>
+            is used set this to <see langword="false"/>. By default <see langword="true"/>.
+            </remarks>
+        </member>
+        <member name="T:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusTopicHealthCheckOptions">
+            <summary>
+            Configuration options for <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusTopicHealthCheck"/>.
+            </summary>
+        </member>
+        <member name="P:HealthChecks.AzureServiceBus.Configuration.AzureServiceBusTopicHealthCheckOptions.TopicName">
+            <summary>
+            The name of the topic to check.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions">
+            <summary>
+            Extension methods to configure
+            <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusHealthCheck`1"/>, <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusQueueHealthCheck"/>,
+            <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusSubscriptionHealthCheck"/>, <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusTopicHealthCheck"/>,
+            <see cref="T:HealthChecks.AzureServiceBus.AzureServiceBusQueueMessageCountThresholdHealthCheck"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusQueue(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.String,System.String,System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for specified Azure Service Bus Queue.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="connectionString">The azure service bus connection string to be used.</param>
+            <param name="queueName">The name of the queue to check.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azurequeue' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusQueue(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,System.String},System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for specified Azure Service Bus Queue.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="connectionStringFactory">A factory to build the azure service bus connection string to be used.</param>
+            <param name="queueNameFactory">A factory to build the queue name to check.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azurequeue' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusQueue(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.String,System.String,Azure.Core.TokenCredential,System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for specified Azure Service Bus Queue.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="fullyQualifiedNamespace">The azure service bus fully qualified namespace to be used, format sb://myservicebus.servicebus.windows.net/.</param>
+            <param name="queueName">The name of the queue to check.</param>
+            <param name="tokenCredential">The token credential for authentication.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azurequeue' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusQueue(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,Azure.Core.TokenCredential},System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for specified Azure Service Bus Queue.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="fullyQualifiedNamespaceFactory">A factory to build the azure service bus fully qualified namespace to be used, format sb://myservicebus.servicebus.windows.net/.</param>
+            <param name="queueNameFactory">A factory to build the name of the queue to check.</param>
+            <param name="tokenCredentialFactory">A factory to build the token credential for authentication.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azurequeue' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusQueueMessageCountThreshold(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.String,System.String,System.String,System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueMessagesCountThresholdHealthCheckOptions},System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for specified Azure Service Bus Queue active or dead letter messages threshold.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="connectionString">The azure service bus connection string to be used.</param>
+            <param name="queueName">The name of the queue to check.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azurequeuethreshold' will be used for the name.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusQueueMessageCountThreshold(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.String,System.String,Azure.Core.TokenCredential,System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusQueueMessagesCountThresholdHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for specified Azure Service Bus Queue active or dead letter messages threshold.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="endpoint">The azure service bus endpoint to be used, format sb://myservicebus.servicebus.windows.net/.</param>
+            <param name="queueName">The name of the queue to check.</param>
+            <param name="tokenCredential">The token credential for authentication.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azurequeuethreshold' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusTopic(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.String,System.String,System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusTopicHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for Azure Service Bus Topic.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="connectionString">The Azure ServiceBus connection string to be used.</param>
+            <param name="topicName">The name of the topic to check.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azuretopic' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusTopic(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,System.String},System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusTopicHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for Azure Service Bus Topic.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="connectionStringFactory">A factory to build the Azure ServiceBus connection string to be used.</param>
+            <param name="topicNameFactory">A factory to build the name of the topic to check.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azuretopic' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusTopic(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.String,System.String,Azure.Core.TokenCredential,System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for Azure Service Bus Topic.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="fullyQualifiedNamespace">The azure service bus fully qualified namespace to be used, format sb://myservicebus.servicebus.windows.net/.</param>
+            <param name="topicName">The name of the topic to check.</param>
+            <param name="tokenCredential">The token credential for authentication.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azuretopic' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusTopic(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,Azure.Core.TokenCredential},System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusTopicHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for Azure Service Bus Topic.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="fullyQualifiedNamespaceFactory">A factory to build the azure service bus fully qualified namespace to be used, format sb://myservicebus.servicebus.windows.net/.</param>
+            <param name="topicNameFactory">A factory to build the name of the topic to check.</param>
+            <param name="tokenCredentialFactory">A factory to build the token credential for authentication.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azuretopic' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusSubscription(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.String,System.String,System.String,System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusSubscriptionHealthCheckHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for Azure Service Bus Subscription.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="connectionString">The Azure ServiceBus connection string to be used.</param>
+            <param name="topicName">The name of the topic to check.</param>
+            <param name="subscriptionName">The subscription name of the topic subscription to check.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azuretopic' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusSubscription(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,System.String},System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusSubscriptionHealthCheckHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for Azure Service Bus Subscription.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="connectionStringFactory">A factory to build the Azure ServiceBus connection string to be used.</param>
+            <param name="topicNameFactory">A factory to build the name of the topic to check.</param>
+            <param name="subscriptionNameFactory">A factory to build the subscription name of the topic subscription to check.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azuretopic' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusSubscription(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.String,System.String,System.String,Azure.Core.TokenCredential,System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusSubscriptionHealthCheckHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for Azure Service Bus Subscription.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="fullyQualifiedNamespace">The azure service bus fully qualified namespace to be used, format sb://myservicebus.servicebus.windows.net/.</param>
+            <param name="topicName">The name of the topic to check.</param>
+            <param name="subscriptionName">The subscription name of the topic subscription to check.</param>
+            <param name="tokenCredential">The token credential for authentication.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azuretopic' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.AzureServiceBusHealthCheckBuilderExtensions.AddAzureServiceBusSubscription(Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder,System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,System.String},System.Func{System.IServiceProvider,Azure.Core.TokenCredential},System.Action{HealthChecks.AzureServiceBus.Configuration.AzureServiceBusSubscriptionHealthCheckHealthCheckOptions},System.String,System.Nullable{Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus},System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.TimeSpan})">
+            <summary>
+            Add a health check for Azure Service Bus Subscription.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder"/>.</param>
+            <param name="fullyQualifiedNamespaceFactory">A factory to build the azure service bus fully qualified namespace to be used, format sb://myservicebus.servicebus.windows.net/.</param>
+            <param name="topicNameFactory">A factory to build the name of the topic to check.</param>
+            <param name="subscriptionNameFactory">A factory to build the subscription name of the topic subscription to check.</param>
+            <param name="tokenCredentialFactory">A factory to build the token credential for authentication.</param>
+            <param name="configure">An optional action to allow additional Azure Service Bus configuration.</param>
+            <param name="name">The health check name. Optional. If <c>null</c> the type name 'azuretopic' will be used for the name.</param>
+            <param name="failureStatus">
+            The <see cref="T:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus"/> that should be reported when the health check fails. Optional. If <c>null</c> then
+            the default status of <see cref="F:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy"/> will be reported.
+            </param>
+            <param name="tags">A list of tags that can be used to filter sets of health checks. Optional.</param>
+            <param name="timeout">An optional <see cref="T:System.TimeSpan"/> representing the timeout of the check.</param>
+            <returns>The specified <paramref name="builder"/>.</returns>
+        </member>
+        <member name="T:ApiMarker">
+            <summary>
+            Used for test purposes only.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullAttribute">
+            <summary>Specifies that an output will not be null even if the corresponding type allows it. Specifies that an input argument was not null when the call returns.</summary>
+        </member>
+        <member name="M:Guard.ThrowIfNull``1(``0,System.Boolean,System.String)">
+            <summary>Throws an <see cref="T:System.ArgumentNullException"/> if <paramref name="argument"/> is null.</summary>
+            <param name="argument">The reference type argument to validate as non-null.</param>
+            <param name="throwOnEmptyString">Only applicable to strings.</param>
+            <param name="paramName">The name of the parameter with which <paramref name="argument"/> corresponds.</param>
+        </member>
+    </members>
+</doc>

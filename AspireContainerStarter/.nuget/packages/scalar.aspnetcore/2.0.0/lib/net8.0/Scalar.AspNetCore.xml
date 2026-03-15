@@ -1,0 +1,2881 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Scalar.AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:Scalar.AspNetCore.OperationSorter">
+            <summary>
+            Specifies the sorting options for operations in the Scalar API reference.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.OperationSorter.Alpha">
+            <summary>
+            Sort operations alphabetically.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.OperationSorter.Method">
+            <summary>
+            Sort operations by method.
+            </summary>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarClient">
+            <summary>
+            Represents the different clients available in Scalar.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Libcurl">
+            <summary>
+            Libcurl client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.CljHttp">
+            <summary>
+            Clojure HTTP client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.HttpClient">
+            <summary>
+            HttpClient client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.RestSharp">
+            <summary>
+            RestSharp client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Native">
+            <summary>
+            Native client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Http11">
+            <summary>
+            HTTP/1.1 client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.AsyncHttp">
+            <summary>
+            AsyncHttp client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.NetHttp">
+            <summary>
+            NetHttp client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.OkHttp">
+            <summary>
+            OkHttp client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Unirest">
+            <summary>
+            Unirest client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Xhr">
+            <summary>
+            XMLHttpRequest client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Axios">
+            <summary>
+            Axios client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Fetch">
+            <summary>
+            Fetch API client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.JQuery">
+            <summary>
+            jQuery client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Undici">
+            <summary>
+            Undici client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Request">
+            <summary>
+            Request client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Nsurlsession">
+            <summary>
+            NSURLSession client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.CoHttp">
+            <summary>
+            CoHttp client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Curl">
+            <summary>
+            Curl client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Guzzle">
+            <summary>
+            Guzzle client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Http1">
+            <summary>
+            HTTP/1 client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Http2">
+            <summary>
+            HTTP/2 client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.WebRequest">
+            <summary>
+            WebRequest client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.RestMethod">
+            <summary>
+            RestMethod client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Python3">
+            <summary>
+            Python 3 client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Requests">
+            <summary>
+            Requests client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Httr">
+            <summary>
+            Httr client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Httpie">
+            <summary>
+            Httpie client.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClient.Wget">
+            <summary>
+            Wget client.
+            </summary>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarLayout">
+            <summary>
+            Represents the layout for the Scalar API reference.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarLayout.Modern">
+            <summary>
+            Modern layout style.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarLayout.Classic">
+            <summary>
+            Classic layout style.
+            </summary>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarTarget">
+            <summary>
+            Represents the different targets available in Scalar.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.C">
+            <summary>
+            C programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Clojure">
+            <summary>
+            Clojure programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.CSharp">
+            <summary>
+            C\# programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Go">
+            <summary>
+            Go programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Http">
+            <summary>
+            HTTP protocol.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Java">
+            <summary>
+            Java programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.JavaScript">
+            <summary>
+            JavaScript programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Kotlin">
+            <summary>
+            Kotlin programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Node">
+            <summary>
+            Node.js runtime.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.ObjC">
+            <summary>
+            Objective-C programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.OCaml">
+            <summary>
+            OCaml programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Php">
+            <summary>
+            PHP programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.PowerShell">
+            <summary>
+            PowerShell scripting language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Python">
+            <summary>
+            Python programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.R">
+            <summary>
+            R programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Ruby">
+            <summary>
+            Ruby programming language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Shell">
+            <summary>
+            Shell scripting language.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTarget.Swift">
+            <summary>
+            Swift programming language.
+            </summary>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarTheme">
+            <summary>
+            Represents the different themes available in Scalar.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.None">
+            <summary>
+            No theme applied.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.Alternate">
+            <summary>
+            Alternate theme.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.Default">
+            <summary>
+            Default theme.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.Moon">
+            <summary>
+            Moon theme.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.Purple">
+            <summary>
+            Purple theme.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.Solarized">
+            <summary>
+            Solarized theme.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.BluePlanet">
+            <summary>
+            Blue Planet theme.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.Saturn">
+            <summary>
+            Saturn theme.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.Kepler">
+            <summary>
+            Kepler theme.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.Mars">
+            <summary>
+            Mars theme.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTheme.DeepSpace">
+            <summary>
+            Deep Space theme.
+            </summary>
+        </member>
+        <member name="T:Scalar.AspNetCore.TagSorter">
+            <summary>
+            Specifies the sorting options for tags in the Scalar API reference.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.TagSorter.Alpha">
+            <summary>
+            Sort tags alphabetically.
+            </summary>
+        </member>
+        <member name="T:Scalar.AspNetCore.ThemeMode">
+            <summary>
+            Represents the theme modes available in the application.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ThemeMode.Light">
+            <summary>
+            Light mode.
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ThemeMode.Dark">
+            <summary>
+            Dark mode.
+            </summary>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarEndpointRouteBuilderExtensions">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder" /> to provide required endpoints.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarEndpointRouteBuilderExtensions.MapScalarApiReference(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
+            <summary>
+            Maps the Scalar API reference endpoint with the default endpoint prefix <c>'/scalar'</c>.
+            </summary>
+            <param name="endpoints">The <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder" /> to which the endpoint will be added.</param>
+            <remarks>
+            Redirects to the trailing from <c>'/scalar'</c> to <c>'/scalar/'</c>.
+            This ensures that the relative paths in the generated HTML are correct.
+            <br />
+            This method overload is compatible with the obsolete <see cref="P:Scalar.AspNetCore.ScalarOptions.EndpointPathPrefix" /> property.
+            </remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarEndpointRouteBuilderExtensions.MapScalarApiReference(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{Scalar.AspNetCore.ScalarOptions})">
+            <summary>
+            Maps the Scalar API reference endpoint with the default endpoint prefix <c>'/scalar'</c> and custom options.
+            </summary>
+            <param name="endpoints">The <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder" /> to which the endpoint will be added.</param>
+            <param name="configureOptions">An action to configure <see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <remarks>
+            Redirects to the trailing from <c>'/scalar'</c> to <c>'/scalar/'</c>.
+            This ensures that the relative paths in the generated HTML are correct.
+            <br />
+            This method overload is compatible with the obsolete <see cref="P:Scalar.AspNetCore.ScalarOptions.EndpointPathPrefix" /> property.
+            </remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarEndpointRouteBuilderExtensions.MapScalarApiReference(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Action{Scalar.AspNetCore.ScalarOptions,Microsoft.AspNetCore.Http.HttpContext})">
+            <summary>
+            Maps the Scalar API reference endpoint with the default endpoint prefix <c>'/scalar'</c> and custom options, providing access to the <see cref="T:Microsoft.AspNetCore.Http.HttpContext" />.
+            </summary>
+            <param name="endpoints">The <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder" /> to which the endpoint will be added.</param>
+            <param name="configureOptions">An optional action to configure <see cref="T:Scalar.AspNetCore.ScalarOptions" />, which includes access to the <see cref="T:Microsoft.AspNetCore.Http.HttpContext" />.</param>
+            <remarks>
+            Redirects to the trailing from <c>'/scalar'</c> to <c>'/scalar/'</c>.
+            This ensures that the relative paths in the generated HTML are correct.
+            </remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarEndpointRouteBuilderExtensions.MapScalarApiReference(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Scalar.AspNetCore.ScalarOptions})">
+            <summary>
+            Maps the Scalar API reference endpoint with a custom endpoint prefix and options.
+            </summary>
+            <param name="endpoints">The <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder" /> to which the endpoint will be added.</param>
+            <param name="endpointPrefix">The prefix for the endpoint.</param>
+            <param name="configureOptions">An action to configure <see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the <paramref name="endpointPrefix" /> contains the <c>'{documentName}'</c> placeholder.</exception>
+            <remarks>
+            Redirects to the trailing slash if <paramref name="endpointPrefix" /> does not end with a slash (e.g., from <c>'/scalar'</c> to <c>'/scalar/'</c>).
+            This ensures that the relative paths in the generated HTML are correct.
+            <br />
+            It's also possible to provide a document name as a route parameter in the browser (e.g., <c>'/scalar/v1'</c>).
+            </remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarEndpointRouteBuilderExtensions.MapScalarApiReference(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String,System.Action{Scalar.AspNetCore.ScalarOptions,Microsoft.AspNetCore.Http.HttpContext})">
+            <summary>
+            Maps the Scalar API reference endpoint with a custom endpoint prefix and options, providing access to the <see cref="T:Microsoft.AspNetCore.Http.HttpContext" />.
+            </summary>
+            <param name="endpoints">The <see cref="T:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder" /> to which the endpoint will be added.</param>
+            <param name="endpointPrefix">The prefix for the endpoint.</param>
+            <param name="configureOptions">An optional action to configure <see cref="T:Scalar.AspNetCore.ScalarOptions" />, which includes access to the <see cref="T:Microsoft.AspNetCore.Http.HttpContext" />.</param>
+            <exception cref="T:System.ArgumentException">Thrown when the <paramref name="endpointPrefix" /> contains the <c>'{documentName}'</c> placeholder.</exception>
+            <remarks>
+            Redirects to the trailing slash if <paramref name="endpointPrefix" /> does not end with a slash (e.g., from <c>'/scalar'</c> to <c>'/scalar/'</c>).
+            This ensures that the relative paths in the generated HTML are correct.
+            <br />
+            It's also possible to provide a document name as a route parameter in the browser (e.g., <c>'/scalar/v1'</c>).
+            </remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarEndpointRouteBuilderExtensions.MapStaticAssetsEndpoint(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)">
+            <summary>
+            Maps the endpoint for serving static assets.
+            </summary>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarOptionsExtensions">
+            <summary>
+            Provides extension methods for configuring <see cref="T:Scalar.AspNetCore.ScalarOptions" />.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithTitle(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets the title of the page.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="title">The title to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithFavicon(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets the favicon path or URL that will be used for the documentation.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="favicon">The path or URL to the favicon.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithEndpointPrefix(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets the path prefix to access the documentation.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="prefix">The path prefix to set.</param>
+            <remarks>
+            This method is obsolete and will be removed in a future release. Please use the 'endpointPrefix' parameter of the <see cref="M:Scalar.AspNetCore.ScalarEndpointRouteBuilderExtensions.MapScalarApiReference(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)" /> method instead.
+            </remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.AddDocument(Scalar.AspNetCore.ScalarOptions,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Adds the given document names to <see cref="T:Scalar.AspNetCore.ScalarOptions" />.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="documentNames">The document names to add.</param>
+            <remarks>This feature will be public once we support multiple OpenAPI documents.</remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithDocumentNamesProvider(Scalar.AspNetCore.ScalarOptions,System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Collections.Generic.IEnumerable{System.String}})">
+            <summary>
+            Sets the document names provider.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="provider">The function to provide document names.</param>
+            <remarks>This feature will be public once we support multiple OpenAPI documents.</remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithDocumentNamesProvider(Scalar.AspNetCore.ScalarOptions,System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Threading.Tasks.Task{System.Collections.Generic.IEnumerable{System.String}}})">
+            <summary>
+            Sets a async document names provider.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="provider">The async function to provide document names.</param>
+            <remarks>This feature will be public once we support multiple OpenAPI documents.</remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithProxyUrl(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets the proxy URL for the API requests.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="proxyUrl">The proxy URL to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithSidebar(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether the sidebar should be shown.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="showSidebar">Whether to show the sidebar.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithModels(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether models should be shown in the sidebar, search, and content.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="showModels">Whether to show models.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithDownloadButton(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether to show the "Download OpenAPI Specification" button.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="showDownloadButton">Whether to show the download button.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithTestRequestButton(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether to show the "Test Request" button.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="showTestRequestButton">Whether to show the test request button.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithDarkMode(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether dark mode is on or off initially.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="darkMode">Whether dark mode is on or off initially.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithForceThemeMode(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.ThemeMode)">
+            <summary>
+            Forces the theme mode to always be the specified state.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="forceThemeMode">The theme mode to force.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithDarkModeToggle(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether to show the dark mode toggle.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="showDarkModeToggle">Whether to show the dark mode toggle.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithCustomCss(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets custom CSS directly to the component.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="customCss">The custom CSS to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithSearchHotKey(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets the key used with CTRL/CMD to open the search modal.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="searchHotKey">The search hotkey to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithTheme(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.ScalarTheme)">
+            <summary>
+            Sets the color theme.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="theme">The theme to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithLayout(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.ScalarLayout)">
+            <summary>
+            Sets the layout for the Scalar API reference.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="layout">The layout to use.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithDefaultFonts(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether to use the default fonts.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="useDefaultFonts">Whether to use the default fonts.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithDefaultOpenAllTags(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether to open all tags by default.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="useOpenAllTags">Whether to open all tags by default.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.AddServer(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.ScalarServer)">
+            <summary>
+            Adds a server to the list of servers in the <see cref="T:Scalar.AspNetCore.ScalarOptions" />.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="server">The <see cref="T:Scalar.AspNetCore.ScalarServer" /> to add.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.AddServer(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Adds a server to the list of servers in the <see cref="T:Scalar.AspNetCore.ScalarOptions" /> using a URL.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="url">The URL of the server to add.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.AddMetadata(Scalar.AspNetCore.ScalarOptions,System.String,System.String)">
+            <summary>
+            Adds metadata to the configuration.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="key">The metadata key.</param>
+            <param name="value">The metadata value.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithTagSorter(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.TagSorter)">
+            <summary>
+            Sets the tag sorter for the <see cref="T:Scalar.AspNetCore.ScalarOptions" />.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="tagSorter">The <see cref="T:Scalar.AspNetCore.TagSorter" /> to use.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithOperationSorter(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.OperationSorter)">
+            <summary>
+            Sets the operation sorter for the <see cref="T:Scalar.AspNetCore.ScalarOptions" />.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="operationSorter">The <see cref="T:Scalar.AspNetCore.OperationSorter" /> to use.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithPreferredScheme(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets the preferred authentication scheme.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="preferredScheme">The preferred authentication scheme.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithApiKeyAuthentication(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.ApiKeyOptions)">
+            <summary>
+            Sets the API key authentication options.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="apiKeyOptions">The API key options to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithApiKeyAuthentication(Scalar.AspNetCore.ScalarOptions,System.Action{Scalar.AspNetCore.ApiKeyOptions})">
+            <summary>
+            Configures the API key authentication options.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="configureApiKeyOptions">The action to configure the API key options.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithOAuth2Authentication(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.OAuth2Options)">
+            <summary>
+            Configures the OAuth2 authentication options.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="oauth2Options">The OAuth2 options to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithOAuth2Authentication(Scalar.AspNetCore.ScalarOptions,System.Action{Scalar.AspNetCore.OAuth2Options})">
+            <summary>
+            Configures the OAuth2 authentication options.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="configureOAuth2Options">The action to configure the OAuth2 options.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithHttpBasicAuthentication(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.HttpBasicOptions)">
+            <summary>
+            Sets the HTTP basic authentication options.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="httpBasicOptions">The HTTP basic options to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithHttpBasicAuthentication(Scalar.AspNetCore.ScalarOptions,System.Action{Scalar.AspNetCore.HttpBasicOptions})">
+            <summary>
+            Configures the HTTP basic authentication options.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="configureHttpBasicOptions">The action to configure the HTTP basic options.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithHttpBearerAuthentication(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.HttpBearerOptions)">
+            <summary>
+            Sets the HTTP bearer authentication options.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="httpBearerOptions">The HTTP bearer options to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithHttpBearerAuthentication(Scalar.AspNetCore.ScalarOptions,System.Action{Scalar.AspNetCore.HttpBearerOptions})">
+            <summary>
+            Configures the HTTP bearer authentication options.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="configureHttpBearerOptions">The action to configure the HTTP bearer options.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithDefaultHttpClient(Scalar.AspNetCore.ScalarOptions,Scalar.AspNetCore.ScalarTarget,Scalar.AspNetCore.ScalarClient)">
+            <summary>
+            Sets the default HTTP client.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="target">The target to set.</param>
+            <param name="client">The client to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithOpenApiRoutePattern(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets the route pattern of the OpenAPI document.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="pattern">The route pattern to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithCdnUrl(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets the CDN URL for the API reference.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="url">The CDN URL to set.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithDotNetFlag(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether to expose 'dotnet' to the configuration.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="expose">Whether to expose 'dotnet'.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.WithClientButton(Scalar.AspNetCore.ScalarOptions,System.Boolean)">
+            <summary>
+            Sets whether the client button from the reference sidebar should be shown.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="showButton">Whether to show the client button.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.AddHeadContent(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Sets additional HTML content to be included in the head section of the HTML document.
+            </summary>
+            <param name="options"><see cref="T:Scalar.AspNetCore.ScalarOptions" />.</param>
+            <param name="headContent">The additional content to include in the head section.</param>
+            <remarks>
+            The provided content will be appended.
+            </remarks>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarOptionsExtensions.AddHeaderContent(Scalar.AspNetCore.ScalarOptions,System.String)">
+            <summary>
+            Adds additional HTML content to be rendered in the header section of the page.
+            This content will be embedded after the <c>&lt;body&gt;</c> tag and before the API reference.
+            </summary>
+            <example>
+            The following is an example of how to use this property:
+            <code>AddHeaderContent("&lt;header&gt;Welcome to my API reference&lt;/header&gt;");</code>
+            renders the following HTML:
+            <code>
+            <![CDATA[
+            <body>
+                <header>Welcome to my API reference</header>
+                <script id="api-reference"></script>
+            </body>
+            ]]>
+            </code>
+            </example>
+            <remarks>The provided content will be appended.</remarks>
+        </member>
+        <member name="T:Scalar.AspNetCore.ApiKeyOptions">
+            <summary>
+            Represents the options for API key authentication.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ApiKeyOptions.Token">
+            <summary>
+            Gets or sets the token used for API key authentication.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="T:Scalar.AspNetCore.HttpBasicOptions">
+            <summary>
+            Represents the options for HTTP basic authentication.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.HttpBasicOptions.Username">
+            <summary>
+            Gets or sets the username used for HTTP basic authentication.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.HttpBasicOptions.Password">
+            <summary>
+            Gets or sets the password used for HTTP basic authentication.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="T:Scalar.AspNetCore.HttpBearerOptions">
+            <summary>
+            Represents the options for HTTP bearer authentication.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.HttpBearerOptions.Token">
+            <summary>
+            Gets or sets the token used for HTTP bearer authentication.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="T:Scalar.AspNetCore.HttpOptions">
+            <summary>
+            Represents the options for HTTP authentication.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.HttpOptions.Basic">
+            <summary>
+            Gets or sets the HTTP basic options.
+            This can be used if the OpenApi document has a HTTP basic security scheme.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.HttpOptions.Bearer">
+            <summary>
+            Gets or sets the HTTP bearer options.
+            This can be used if the OpenApi document has a HTTP bearer security scheme.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="T:Scalar.AspNetCore.OAuth2Options">
+            <summary>
+            Represents the options for OAuth2 authentication.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.OAuth2Options.ClientId">
+            <summary>
+            Gets or sets the client ID for OAuth2 authentication.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.OAuth2Options.Scopes">
+            <summary>
+            Gets or sets the scopes for OAuth2 authentication.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarAuthenticationOptions">
+            <summary>
+            Represents the authentication options for Scalar.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarAuthenticationOptions.PreferredSecurityScheme">
+            <summary>
+            Gets or sets the preferred security scheme.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarAuthenticationOptions.ApiKey">
+            <summary>
+            Gets or sets the API key options.
+            This can be used if the OpenApi document has a API key security scheme.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarAuthenticationOptions.OAuth2">
+            <summary>
+            Gets or sets the OAuth2 options.
+            This can be used if the OpenApi document has a OAuth2 security scheme.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarAuthenticationOptions.Http">
+            <summary>
+            Gets or sets the HTTP options.
+            This can be used if the OpenApi document has a HTTP security scheme.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarOptions">
+            <summary>
+            Represents all available options for the Scalar API reference.
+            Based on <a href="https://github.com/scalar/scalar/blob/main/documentation/configuration.md">Configuration</a>.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.DocumentNamesProvider">
+            <summary>
+            Gets or sets a function that provides document names.
+            </summary>
+            <value>A function that returns an <see cref="T:System.Collections.Generic.IEnumerable`1" /> of document names.</value>
+            <remarks>This feature will be public once we support multiple OpenAPI documents. If this property is set, the <see cref="P:Scalar.AspNetCore.ScalarOptions.DocumentNames" /> property will be ignored.</remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.Title">
+            <summary>
+            Metadata title.
+            </summary>
+            <value>The default value is <c>'Scalar API Reference'</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.Favicon">
+            <summary>
+            Specify a path or URL to a favicon to be used for the documentation.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.EndpointPathPrefix">
+            <summary>
+            Path prefix to access the documentation.
+            </summary>
+            <value>The default value is <c>'/scalar'</c>.</value>
+            <remarks>
+            This property is obsolete and will be removed in a future release. Please use the 'endpointPrefix' parameter of the <see cref="M:Scalar.AspNetCore.ScalarEndpointRouteBuilderExtensions.MapScalarApiReference(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder)" /> method instead.
+            </remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.OpenApiRoutePattern">
+            <summary>
+            Gets or sets the route pattern of the OpenAPI document.
+            </summary>
+            <value>The default value is <c>'/openapi/{documentName}.json'</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.ProxyUrl">
+            <summary>
+            Proxy URL for the API requests.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.ShowSidebar">
+            <summary>
+            Whether the sidebar should be shown.
+            </summary>
+            <value>The default value is <c>true</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.HideModels">
+            <summary>
+            Whether models (components.schemas or definitions) should be shown in the sidebar, search, and content.
+            </summary>
+            <value>The default value is <c>false</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.HideDownloadButton">
+            <summary>
+            Whether to hide the "Download OpenAPI Specification" button.
+            </summary>
+            <value>The default value is <c>false</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.HideTestRequestButton">
+            <summary>
+            Whether to hide the "Test Request" button.
+            </summary>
+            <value>The default value is <c>false</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.DarkMode">
+            <summary>
+            Whether dark mode is on or off initially.
+            </summary>
+            <value>The default value is <c>true</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.ForceThemeMode">
+            <summary>
+            ForceDarkModeState makes it always this state no matter what <c>'dark' | 'light'</c>.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.HideDarkModeToggle">
+            <summary>
+            Whether to hide the dark mode toggle.
+            </summary>
+            <value>The default value is <c>false</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.CustomCss">
+            <summary>
+            Pass custom CSS directly to the component.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.SearchHotKey">
+            <summary>
+            Key used with CTRL/CMD to open the search modal (e.g. CMD+k).
+            </summary>
+            <value>The default value is <c>k</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.Theme">
+            <summary>
+            Set color theme.
+            </summary>
+            <value>The default value is <see cref="F:Scalar.AspNetCore.ScalarTheme.Purple" />.</value>
+            <remarks>Select your preferred <see cref="F:Scalar.AspNetCore.ScalarTheme.Purple">ScalarTheme</see>.</remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.Layout">
+            <summary>
+            Gets or sets the layout for the Scalar API reference.
+            </summary>
+            <value>The default value is <see cref="F:Scalar.AspNetCore.ScalarLayout.Modern" />.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.DefaultFonts">
+            <summary>
+            By default, we are using Inter and JetBrains Mono, served by Google Fonts.
+            </summary>
+            <value>The default value is <c>true</c>.</value>
+            <remarks>If you use a different font or just don’t want to use Google Fonts, set this to <c>false</c>.</remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.DefaultOpenAllTags">
+            <summary>
+            By default, only the relevant tag based on the URL is opened.
+            </summary>
+            <value>The default value is <c>false</c>.</value>
+            <remarks>If you want all the tags open by default then set this configuration option.</remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.TagSorter">
+            <summary>
+            Represents a sorter for tags in the Scalar API reference.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.OperationSorter">
+            <summary>
+            Represents a sorter for operations in the Scalar API reference.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.HiddenClients">
+            <summary>
+            You can pass an array of HTTPSnippet clients to hide from the clients menu.
+            </summary>
+            <value>The default value is <c>false</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.EnabledClients">
+            <summary>
+            You can pass an array of HTTPSnippet clients that you want to display in the clients menu.
+            </summary>
+            <value>The default value is <see cref="M:System.Array.Empty``1" />.</value>
+            <remarks>If an empty array is sent, all options will be displayed.</remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.EnabledTargets">
+            <summary>
+            You can pass an array of HTTPSnippet targets that you want to display in the clients menu.
+            </summary>
+            <value>The default value is <see cref="M:System.Array.Empty``1" />.</value>
+            <remarks>If an empty array is sent, all options will be displayed.</remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.Metadata">
+            <summary>
+            You can pass information to the config object to configure meta information out of the box.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.Authentication">
+            <summary>
+            To make authentication easier, you can prefill the credentials.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.DefaultHttpClient">
+            <summary>
+            Gets or sets the default HTTP client.
+            </summary>
+            <value>The default values are <see cref="F:Scalar.AspNetCore.ScalarTarget.Shell" /> and <see cref="F:Scalar.AspNetCore.ScalarClient.Curl" />.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.CdnUrl">
+            <summary>
+            Gets or sets the CDN URL for the API reference.
+            </summary>
+            <value>The default value is <c>null</c></value>
+            <remarks>Use this option to load the API reference from a different CDN or local server.</remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.Servers">
+            <summary>
+            Gets or sets the list of servers for the Scalar API reference.
+            </summary>
+            <value>A list of <see cref="T:Scalar.AspNetCore.ScalarServer" /> representing the servers. The default value is <c>null</c>.</value>
+            <remarks>This list will override the servers defined in the OpenAPI document.</remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.DotNetFlag">
+            <summary>
+            Gets or sets whether to expose 'dotnet' to the configuration.
+            </summary>
+            <value>A boolean that indicates if 'dotnet' should be exposed to the configuration. The default value is <c>true</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.HideClientButton">
+            <summary>
+            Gets or sets whether the client button from the reference sidebar should be hidden.
+            </summary>
+            <value>A boolean that indicates if the client button should be hidden. The default value is <c>false</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.HeadContent">
+            <summary>
+            Gets or sets additional content to be included in the head section of the HTML document.
+            </summary>
+            <value>The default value is <c>null</c>.</value>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarOptions.HeaderContent">
+            <summary>
+            Gets or sets the HTML content to be rendered in the header section of the page.
+            This content will be embedded after the <c>&lt;body&gt;</c> tag and before the API reference.
+            </summary>
+            <example>
+            The following is an example of how to use this property:
+            <code>HeaderContent = "&lt;header&gt;Welcome to my API reference&lt;/header&gt;";</code>
+            renders the following HTML:
+            <code>
+            <![CDATA[
+            <body>
+                <header>Welcome to my API reference</header>
+                <script id="api-reference"></script>
+            </body>
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarServer">
+            <summary>
+            Represents a server with a URL and an optional description.
+            </summary>
+            <param name="Url">The URL of the server.</param>
+            <param name="Description">An optional description of the server.</param>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarServer.#ctor(System.String,System.String)">
+            <summary>
+            Represents a server with a URL and an optional description.
+            </summary>
+            <param name="Url">The URL of the server.</param>
+            <param name="Description">An optional description of the server.</param>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarServer.Url">
+            <summary>The URL of the server.</summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarServer.Description">
+            <summary>An optional description of the server.</summary>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarConfiguration">
+            <summary>
+            Internal representation of the configuration for the Scalar API reference.
+            Based on <a href="https://github.com/scalar/scalar/blob/main/documentation/configuration.md">Configuration</a>.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfiguration.Documents">
+            <remarks>This feature will be public once we support multiple OpenAPI documents</remarks>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.Boolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.NullableBoolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.ApiKeyOptions">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.DefaultHttpClient">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.HttpBasicOptions">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.HttpBearerOptions">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.HttpOptions">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.OAuth2Options">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.ScalarAuthenticationOptions">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.ScalarConfiguration">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.ScalarServer">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.IDictionaryStringIEnumerableString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.IDictionaryStringString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.IEnumerableScalarServer">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.IEnumerableString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:Scalar.AspNetCore.ScalarConfigurationSerializerContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarConfigurationSerializerContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarConfigurationSerializerContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarConfigurationSerializerContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Scalar.AspNetCore.OperationSorterExtensions">
+            <summary>
+            Extension methods for <see cref="T:Scalar.AspNetCore.OperationSorter" />
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.OperationSorterExtensions.Length">
+            <summary>
+            The number of members in the enum.
+            This is a non-distinct count of defined names.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.ToStringFast(Scalar.AspNetCore.OperationSorter)">
+            <summary>
+            Returns the string representation of the <see cref="T:Scalar.AspNetCore.OperationSorter"/> value.
+            If the attribute is decorated with a <c>[Display]</c> attribute, then
+            uses the provided value. Otherwise uses the name of the member, equivalent to
+            calling <c>ToString()</c> on <paramref name="value"/>.
+            </summary>
+            <param name="value">The value to retrieve the string value for</param>
+            <returns>The string representation of the value</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.IsDefined(Scalar.AspNetCore.OperationSorter)">
+            <summary>
+            Returns a boolean telling whether the given enum value exists in the enumeration.
+            </summary>
+            <param name="value">The value to check if it's defined</param>
+            <returns><c>true</c> if the value exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.IsDefined(System.String)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.IsDefined(System.String,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.IsDefined(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.IsDefined(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or optionally if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            Slower then the <see cref="M:Scalar.AspNetCore.OperationSorterExtensions.IsDefined(System.String,System.Boolean)" /> overload, but doesn't allocate memory./>
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.Parse(System.String)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.Parse(System.String,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.Parse(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.TryParse(System.String,Scalar.AspNetCore.OperationSorter@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.OperationSorter" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.TryParse(System.String,Scalar.AspNetCore.OperationSorter@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.OperationSorter" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.TryParse(System.String,Scalar.AspNetCore.OperationSorter@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.OperationSorter" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.Parse(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.OperationSorter@)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.OperationSorter" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.OperationSorter@,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.OperationSorter" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.OperationSorter@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.OperationSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="result">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.OperationSorter" /> whose
+            value is represented by <paramref name="result"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.OperationSorter" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.GetValues">
+            <summary>
+            Retrieves an array of the values of the members defined in
+            <see cref="T:Scalar.AspNetCore.OperationSorter" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the values defined in <see cref="T:Scalar.AspNetCore.OperationSorter" /></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.OperationSorterExtensions.GetNames">
+            <summary>
+            Retrieves an array of the names of the members defined in
+            <see cref="T:Scalar.AspNetCore.OperationSorter" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the names of the members defined in <see cref="T:Scalar.AspNetCore.OperationSorter" /></returns>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarClientExtensions">
+            <summary>
+            Extension methods for <see cref="T:Scalar.AspNetCore.ScalarClient" />
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarClientExtensions.Length">
+            <summary>
+            The number of members in the enum.
+            This is a non-distinct count of defined names.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.ToStringFast(Scalar.AspNetCore.ScalarClient)">
+            <summary>
+            Returns the string representation of the <see cref="T:Scalar.AspNetCore.ScalarClient"/> value.
+            If the attribute is decorated with a <c>[Display]</c> attribute, then
+            uses the provided value. Otherwise uses the name of the member, equivalent to
+            calling <c>ToString()</c> on <paramref name="value"/>.
+            </summary>
+            <param name="value">The value to retrieve the string value for</param>
+            <returns>The string representation of the value</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.IsDefined(Scalar.AspNetCore.ScalarClient)">
+            <summary>
+            Returns a boolean telling whether the given enum value exists in the enumeration.
+            </summary>
+            <param name="value">The value to check if it's defined</param>
+            <returns><c>true</c> if the value exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.IsDefined(System.String)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.IsDefined(System.String,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.IsDefined(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.IsDefined(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or optionally if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            Slower then the <see cref="M:Scalar.AspNetCore.ScalarClientExtensions.IsDefined(System.String,System.Boolean)" /> overload, but doesn't allocate memory./>
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.Parse(System.String)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.Parse(System.String,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.Parse(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarClient@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarClient" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarClient@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarClient" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarClient@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarClient" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.Parse(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarClient@)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarClient" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarClient@,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarClient" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarClient@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarClient" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="result">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarClient" /> whose
+            value is represented by <paramref name="result"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarClient" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.GetValues">
+            <summary>
+            Retrieves an array of the values of the members defined in
+            <see cref="T:Scalar.AspNetCore.ScalarClient" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the values defined in <see cref="T:Scalar.AspNetCore.ScalarClient" /></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarClientExtensions.GetNames">
+            <summary>
+            Retrieves an array of the names of the members defined in
+            <see cref="T:Scalar.AspNetCore.ScalarClient" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the names of the members defined in <see cref="T:Scalar.AspNetCore.ScalarClient" /></returns>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarLayoutExtensions">
+            <summary>
+            Extension methods for <see cref="T:Scalar.AspNetCore.ScalarLayout" />
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarLayoutExtensions.Length">
+            <summary>
+            The number of members in the enum.
+            This is a non-distinct count of defined names.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.ToStringFast(Scalar.AspNetCore.ScalarLayout)">
+            <summary>
+            Returns the string representation of the <see cref="T:Scalar.AspNetCore.ScalarLayout"/> value.
+            If the attribute is decorated with a <c>[Display]</c> attribute, then
+            uses the provided value. Otherwise uses the name of the member, equivalent to
+            calling <c>ToString()</c> on <paramref name="value"/>.
+            </summary>
+            <param name="value">The value to retrieve the string value for</param>
+            <returns>The string representation of the value</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.IsDefined(Scalar.AspNetCore.ScalarLayout)">
+            <summary>
+            Returns a boolean telling whether the given enum value exists in the enumeration.
+            </summary>
+            <param name="value">The value to check if it's defined</param>
+            <returns><c>true</c> if the value exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.IsDefined(System.String)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.IsDefined(System.String,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.IsDefined(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.IsDefined(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or optionally if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            Slower then the <see cref="M:Scalar.AspNetCore.ScalarLayoutExtensions.IsDefined(System.String,System.Boolean)" /> overload, but doesn't allocate memory./>
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.Parse(System.String)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.Parse(System.String,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.Parse(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarLayout@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarLayout" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarLayout@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarLayout" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarLayout@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarLayout" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.Parse(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarLayout@)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarLayout" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarLayout@,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarLayout" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarLayout@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarLayout" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="result">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarLayout" /> whose
+            value is represented by <paramref name="result"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarLayout" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.GetValues">
+            <summary>
+            Retrieves an array of the values of the members defined in
+            <see cref="T:Scalar.AspNetCore.ScalarLayout" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the values defined in <see cref="T:Scalar.AspNetCore.ScalarLayout" /></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarLayoutExtensions.GetNames">
+            <summary>
+            Retrieves an array of the names of the members defined in
+            <see cref="T:Scalar.AspNetCore.ScalarLayout" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the names of the members defined in <see cref="T:Scalar.AspNetCore.ScalarLayout" /></returns>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarTargetExtensions">
+            <summary>
+            Extension methods for <see cref="T:Scalar.AspNetCore.ScalarTarget" />
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarTargetExtensions.Length">
+            <summary>
+            The number of members in the enum.
+            This is a non-distinct count of defined names.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.ToStringFast(Scalar.AspNetCore.ScalarTarget)">
+            <summary>
+            Returns the string representation of the <see cref="T:Scalar.AspNetCore.ScalarTarget"/> value.
+            If the attribute is decorated with a <c>[Display]</c> attribute, then
+            uses the provided value. Otherwise uses the name of the member, equivalent to
+            calling <c>ToString()</c> on <paramref name="value"/>.
+            </summary>
+            <param name="value">The value to retrieve the string value for</param>
+            <returns>The string representation of the value</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.IsDefined(Scalar.AspNetCore.ScalarTarget)">
+            <summary>
+            Returns a boolean telling whether the given enum value exists in the enumeration.
+            </summary>
+            <param name="value">The value to check if it's defined</param>
+            <returns><c>true</c> if the value exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.IsDefined(System.String)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.IsDefined(System.String,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.IsDefined(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.IsDefined(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or optionally if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            Slower then the <see cref="M:Scalar.AspNetCore.ScalarTargetExtensions.IsDefined(System.String,System.Boolean)" /> overload, but doesn't allocate memory./>
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.Parse(System.String)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.Parse(System.String,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.Parse(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarTarget@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTarget" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarTarget@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTarget" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarTarget@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTarget" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.Parse(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarTarget@)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTarget" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarTarget@,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTarget" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarTarget@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTarget" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="result">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTarget" /> whose
+            value is represented by <paramref name="result"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTarget" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.GetValues">
+            <summary>
+            Retrieves an array of the values of the members defined in
+            <see cref="T:Scalar.AspNetCore.ScalarTarget" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the values defined in <see cref="T:Scalar.AspNetCore.ScalarTarget" /></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarTargetExtensions.GetNames">
+            <summary>
+            Retrieves an array of the names of the members defined in
+            <see cref="T:Scalar.AspNetCore.ScalarTarget" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the names of the members defined in <see cref="T:Scalar.AspNetCore.ScalarTarget" /></returns>
+        </member>
+        <member name="T:Scalar.AspNetCore.ScalarThemeExtensions">
+            <summary>
+            Extension methods for <see cref="T:Scalar.AspNetCore.ScalarTheme" />
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ScalarThemeExtensions.Length">
+            <summary>
+            The number of members in the enum.
+            This is a non-distinct count of defined names.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.ToStringFast(Scalar.AspNetCore.ScalarTheme)">
+            <summary>
+            Returns the string representation of the <see cref="T:Scalar.AspNetCore.ScalarTheme"/> value.
+            If the attribute is decorated with a <c>[Display]</c> attribute, then
+            uses the provided value. Otherwise uses the name of the member, equivalent to
+            calling <c>ToString()</c> on <paramref name="value"/>.
+            </summary>
+            <param name="value">The value to retrieve the string value for</param>
+            <returns>The string representation of the value</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.IsDefined(Scalar.AspNetCore.ScalarTheme)">
+            <summary>
+            Returns a boolean telling whether the given enum value exists in the enumeration.
+            </summary>
+            <param name="value">The value to check if it's defined</param>
+            <returns><c>true</c> if the value exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.IsDefined(System.String)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.IsDefined(System.String,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.IsDefined(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.IsDefined(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or optionally if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            Slower then the <see cref="M:Scalar.AspNetCore.ScalarThemeExtensions.IsDefined(System.String,System.Boolean)" /> overload, but doesn't allocate memory./>
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.Parse(System.String)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.Parse(System.String,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.Parse(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarTheme@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTheme" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarTheme@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTheme" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.TryParse(System.String,Scalar.AspNetCore.ScalarTheme@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTheme" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.Parse(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarTheme@)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTheme" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarTheme@,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTheme" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ScalarTheme@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ScalarTheme" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="result">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ScalarTheme" /> whose
+            value is represented by <paramref name="result"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ScalarTheme" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.GetValues">
+            <summary>
+            Retrieves an array of the values of the members defined in
+            <see cref="T:Scalar.AspNetCore.ScalarTheme" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the values defined in <see cref="T:Scalar.AspNetCore.ScalarTheme" /></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ScalarThemeExtensions.GetNames">
+            <summary>
+            Retrieves an array of the names of the members defined in
+            <see cref="T:Scalar.AspNetCore.ScalarTheme" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the names of the members defined in <see cref="T:Scalar.AspNetCore.ScalarTheme" /></returns>
+        </member>
+        <member name="T:Scalar.AspNetCore.TagSorterExtensions">
+            <summary>
+            Extension methods for <see cref="T:Scalar.AspNetCore.TagSorter" />
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.TagSorterExtensions.Length">
+            <summary>
+            The number of members in the enum.
+            This is a non-distinct count of defined names.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.ToStringFast(Scalar.AspNetCore.TagSorter)">
+            <summary>
+            Returns the string representation of the <see cref="T:Scalar.AspNetCore.TagSorter"/> value.
+            If the attribute is decorated with a <c>[Display]</c> attribute, then
+            uses the provided value. Otherwise uses the name of the member, equivalent to
+            calling <c>ToString()</c> on <paramref name="value"/>.
+            </summary>
+            <param name="value">The value to retrieve the string value for</param>
+            <returns>The string representation of the value</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.IsDefined(Scalar.AspNetCore.TagSorter)">
+            <summary>
+            Returns a boolean telling whether the given enum value exists in the enumeration.
+            </summary>
+            <param name="value">The value to check if it's defined</param>
+            <returns><c>true</c> if the value exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.IsDefined(System.String)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.IsDefined(System.String,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.IsDefined(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.IsDefined(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or optionally if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            Slower then the <see cref="M:Scalar.AspNetCore.TagSorterExtensions.IsDefined(System.String,System.Boolean)" /> overload, but doesn't allocate memory./>
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.Parse(System.String)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.Parse(System.String,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.Parse(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.TryParse(System.String,Scalar.AspNetCore.TagSorter@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.TagSorter" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.TryParse(System.String,Scalar.AspNetCore.TagSorter@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.TagSorter" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.TryParse(System.String,Scalar.AspNetCore.TagSorter@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.TagSorter" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.Parse(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.TagSorter@)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.TagSorter" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.TagSorter@,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.TagSorter" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.TagSorter@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.TagSorter" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="result">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.TagSorter" /> whose
+            value is represented by <paramref name="result"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.TagSorter" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.GetValues">
+            <summary>
+            Retrieves an array of the values of the members defined in
+            <see cref="T:Scalar.AspNetCore.TagSorter" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the values defined in <see cref="T:Scalar.AspNetCore.TagSorter" /></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.TagSorterExtensions.GetNames">
+            <summary>
+            Retrieves an array of the names of the members defined in
+            <see cref="T:Scalar.AspNetCore.TagSorter" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the names of the members defined in <see cref="T:Scalar.AspNetCore.TagSorter" /></returns>
+        </member>
+        <member name="T:Scalar.AspNetCore.ThemeModeExtensions">
+            <summary>
+            Extension methods for <see cref="T:Scalar.AspNetCore.ThemeMode" />
+            </summary>
+        </member>
+        <member name="F:Scalar.AspNetCore.ThemeModeExtensions.Length">
+            <summary>
+            The number of members in the enum.
+            This is a non-distinct count of defined names.
+            </summary>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.ToStringFast(Scalar.AspNetCore.ThemeMode)">
+            <summary>
+            Returns the string representation of the <see cref="T:Scalar.AspNetCore.ThemeMode"/> value.
+            If the attribute is decorated with a <c>[Display]</c> attribute, then
+            uses the provided value. Otherwise uses the name of the member, equivalent to
+            calling <c>ToString()</c> on <paramref name="value"/>.
+            </summary>
+            <param name="value">The value to retrieve the string value for</param>
+            <returns>The string representation of the value</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.IsDefined(Scalar.AspNetCore.ThemeMode)">
+            <summary>
+            Returns a boolean telling whether the given enum value exists in the enumeration.
+            </summary>
+            <param name="value">The value to check if it's defined</param>
+            <returns><c>true</c> if the value exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.IsDefined(System.String)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.IsDefined(System.String,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.IsDefined(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.IsDefined(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Returns a boolean telling whether an enum with the given name exists in the enumeration,
+            or optionally if a member decorated with a <c>[Display]</c> attribute
+            with the required name exists.
+            Slower then the <see cref="M:Scalar.AspNetCore.ThemeModeExtensions.IsDefined(System.String,System.Boolean)" /> overload, but doesn't allocate memory./>
+            </summary>
+            <param name="name">The name to check if it's defined</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value of metadata attributes,otherwise ignores them</param>
+            <returns><c>true</c> if a member with the name exists in the enumeration, or a member is decorated
+            with a <c>[Display]</c> attribute with the name, <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.Parse(System.String)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.Parse(System.String,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.Parse(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.TryParse(System.String,Scalar.AspNetCore.ThemeMode@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ThemeMode" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.TryParse(System.String,Scalar.AspNetCore.ThemeMode@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ThemeMode" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.TryParse(System.String,Scalar.AspNetCore.ThemeMode@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The string representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ThemeMode" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.Parse(System.ReadOnlySpan{System.Char}@)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.Parse(System.ReadOnlySpan{System.Char}@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the string representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            </summary>
+            <param name="name">The case-sensitive string representation of the enumeration name or underlying value to convert</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns>An object of type <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="name"/></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ThemeMode@)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ThemeMode" />. This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ThemeMode@,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="value">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="value"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ThemeMode" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.TryParse(System.ReadOnlySpan{System.Char}@,Scalar.AspNetCore.ThemeMode@,System.Boolean,System.Boolean)">
+            <summary>
+            Converts the span representation of the name or numeric value of
+            an <see cref="T:Scalar.AspNetCore.ThemeMode" /> to the equivalent instance.
+            The return value indicates whether the conversion succeeded.
+            </summary>
+            <param name="name">The span representation of the enumeration name or underlying value to convert</param>
+            <param name="result">When this method returns, contains an object of type 
+            <see cref="T:Scalar.AspNetCore.ThemeMode" /> whose
+            value is represented by <paramref name="result"/> if the parse operation succeeds.
+            If the parse operation fails, contains the default value of the underlying type
+            of <see cref="T:Scalar.AspNetCore.ThemeMode" />. This parameter is passed uninitialized.</param>
+            <param name="ignoreCase"><c>true</c> to read value in case insensitive mode; <c>false</c> to read value in case sensitive mode.</param>
+            <param name="allowMatchingMetadataAttribute">If <c>true</c>, considers the value included in metadata attributes such as
+            <c>[Display]</c> attribute when parsing, otherwise only considers the member names.</param>
+            <returns><c>true</c> if the value parameter was converted successfully; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.GetValues">
+            <summary>
+            Retrieves an array of the values of the members defined in
+            <see cref="T:Scalar.AspNetCore.ThemeMode" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the values defined in <see cref="T:Scalar.AspNetCore.ThemeMode" /></returns>
+        </member>
+        <member name="M:Scalar.AspNetCore.ThemeModeExtensions.GetNames">
+            <summary>
+            Retrieves an array of the names of the members defined in
+            <see cref="T:Scalar.AspNetCore.ThemeMode" />.
+            Note that this returns a new array with every invocation, so
+            should be cached if appropriate.
+            </summary>
+            <returns>An array of the names of the members defined in <see cref="T:Scalar.AspNetCore.ThemeMode" /></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Azure.Provisioning.RedisEnterprise</id>
+    <version>1.1.0</version>
+    <authors>Microsoft</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>azureicon.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Azure/azure-sdk-for-net/blob/Azure.Provisioning.RedisEnterprise_1.1.0/sdk/provisioning/Azure.Provisioning.RedisEnterprise/README.md</projectUrl>
+    <description>Azure.Provisioning.RedisEnterprise simplifies declarative resource provisioning in .NET.</description>
+    <releaseNotes>https://github.com/Azure/azure-sdk-for-net/blob/Azure.Provisioning.RedisEnterprise_1.1.0/sdk/provisioning/Azure.Provisioning.RedisEnterprise/CHANGELOG.md</releaseNotes>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <repository type="git" url="https://github.com/Azure/azure-sdk-for-net" commit="8e5e6302e90c7ef4d158535336b3a7044fc82f5e" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Azure.Core" version="1.50.0" exclude="Build,Analyzers" />
+        <dependency id="Azure.Provisioning" version="1.3.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Azure.Core" version="1.50.0" exclude="Build,Analyzers" />
+        <dependency id="Azure.Provisioning" version="1.3.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

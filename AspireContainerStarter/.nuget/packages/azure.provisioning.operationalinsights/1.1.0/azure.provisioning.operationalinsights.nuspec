@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Azure.Provisioning.OperationalInsights</id>
+    <version>1.1.0</version>
+    <authors>Microsoft</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>azureicon.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Azure/azure-sdk-for-net/blob/Azure.Provisioning.OperationalInsights_1.1.0/sdk/provisioning/Azure.Provisioning.OperationalInsights/README.md</projectUrl>
+    <description>Azure.Provisioning.OperationalInsights simplifies declarative resource provisioning in .NET.</description>
+    <releaseNotes>https://github.com/Azure/azure-sdk-for-net/blob/Azure.Provisioning.OperationalInsights_1.1.0/sdk/provisioning/Azure.Provisioning.OperationalInsights/CHANGELOG.md</releaseNotes>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <repository type="git" url="https://github.com/Azure/azure-sdk-for-net" commit="b232e927d71be11ec35a3921472d65c4e8887680" />
+    <dependencies>
+      <group targetFramework="net8.0">
+        <dependency id="Azure.Core" version="1.46.2" exclude="Build,Analyzers" />
+        <dependency id="Azure.Provisioning" version="1.1.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Azure.Core" version="1.46.2" exclude="Build,Analyzers" />
+        <dependency id="Azure.Provisioning" version="1.1.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,11 @@
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/obj/Debug/net9.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/obj/Debug/net9.0/Domain.AssemblyInfoInputs.cache
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/obj/Debug/net9.0/Domain.AssemblyInfo.cs
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/obj/Debug/net9.0/Domain.csproj.CoreCompileInputs.cache
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/bin/Debug/net9.0/Domain.deps.json
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/bin/Debug/net9.0/Domain.dll
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/bin/Debug/net9.0/Domain.pdb
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/obj/Debug/net9.0/Domain.dll
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/obj/Debug/net9.0/refint/Domain.dll
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/obj/Debug/net9.0/Domain.pdb
+/Users/ramesh/PersonalProjects/StateTaxModifictionCalcSvc/src/Domain/obj/Debug/net9.0/ref/Domain.dll

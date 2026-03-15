@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>System.ClientModel</id>
+    <version>1.4.1</version>
+    <authors>Microsoft</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>DotNetPackageIcon.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Azure/azure-sdk-for-net/blob/System.ClientModel_1.4.1/sdk/core/System.ClientModelREADME.md</projectUrl>
+    <description>Contains building blocks for clients that call cloud services.</description>
+    <releaseNotes>https://github.com/Azure/azure-sdk-for-net/blob/System.ClientModel_1.4.1/sdk/core/System.ClientModelCHANGELOG.md</releaseNotes>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <repository type="git" url="https://github.com/Azure/azure-sdk-for-net" commit="278d5358539f3eb178ed7d1623dfac0db891e90e" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="8.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Memory.Data" version="6.0.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="8.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Memory.Data" version="6.0.1" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="8.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Diagnostics.DiagnosticSource" version="8.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Memory.Data" version="6.0.1" exclude="Build,Analyzers" />
+        <dependency id="System.Text.Json" version="8.0.5" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

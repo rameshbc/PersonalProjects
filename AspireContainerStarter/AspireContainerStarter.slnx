@@ -1,0 +1,37 @@
+<Solution>
+
+  <Folder Name="/src/">
+
+    <Folder Name="/AppHost/">
+      <Project Path="src/AppHost/AspireContainerStarter.AppHost/AspireContainerStarter.AppHost.csproj" />
+    </Folder>
+
+    <Folder Name="/ServiceDefaults/">
+      <Project Path="src/ServiceDefaults/AspireContainerStarter.ServiceDefaults/AspireContainerStarter.ServiceDefaults.csproj" />
+    </Folder>
+
+    <Folder Name="/Infrastructure/">
+      <Project Path="src/Infrastructure/AspireContainerStarter.Infrastructure/AspireContainerStarter.Infrastructure.csproj" />
+    </Folder>
+
+    <Folder Name="/Contracts/">
+      <Project Path="src/Contracts/AspireContainerStarter.Contracts/AspireContainerStarter.Contracts.csproj" />
+    </Folder>
+
+    <Folder Name="/Api/">
+      <Project Path="src/Api/AspireContainerStarter.Api/AspireContainerStarter.Api.csproj" />
+    </Folder>
+
+    <Folder Name="/Workers/">
+      <Project Path="src/Workers/AspireContainerStarter.Calc1Worker/AspireContainerStarter.Calc1Worker.csproj" />
+      <Project Path="src/Workers/AspireContainerStarter.Calc2Worker/AspireContainerStarter.Calc2Worker.csproj" />
+    </Folder>
+
+  </Folder>
+
+  <Folder Name="/tests/">
+    <Project Path="tests/AspireContainerStarter.AppHost.Tests/AspireContainerStarter.AppHost.Tests.csproj" />
+    <Project Path="tests/AspireContainerStarter.Infrastructure.Tests/AspireContainerStarter.Infrastructure.Tests.csproj" />
+  </Folder>
+
+</Solution>

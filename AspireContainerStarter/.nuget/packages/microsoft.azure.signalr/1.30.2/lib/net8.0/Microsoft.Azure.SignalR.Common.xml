@@ -1,0 +1,825 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Azure.SignalR.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Azure.SignalR.Base64UrlEncoder">
+            <summary>
+            Encodes and Decodes strings as Base64Url encoding.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.Base64UrlEncoder.s_base64Table">
+            <summary>
+            Encoding table
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Base64UrlEncoder.Encode(System.String)">
+            <summary>
+            The following functions perform base64url encoding which differs from regular base64 encoding as follows
+            * padding is skipped so the pad character '=' doesn't have to be percent encoded
+            * the 62nd and 63rd regular base64 encoding characters ('+' and '/') are replace with ('-' and '_')
+            The changes make the encoding alphabet file and URL safe.
+            </summary>
+            <param name="arg">string to encode.</param>
+            <returns>Base64Url encoding of the UTF8 bytes.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Base64UrlEncoder.Encode(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts a subset of an array of 8-bit unsigned integers to its equivalent string representation which is encoded with base-64-url digits. Parameters specify
+            the subset as an offset in the input array, and the number of elements in the array to convert.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+            <param name="length">An offset in inArray.</param>
+            <param name="offset">The number of elements of inArray to convert.</param>
+            <returns>The string representation in base 64 url encoding of length elements of inArray, starting at position offset.</returns>
+            <exception cref="T:System.ArgumentNullException">'inArray' is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">offset or length is negative OR offset plus length is greater than the length of inArray.</exception>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Base64UrlEncoder.Encode(System.Byte[])">
+            <summary>
+            Converts a subset of an array of 8-bit unsigned integers to its equivalent string representation which is encoded with base-64-url digits.
+            </summary>
+            <param name="inArray">An array of 8-bit unsigned integers.</param>
+            <returns>The string representation in base 64 url encoding of length elements of inArray, starting at position offset.</returns>
+            <exception cref="T:System.ArgumentNullException">'inArray' is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">offset or length is negative OR offset plus length is greater than the length of inArray.</exception>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Base64UrlEncoder.DecodeBytes(System.String)">
+            <summary>
+             Converts the specified string, which encodes binary data as base-64-url digits, to an equivalent 8-bit unsigned integer array.</summary>
+            <param name="str">base64Url encoded string.</param>
+            <returns>UTF8 bytes.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Base64UrlEncoder.Decode(System.String)">
+            <summary>
+            Decodes the string from Base64UrlEncoded to UTF8.
+            </summary>
+            <param name="arg">string to decode.</param>
+            <returns>UTF8 string.</returns>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.ClaimTypeMapping">
+            <summary>
+            Defines the inbound and outbound mapping for claim claim types from jwt to .net claim 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ClaimTypeMapping.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:Microsoft.Azure.SignalR.ClaimTypeMapping"/> class. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.ClaimTypeMapping.InboundClaimTypeMap">
+            <summary>
+            Gets the InboundClaimTypeMap used by JwtSecurityTokenHandler when producing claims from jwt. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.ClaimTypeMapping.OutboundClaimTypeMap">
+            <summary>
+            Gets the OutboundClaimTypeMap is used by JwtSecurityTokenHandler to shorten claim types when creating a jwt. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.DateTimeUtil.Add(System.DateTime,System.TimeSpan)">
+            <summary>
+            Add a DateTime and a TimeSpan.
+            The maximum time is DateTime.MaxTime.  It is not an error if time + timespan > MaxTime.
+            Just return MaxTime.
+            </summary>
+            <param name="time">Initial <see cref="T:System.DateTime"/> value.</param>
+            <param name="timespan"><see cref="T:System.TimeSpan"/> to add.</param>
+            <returns><see cref="T:System.DateTime"/> as the sum of time and timespan.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.DateTimeUtil.GetMaxValue(System.DateTimeKind)">
+            <summary>
+            Gets the Maximum value for a DateTime specifying kind.
+            </summary>
+            <param name="kind">DateTimeKind to use.</param>
+            <returns>DateTime of specified kind.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.DateTimeUtil.GetMinValue(System.DateTimeKind)">
+            <summary>
+            Gets the Minimum value for a DateTime specifying kind.
+            </summary>
+            <param name="kind">DateTimeKind to use.</param>
+            <returns>DateTime of specified kind.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.DateTimeUtil.ToUniversalTime(System.Nullable{System.DateTime})">
+            <summary>
+            Ensures that DataTime is UTC.
+            </summary>
+            <param name="value"><see cref="T:System.DateTime"/>to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.DateTimeUtil.ToUniversalTime(System.DateTime)">
+            <summary>
+            Ensures that DateTime is UTC.
+            </summary>
+            <param name="value"><see cref="T:System.DateTime"/>to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.EpochTime.UnixEpoch">
+            <summary>
+            DateTime as UTV for UnixEpoch
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.EpochTime.GetIntDate(System.DateTime)">
+            <summary>
+            Per JWT spec:
+            Gets the number of seconds from 1970-01-01T0:0:0Z as measured in UTC until the desired date/time.
+            </summary>
+            <param name="datetime">The DateTime to convert to seconds.</param>
+            <remarks>if dateTimeUtc less than UnixEpoch, return 0</remarks>
+            <returns>the number of seconds since Unix Epoch.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.EpochTime.DateTime(System.Int64)">
+            <summary>
+            Creates a DateTime from epoch time.
+            </summary>
+            <param name="secondsSinceUnixEpoch">Number of seconds.</param>
+            <returns>The DateTime in UTC.</returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.JwtHeader.#ctor(System.String,Microsoft.Azure.SignalR.AccessTokenAlgorithm)">
+            <summary>
+            Create a <see cref="T:Microsoft.Azure.SignalR.JwtHeader"/> representing JWT header {"alg":<paramref name="algorithm"/>,"typ":"JWT","kid":<paramref name="kid"/>}
+            </summary>
+            <returns> JWT header</returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.JwtHeader.Base64UrlEncode">
+            Simplified from https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/blob/6.22.0/src/System.IdentityModel.Tokens.Jwt/JwtHeader.cs#L328 and https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/blob/6.22.0/src/System.IdentityModel.Tokens.Jwt/JsonExtensions.cs
+            <summary>
+            Convert this <see cref="T:Microsoft.Azure.SignalR.JwtHeader"/> to corresponding Base64Url encoding
+            </summary>
+            <returns>Base64Url encoding of a <see cref="T:Microsoft.Azure.SignalR.JwtHeader"/></returns>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.JwtRegisteredClaimNames">
+            <summary>
+            List of registered claims from different sources
+            https://datatracker.ietf.org/doc/html/rfc7519#section-4
+            http://openid.net/specs/openid-connect-core-1_0.html#IDToken
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Actort">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Acr">
+            <summary>
+            http://openid.net/specs/openid-connect-core-1_0.html#IDToken
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Amr">
+            <summary>
+            http://openid.net/specs/openid-connect-core-1_0.html#IDToken
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Aud">
+            <summary>
+            https://datatracker.ietf.org/doc/html/rfc7519#section-4
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.AuthTime">
+            <summary>
+            http://openid.net/specs/openid-connect-core-1_0.html#IDToken
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Azp">
+            <summary>
+            http://openid.net/specs/openid-connect-core-1_0.html#IDToken
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Birthdate">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.CHash">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#HybridIDToken
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.AtHash">
+            <summary>
+            http://openid.net/specs/openid-connect-core-1_0.html#CodeIDToken
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Email">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Exp">
+            <summary>
+            https://datatracker.ietf.org/doc/html/rfc7519#section-4
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Gender">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.FamilyName">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.GivenName">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Iat">
+            <summary>
+            https://datatracker.ietf.org/doc/html/rfc7519#section-4
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Iss">
+            <summary>
+            https://datatracker.ietf.org/doc/html/rfc7519#section-4
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Jti">
+            <summary>
+            https://datatracker.ietf.org/doc/html/rfc7519#section-4
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Name">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.NameId">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Nonce">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Nbf">
+            <summary>
+            https://datatracker.ietf.org/doc/html/rfc7519#section-4
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.PhoneNumber">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.PhoneNumberVerified">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Prn">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Sid">
+            <summary>
+            http://openid.net/specs/openid-connect-frontchannel-1_0.html#OPLogout
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Sub">
+            <summary>
+            https://datatracker.ietf.org/doc/html/rfc7519#section-4
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Typ">
+            <summary>
+            https://datatracker.ietf.org/doc/html/rfc7519#section-5
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.UniqueName">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.JwtRegisteredClaimNames.Website">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.Common.AccessKeyResponse">
+            <summary>
+            The response object containing the dynamic access key for signing client tokens.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.Common.AccessKeyResponse.AccessKey">
+            <summary>
+            The string value of the access key for SignalR app server to sign client tokens.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.Common.AccessKeyResponse.KeyId">
+            <summary>
+            The ID of the access key.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenNotAuthorizedException">
+            <summary>
+            The exception throws when AccessKey is not authorized.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenNotAuthorizedException.#ctor(System.String)">
+            <summary>
+            Obsolete, <see cref="M:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenNotAuthorizedException.#ctor(Azure.Core.TokenCredential,System.String,System.Exception)"/>.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenNotAuthorizedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Obsolete, <see cref="M:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenNotAuthorizedException.#ctor(Azure.Core.TokenCredential,System.String,System.Exception)"/>.
+            </summary>
+            <param name="credentialName"></param>
+            <param name="inner"></param>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenNotAuthorizedException.#ctor(Azure.Core.TokenCredential,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenNotAuthorizedException"/> class.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenTooLongException">
+            <summary>
+            The exception thrown when AccessToken is too long.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenTooLongException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenTooLongException"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenTooLongException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.AzureSignalRAccessTokenTooLongException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info"/> parameter is <c>null</c>.</exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is <c>null</c> or <see cref="P:System.Exception.HResult"/> is zero (0).</exception>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.AzureSignalRException"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.AzureSignalRException"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.AzureSignalRException"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.AzureSignalRException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info"/> parameter is <c>null</c>.</exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is <c>null</c> or <see cref="P:System.Exception.HResult"/> is zero (0).</exception>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRNotConnectedException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.AzureSignalRNotConnectedException"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.AzureSignalRNotConnectedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.AzureSignalRNotConnectedException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info"/> parameter is <c>null</c>.</exception>
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is <c>null</c> or <see cref="P:System.Exception.HResult"/> is zero (0).</exception>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.ServiceConnectionNotActiveException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.Azure.SignalR.Common.ServiceConnectionNotActiveException"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.Common.BackOffPolicy.CallProbeWithBackOffAsync(System.Func{System.Threading.Tasks.Task{System.Boolean}},System.Func{System.Int32,System.TimeSpan})">
+            <summary>
+            Provides a synchronized mechanism of calling probing funcs by multiple concurrent callers.
+            Each caller's probe func will be invoked exactly one time.
+            The probe call may get delayed depending on the result of previous probe calls.
+            The delay is controlled by getRetryDelay func and the number of consecutive failed probe calls.
+            </summary>
+            <param name="probe"> this func returns a task with boolean result indicating if the probe was successful</param>
+            <param name="getRetryDelay"> this func returns a TimeSpan delay for a given iteration number</param>
+            <returns> 
+            A task with its final state and result matching the state and result of the task returned by the probe func.
+            This task will completes after either of the following happens:
+            - probe's task changes state to task.IsCompletedSuccessfully == true and task.Result == true
+            - probe's task.Result == false / faulted / cancelled and the delay defined by getRetryDelay has passed
+            </returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ICallerClientResultsManager.AddInvocation``1(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Add a invocation which is directly called by current server
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="hub"></param>
+            <param name="connectionId"></param>
+            <param name="invocationId"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.DefaultMessageRouter.GetEndpointsForBroadcast(System.Collections.Generic.IEnumerable{Microsoft.Azure.SignalR.ServiceEndpoint})">
+            <summary>
+            Get all the online endpoints. When the endpoint is offline, there might be a need to notify user about it because there is potential message loss. Customer can choose to change the behavior by using a custom router.
+            </summary>
+            <param name="endpoints"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.DefaultMessageRouter.GetEndpointsForUser(System.String,System.Collections.Generic.IEnumerable{Microsoft.Azure.SignalR.ServiceEndpoint})">
+            <summary>
+             Get all the online endpoints. When the endpoint is offline, there might be a need to notify user about it because there is potential message loss. Customer can choose to change the behavior by using a custom router.
+            </summary>
+            <param name="userId"></param>
+            <param name="endpoints"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.DefaultMessageRouter.GetEndpointsForGroup(System.String,System.Collections.Generic.IEnumerable{Microsoft.Azure.SignalR.ServiceEndpoint})">
+            <summary>
+            Get all the online endpoints. When the endpoint is offline, there might be a need to notify user about it because there is potential message loss. Customer can choose to change the behavior by using a custom router.
+            </summary>
+            <param name="groupName"></param>
+            <param name="endpoints"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.DefaultMessageRouter.GetEndpointsForConnection(System.String,System.Collections.Generic.IEnumerable{Microsoft.Azure.SignalR.ServiceEndpoint})">
+            <summary>
+            Get all the online endpoints. When the endpoint is offline, there might be a need to notify user about it because there is potential message loss. Customer can choose to change the behavior by using a custom router.
+            Note that this one is only called when the SDK is not able to identify where the connectionId is.
+            When the outcoming connectionId happens to be also connected to this app server, SDK can directly send the messages back to that connectionId
+            </summary>
+            <param name="connectionId"></param>
+            <param name="endpoints"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.IMessageRouter.GetEndpointsForBroadcast(System.Collections.Generic.IEnumerable{Microsoft.Azure.SignalR.ServiceEndpoint})">
+            <summary>
+            Get the service endpoints for broadcast message to send to
+            </summary>
+            <param name="endpoints">All the available endpoints</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.IMessageRouter.GetEndpointsForUser(System.String,System.Collections.Generic.IEnumerable{Microsoft.Azure.SignalR.ServiceEndpoint})">
+            <summary>
+            Get the service endpoints for the specified user to send to
+            </summary>
+            <param name="userId">The id of the user</param>
+            <param name="endpoints">All the available endpoints</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.IMessageRouter.GetEndpointsForGroup(System.String,System.Collections.Generic.IEnumerable{Microsoft.Azure.SignalR.ServiceEndpoint})">
+            <summary>
+            Get the service endpoints for the specified group to send to
+            </summary>
+            <param name="groupName">The name of the group</param>
+            <param name="endpoints">All the available endpoints</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.IMessageRouter.GetEndpointsForConnection(System.String,System.Collections.Generic.IEnumerable{Microsoft.Azure.SignalR.ServiceEndpoint})">
+            <summary>
+            Get the service endpoints for the specified connection to send to
+            Note that this one is only called when the SDK is not able to identify where the connectionId is.
+            When the outcoming connectionId happens to be also connected to this app server, SDK can directly send the messages back to that connectionId
+            </summary>
+            <param name="connectionId">The id of the connection</param>
+            <param name="endpoints">All the available endpoints</param>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.EndpointMetrics.ClientConnectionCount">
+            <summary>
+            <see cref="T:Microsoft.Azure.SignalR.ServiceEndpoint" /> total concurrent connected client connection count on all hubs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.EndpointMetrics.ServerConnectionCount">
+            <summary>
+            <see cref="T:Microsoft.Azure.SignalR.ServiceEndpoint" /> total concurrent connected server connection count on all hubs.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.EndpointMetrics.ConnectionCapacity">
+            <summary>
+            <see cref="T:Microsoft.Azure.SignalR.ServiceEndpoint" /> connection quota for this instance, including client and server connections. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.HubServiceEndpoint.ScaleTask">
+            <summary>
+            Task waiting for HubServiceEndpoint turn ready when live add/remove endpoint
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.IConfigurationExtension.GetEndpoints(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <param name="configuration"></param>
+            <param name="sectionName"></param>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.ServerStickyMode">
+            <summary>
+            Specifies the mode for server sticky, when client is always routed to the server which it first /negotiate with, we call it "server sticky mode".
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.ServerStickyMode.Disabled">
+            <summary>
+            We the server sticky mode is disabled, it picks the server connection by some algorithm
+            In general, local server connection first
+            least client connections routed server connection first
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.ServerStickyMode.Required">
+            <summary>
+            We will try to find the server it /negotiate with from both local and global route table, it the server is not connected, throw,
+            If it is globally routed, this request will be always globally routed
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.ServiceEndpoint.ServerEndpoint">
+            <summary>
+            Gets or initializes the custom endpoint for SignalR server to connect to SignalR service.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.ServiceEndpoint.ClientEndpoint">
+            <summary>
+            Gets or initializes the custom endpoint for SignalR clients to connect to SignalR service.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.ServiceEndpoint.Online">
+            <summary>
+            When current app server instance has server connections connected to the target endpoint for current hub, it can deliver messages to that endpoint.
+            The endpoint is then considered as *Online*; otherwise, *Offline*.
+            Messages are not able to be delivered to an *Offline* endpoint.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.ServiceEndpoint.IsActive">
+            <summary>
+            When the target endpoint has hub clients connected, the endpoint is considered as an *Active* endpoint.
+            When the target endpoint has no hub clients connected for 10 minutes, the endpoint is considered as an *Inactive* one.
+            User can choose to not send messages to an *Inactive* endpoint to save network traffic.
+            But please note that as the *Active* status is reported to the server from remote service, there can be some delay when status changes.
+            Don't rely on this status if you don't expect any message lose once a client is connected.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.ServiceEndpoint.EndpointMetrics">
+            <summary>
+            Enriched endpoint metrics for customized routing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceEndpoint.#ctor(System.String,System.String)">
+            <summary>
+            Connection string constructor with nameWithEndpointType
+            </summary>
+            <param name="nameWithEndpointType"></param>
+            <param name="connectionString"></param>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceEndpoint.#ctor(System.String,Microsoft.Azure.SignalR.EndpointType,System.String)">
+            <summary>
+            Connection string constructor
+            </summary>
+            <param name="connectionString"></param>
+            <param name="type"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceEndpoint.#ctor(System.String,System.Uri,Azure.Core.TokenCredential)">
+            <summary>
+            Azure active directory constructor with nameWithEndpointType
+            </summary>
+            <param name="nameWithEndpointType"></param>
+            <param name="endpoint"></param>
+            <param name="credential"></param>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceEndpoint.#ctor(System.Uri,Azure.Core.TokenCredential,Microsoft.Azure.SignalR.EndpointType,System.String,System.Uri,System.Uri)">
+            <summary>
+            Azure active directory constructor
+            </summary>
+            <param name="endpoint">SignalR Service endpoint.</param>
+            <param name="credential">The Azure Active Directory credential.</param>
+            <param name="endpointType">The endpoint type.</param>
+            <param name="name">The endpoint name.</param>
+            <param name="serverEndpoint">The endpoint for servers to connect to Azure SignalR.</param>
+            <param name="clientEndpoint">The endpoint for clients to connect to Azure SignalR.</param>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceEndpoint.#ctor(Microsoft.Azure.SignalR.ServiceEndpoint)">
+            <summary>
+            Copy constructor with no exception
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.IClientConnection.ConnectionId">
+            <summary>
+            The connection id.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.IClientConnection.InstanceId">
+            <summary>
+            The instance id.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.IClientConnection.HubProtocol">
+            <summary>
+            The connection protocol being used.
+            JSON / MesssagePack
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.IClientConnection.ServiceConnection">
+            <summary>
+            The server connection associated with this client connection.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.IPresenceManager">
+            <summary>
+            Manager for presence operations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ConnectionFactory.GracefulLoggerFactory.GracefulLogger.Log``1(Microsoft.Extensions.Logging.LogLevel,Microsoft.Extensions.Logging.EventId,``0,System.Exception,System.Func{``0,System.Exception,System.String})">
+            <summary>
+            Downgrade error level logs, and also exclude exception details
+            Exceptions thrown from inside the HttpConnection are supposed to be handled by the caller and logged with more user-friendly message
+            </summary>
+            <typeparam name="TState"></typeparam>
+            <param name="logLevel"></param>
+            <param name="eventId"></param>
+            <param name="state"></param>
+            <param name="exception"></param>
+            <param name="formatter"></param>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.GracefulShutdownMode">
+            <summary>
+            This mode defines the server's behavior after receiving a `Ctrl+C` (SIGINT).
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.GracefulShutdownMode.Off">
+            <summary>
+            The server will stop immediately, all existing connections will be dropped immediately.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.GracefulShutdownMode.WaitForClientsClose">
+            <summary>
+            We will immediately remove this server from Azure SignalR, 
+            which means no more new connections will be assigned to this server,
+            the existing connections won't be influenced until a default timeout (30s).
+            Once all connections on this server are closed properly, the server stops.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.GracefulShutdownMode.MigrateClients">
+             <summary>
+             Similar to `WaitForClientsClose`, the server will be removed from Azure SignalR.
+             But instead of waiting existing connections to close, we will try to migrate client connections to another valid server,
+             which may save most of your connections during this process.
+            
+             It happens on the message boundaries, considering if each of your message consist of 3 packages. The migration will happen at here:
+             
+             | P1 - P2 - P3 | [HERE] | P4 - P5 - P6 |
+             | Message 1    |        | Message 2    |
+            
+             We do this by finding message boundaries on-fly,
+             For JSON protocol, we simply find seperators (,)
+             For MessagePack protocol, we preserve the length header and count body length to determine if the message was finished.
+             
+             This mode always works well with context-free scenarios.
+             Since the `connectionId` will not change before-and-after migration, 
+             you may also benifit from this feature by using a distributed storage even if your scenario is not context-free.
+             </summary>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.Connections.Client.Internal.WebSocketsTransport">
+            <summary>
+            Copied from aspnetcore repo, TODO: refactor
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.MultiEndpointMessageWriter">
+            <summary>
+            A service connection container which sends message to multiple service endpoints.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.MultiEndpointMessageWriter.WriteMultiResultAckableMessage(Microsoft.Azure.SignalR.Protocol.ServiceMessage,System.Threading.CancellationToken)">
+            <summary>
+            For user or group related operations, different endpoints might return different results
+            Strategy:
+            Always wait until all endpoints return or throw
+            * When any endpoint throws, throw
+            * When all endpoints return false, return false
+            * When any endpoint returns true, return true
+            </summary>
+            <param name="serviceMessage"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.MultiEndpointMessageWriter.WriteSingleResultAckableMessage(Microsoft.Azure.SignalR.Protocol.ServiceMessage,System.Threading.CancellationToken)">
+            <summary>
+            For connection related operations, since connectionId is globally unique, only one endpoint can have the connection
+            Strategy:
+            Don't need to wait until all endpoints return or throw
+            * Whenever any endpoint returns true: return true
+            * When any endpoint throws throw
+            * When all endpoints return false, return false
+            </summary>
+            <param name="serviceMessage"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.ClientConnectionScope">
+            <summary>
+            Represents a disposable scope able to carry connection properties along with the execution context flow
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.ServiceConnectionType.Default">
+            <summary>
+            0, Default, it can carry clients, service runtime should always accept this kind of connection
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.ServiceConnectionType.OnDemand">
+            <summary>
+            1, OnDemand, creating when service requested more connections, it can carry clients, but it may be rejected by service runtime.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.SignalR.ServiceConnectionType.Weak">
+            <summary>
+            2, Weak, it can not carry clients, but it can send message
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceConnectionBase.StartAsync(System.String)">
+            <summary>
+            Start a service connection without the lifetime management.
+            To get full lifetime management including dispose or restart, use <see cref="T:Microsoft.Azure.SignalR.ServiceConnectionContainerBase"/>
+            </summary>
+            <param name="target">The target instance Id</param>
+            <returns>The task of StartAsync</returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceConnectionBase.TrySendPingAsync">
+            <summary>
+            Looks like it is virtual for ut, pretty tricky, TODO: improve, could use configurable keepaliveticks options to disable the ping
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceConnectionBase.OfflineAsync">
+            <summary>
+            Set the server connection offline.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceConnectionContainerBase.InvokeAsync``1(Microsoft.Azure.SignalR.Protocol.ServiceMessage,System.Threading.CancellationToken)">
+            <summary>
+            <see cref="M:Microsoft.Azure.SignalR.ServiceConnectionContainerBase.WriteAckableMessageAsync(Microsoft.Azure.SignalR.Protocol.ServiceMessage,System.Threading.CancellationToken)"/> only checks <see cref="P:Microsoft.Azure.SignalR.Protocol.AckMessage.Status"/> as the response, 
+            while this method checks <see cref="P:Microsoft.Azure.SignalR.Protocol.AckMessage.Payload"/> and deserialize it to <typeparamref name="T"/>.
+            </summary>
+            Made "interval virtual" for testing
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceConnectionContainerBase.StartCoreAsync(Microsoft.Azure.SignalR.IServiceConnection,System.String)">
+            <summary>
+            Start and manage the whole connection lifetime
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.ServiceConnectionContainerBase.CreateServiceConnectionCore(Microsoft.Azure.SignalR.ServiceConnectionType)">
+            <summary>
+            Create a connection for a specific service connection type
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.WebSocketConnectionContext">
+            <summary>
+            TODO: Implement Features
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.SignalR.WebSocketConnectionContext.ConnectionId">
+            <summary>
+            TODO: get from service handshake
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.SignalR.AckHandler.MultiAckWithStatusInfo.ForceAck(Microsoft.Azure.SignalR.AckStatus)">
+            <summary>
+            Forcely ack the multi ack regardless of the expected count.
+            </summary>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.CancellationTokenExtensions">
+            <summary>
+            From https://github.com/dotnet/corefx/issues/2704#issuecomment-162370041
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.SignalR.ReusableUtf8JsonWriter">
+            <summary>
+            Modified based on https://github.com/dotnet/aspnetcore/blob/d9660d157627af710b71c636fa8cb139616cadba/src/SignalR/common/Shared/ReusableUtf8JsonWriter.cs
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.ForceAsyncTaskExtensions.ForceAsync(System.Threading.Tasks.Task)">
+            <summary>
+            Returns an awaitable/awaiter that will ensure the continuation is executed
+            asynchronously on the thread pool, even if the task is already completed
+            by the time the await occurs.  Effectively, it is equivalent to awaiting
+            with ConfigureAwait(false) and then queuing the continuation with Task.Run,
+            but it avoids the extra hop if the continuation already executed asynchronously.
+            </summary>
+        </member>
+        <member name="T:System.Net.WebSockets.WebSocketExtensions">
+            <summary>
+            Copied from aspnetcore
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+            Reserved to be used by the compiler for tracking metadata.
+            This class should not be used by developers in source code.
+            </summary>
+            <remarks>A class originally defined in .NET 5. Copy here to use "init" accessor on target frameworks below .NET 5.</remarks>
+        </member>
+    </members>
+</doc>

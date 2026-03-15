@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Azure.SignalR</id>
+    <version>1.30.2</version>
+    <authors>Microsoft</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>microsoft.png</icon>
+    <projectUrl>https://aka.ms/signalr_service</projectUrl>
+    <description>.NET Standard SDK for Azure SignalR.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>aspnetcore azure signalr</tags>
+    <repository type="git" url="https://github.com/azure/azure-signalr" commit="563b9c05b92fbcbdd479ce5264e433e3ef800e15" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Microsoft.Azure.SignalR.Protocols" version="1.30.2" exclude="Build,Analyzers" />
+        <dependency id="Azure.Identity" version="1.11.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Http" version="2.1.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="Microsoft.Azure.SignalR.Protocols" version="1.30.2" exclude="Build,Analyzers" />
+        <dependency id="Azure.Identity" version="1.11.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Http" version="2.1.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.Azure.SignalR.Protocols" version="1.30.2" exclude="Build,Analyzers" />
+        <dependency id="Azure.Identity" version="1.11.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Connections.Abstractions" version="2.1.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Http" version="2.1.22" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Http.Connections" version="1.0.15" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Http.Connections.Common" version="1.0.4" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Localization" version="2.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.SignalR" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.WebSockets" version="2.1.7" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="2.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Http" version="2.1.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Logging.Abstractions" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.IO.Pipelines" version="8.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.Net.WebSockets.WebSocketProtocol" version="4.5.3" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net6.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+      <group targetFramework="net8.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+      <group targetFramework=".NETStandard2.0" />
+    </frameworkReferences>
+  </metadata>
+</package>

@@ -1,0 +1,76 @@
+[
+  {
+    // GILTI Inclusion — IRC 951A (TCJA 2018+)
+    // Federal: gross GILTI minus high-tax exclusion plus §78 gross-up.
+    //
+    // Default rate = 1.0 (full inclusion).
+    // Per-jurisdiction rates are expressed as year-bounded ranges so that a rate
+    // change for 2024 has zero effect on 2023 or 2025 calculations.
+    //
+    // Excluded jurisdictions: never compute this rule for these states.
+    // States with partial conformity use JurisdictionRateOverrides instead.
+    "ruleId": "GILTI_INCLUSION_V1",
+    "categoryCode": "GILTI_INCL",
+    "formulaType": "LinearRate",
+    "inputLines": [
+      { "lineCode": "1120_SCH_C_L10_GILTI",     "sign":  1, "description": "GILTI gross income (Form 8992, Part II, line 5)" },
+      { "lineCode": "1120_GILTI_HIGH_TAX_EXCL",  "sign": -1, "description": "High-tax exclusion (Reg. §1.951A-2(c)(7))" },
+      { "lineCode": "1120_SCH_C_L10_SECT78",     "sign":  1, "description": "IRC §78 gross-up on GILTI" }
+    ],
+    "rate": 1.0,
+    "effectiveFrom": 2018,
+    "effectiveTo": null,
+    "appliesToJurisdictions": ["ALL"],
+    "excludedJurisdictions": ["CA", "IL", "NV", "SD", "WY"],
+    "jurisdictionRateOverrides": {
+      // NY: full inclusion 2018-2022; 50% from 2023 (Budget Part CC)
+      "NY": [
+        { "rate": 1.0,  "effectiveFrom": 2018, "effectiveTo": 2022, "changeNote": "NY full GILTI inclusion — pre-budget conformity" },
+        { "rate": 0.50, "effectiveFrom": 2023,                       "changeNote": "NY Budget 2022-2023 Part CC — 50% conformity" }
+      ],
+      // NYC follows same conformity schedule as NY (Article 9-A parity)
+      "NYC": [
+        { "rate": 1.0,  "effectiveFrom": 2018, "effectiveTo": 2022 },
+        { "rate": 0.50, "effectiveFrom": 2023, "changeNote": "NYC conforms to NY Part CC" }
+      ],
+      // CT: 50% inclusion from 2018
+      "CT": [
+        { "rate": 0.50, "effectiveFrom": 2018, "changeNote": "CT 50% GILTI inclusion — Conn. Gen. Stat. §12-217(a)(2)" }
+      ],
+      // NJ: 50% inclusion from 2018
+      "NJ": [
+        { "rate": 0.50, "effectiveFrom": 2018, "changeNote": "NJ 50% GILTI inclusion — P.L. 2018, c.48" }
+      ],
+      // MN: full inclusion 2018-2023; 50% from 2024 (2023 session law)
+      "MN": [
+        { "rate": 1.0,  "effectiveFrom": 2018, "effectiveTo": 2023 },
+        { "rate": 0.50, "effectiveFrom": 2024, "changeNote": "MN 50% conformity — 2023 Minn. Session Laws Ch.64" }
+      ]
+    },
+    "ircSection": "951A",
+    "description": "GILTI inclusion: states vary from full inclusion (1.0) to 50% to complete exclusion. Rate history per jurisdiction is tracked in JurisdictionRateOverrides.",
+    "changeNotes": "2024: MN moved to 50% conformity. NY/NYC 50% effective TY2023."
+  },
+  {
+    // IRC 250 GILTI Deduction — 50% through 2025; 37.5% from 2026 (TCJA sunset)
+    // The rate change is expressed as two separate rules (V1/V2) because it is a
+    // universal rate change affecting all jurisdictions simultaneously, not a
+    // per-jurisdiction variation. effectiveTo/effectiveFrom on the rule itself
+    // is the right isolation mechanism for this type of change.
+    "ruleId": "GILTI_DEDUCTION_V1",
+    "categoryCode": "GILTI_DEDUCT",
+    "formulaType": "PercentageOfLine",
+    "inputLines": [
+      { "lineCode": "1120_SCH_C_L36_SECT250_GILTI", "sign": 1, "description": "IRC 250 GILTI deduction per federal return" }
+    ],
+    "rate": -1.0,
+    "effectiveFrom": 2018,
+    "effectiveTo": 2025,
+    "appliesToJurisdictions": ["ALL"],
+    "excludedJurisdictions": ["CA", "IL", "TX", "NV", "SD", "WY", "OH", "MI"],
+    "jurisdictionRateOverrides": {},
+    "ircSection": "250(a)(1)(B)",
+    "description": "IRC 250 deduction for GILTI. Negative = subtraction from state taxable income. 50% rate through 2025.",
+    "changeNotes": "2026: TCJA sunset changes deduction rate to 37.5%. Add GILTI_DEDUCTION_V2 with effectiveFrom=2026, rate=-0.375."
+  },
+]

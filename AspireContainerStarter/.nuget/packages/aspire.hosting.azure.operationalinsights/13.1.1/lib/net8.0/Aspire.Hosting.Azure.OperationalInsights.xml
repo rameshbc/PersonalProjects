@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aspire.Hosting.Azure.OperationalInsights</name>
+    </assembly>
+    <members>
+        <member name="T:Aspire.Hosting.AzureLogAnalyticsWorkspaceExtensions">
+            <summary>
+            Provides extension methods for adding the Azure Log Analytics Workspace resources to the application model.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureLogAnalyticsWorkspaceExtensions.AddAzureLogAnalyticsWorkspace(Aspire.Hosting.IDistributedApplicationBuilder,System.String)">
+            <summary>
+            Adds an Azure Log Analytics Workspace resource to the application model.
+            </summary>
+            <param name="builder">The <see cref="T:Aspire.Hosting.IDistributedApplicationBuilder"/>.</param>
+            <param name="name">The name of the resource. This name will be used as the connection string name when referenced in a dependency.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceReferenceAnnotation">
+            <summary>
+            Annotation that indicates a resource is using a specific Log Analytics Workspace.
+            </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceReferenceAnnotation"/> class.
+            </remarks>
+            <param name="workspace">The Log Analytics Workspace resource.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceReferenceAnnotation.#ctor(Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceResource)">
+            <summary>
+            Annotation that indicates a resource is using a specific Log Analytics Workspace.
+            </summary>
+            <remarks>
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceReferenceAnnotation"/> class.
+            </remarks>
+            <param name="workspace">The Log Analytics Workspace resource.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceReferenceAnnotation.Workspace">
+            <summary>
+            Gets the Log Analytics Workspace resource.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceResource">
+            <summary>
+            A resource that represents an Azure Log Analytics Workspace resource.
+            </summary>
+            <param name="name">The resource name.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure Log Analytics Workspace resource.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceResource.#ctor(System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            A resource that represents an Azure Log Analytics Workspace resource.
+            </summary>
+            <param name="name">The resource name.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure Log Analytics Workspace resource.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceResource.NameOutputReference">
+            <summary>
+            Gets the "name" output reference for the resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceResource.WorkspaceId">
+            <summary>
+            Gets the "logAnalyticsWorkspaceId" output reference for the Azure Log Analytics Workspace resource.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceResource.AddAsExistingResource(Aspire.Hosting.Azure.AzureResourceInfrastructure)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

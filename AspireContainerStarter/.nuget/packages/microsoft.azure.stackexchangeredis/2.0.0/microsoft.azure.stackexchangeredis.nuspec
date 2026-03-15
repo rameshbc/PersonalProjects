@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Azure.StackExchangeRedis</id>
+    <version>2.0.0</version>
+    <authors>Microsoft</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Azure/Microsoft.Azure.StackExchangeRedis/</projectUrl>
+    <description>Extension package for StackExchange.Redis to be used with the Azure Cache for Redis service</description>
+    <releaseNotes>https://github.com/Azure/Microsoft.Azure.StackExchangeRedis/releases</releaseNotes>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>Redis Cache StackExchange.Redis Microsoft Azure</tags>
+    <repository type="git" url="https://github.com/Azure/Microsoft.Azure.StackExchangeRedis/" commit="0b73c3c00ea11aec63f224a9433ca5cfb7685614" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Azure.Identity" version="1.10.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Identity.Client" version="4.57.0" exclude="Build,Analyzers" />
+        <dependency id="StackExchange.Redis" version="2.7.4" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Azure.Identity" version="1.10.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Identity.Client" version="4.57.0" exclude="Build,Analyzers" />
+        <dependency id="StackExchange.Redis" version="2.7.4" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

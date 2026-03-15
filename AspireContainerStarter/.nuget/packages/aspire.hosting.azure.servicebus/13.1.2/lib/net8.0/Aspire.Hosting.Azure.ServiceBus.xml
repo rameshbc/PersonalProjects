@@ -1,0 +1,690 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aspire.Hosting.Azure.ServiceBus</name>
+    </assembly>
+    <members>
+        <member name="T:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter">
+            <summary>
+            Represents the correlation filter expression.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.#ctor">
+            <summary>
+            Represents the correlation filter expression.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.Properties">
+            <summary>
+            Dictionary object for custom filters.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.CorrelationId">
+            <summary>
+            Identifier of the correlation.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.MessageId">
+            <summary>
+            Identifier of the message.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.SendTo">
+            <summary>
+            Address to send to.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.ReplyTo">
+            <summary>
+            Address of the queue to reply to.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.Subject">
+            <summary>
+            Application specific label.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.SessionId">
+            <summary>
+            Session identifier.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.ReplyToSessionId">
+            <summary>
+            Session identifier to reply to.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.ContentType">
+            <summary>
+            Content type of the message.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusCorrelationFilter.RequiresPreprocessing">
+            <summary>
+            Value that indicates whether the rule action requires preprocessing.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureServiceBusEmulatorResource">
+            <summary>
+            Wraps an <see cref="T:Aspire.Hosting.Azure.AzureServiceBusResource" /> in a type that exposes container extension methods.
+            </summary>
+            <param name="innerResource">The inner resource used to store annotations.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusEmulatorResource.#ctor(Aspire.Hosting.Azure.AzureServiceBusResource)">
+            <summary>
+            Wraps an <see cref="T:Aspire.Hosting.Azure.AzureServiceBusResource" /> in a type that exposes container extension methods.
+            </summary>
+            <param name="innerResource">The inner resource used to store annotations.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusEmulatorResource.Annotations">
+            <inheritdoc />
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureServiceBusFilterType">
+            <summary>
+            Rule filter types.
+            </summary>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.AzureServiceBusFilterType.SqlFilter">
+            <summary>
+            SqlFilter.
+            </summary>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.AzureServiceBusFilterType.CorrelationFilter">
+            <summary>
+            CorrelationFilter.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureServiceBusQueueResource">
+            <summary>
+            Represents a Service Bus Queue.
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusQueueResource"/> class.
+            </summary>
+            <remarks>
+            Use <see cref="M:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})"/> to configure specific <see cref="N:Aspire.Hosting.Azure.Provisioning"/> properties.
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusQueueResource.#ctor(System.String,System.String,Aspire.Hosting.Azure.AzureServiceBusResource)">
+            <summary>
+            Represents a Service Bus Queue.
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusQueueResource"/> class.
+            </summary>
+            <remarks>
+            Use <see cref="M:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})"/> to configure specific <see cref="N:Aspire.Hosting.Azure.Provisioning"/> properties.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.QueueName">
+            <summary>
+            The queue name.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.Parent">
+            <summary>
+            Gets the parent Azure Service Bus resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string expression for the Azure Service Bus Queue.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.DeadLetteringOnMessageExpiration">
+            <summary>
+            A value that indicates whether this queue has dead letter support when
+            a message expires.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.DefaultMessageTimeToLive">
+            <summary>
+            ISO 8601 default message timespan to live value. This is the duration
+            after which the message expires, starting from when the message is
+            sent to Service Bus. This is the default value used when TimeToLive is
+            not set on a message itself.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.DuplicateDetectionHistoryTimeWindow">
+            <summary>
+            ISO 8601 timeSpan structure that defines the duration of the duplicate
+            detection history. The default value is 10 minutes.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.ForwardDeadLetteredMessagesTo">
+            <summary>
+            Queue/Topic name to forward the Dead Letter message.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.ForwardTo">
+            <summary>
+            Queue/Topic name to forward the messages.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.LockDuration">
+            <summary>
+            ISO 8601 timespan duration of a peek-lock; that is, the amount of time
+            that the message is locked for other receivers. The maximum value for
+            LockDuration is 5 minutes; the default value is 1 minute.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.MaxDeliveryCount">
+            <summary>
+            The maximum delivery count. A message is automatically dead-lettered
+            after this number of deliveries.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.RequiresDuplicateDetection">
+            <summary>
+            A value indicating if this queue requires duplicate detection.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusQueueResource.RequiresSession">
+            <summary>
+            A value that indicates whether the queue supports the concept of
+            sessions.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusQueueResource.ToProvisioningEntity">
+            <summary>
+            Converts the current instance to a provisioning entity.
+            </summary>
+            <returns>A <see cref="T:Azure.Provisioning.ServiceBus.ServiceBusQueue"/> instance.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusQueueResource.WriteJsonObjectProperties(System.Text.Json.Utf8JsonWriter)">
+            <summary>
+            Converts the current instance to a JSON object.
+            </summary>
+            <param name="writer">The Utf8JsonWriter to write the JSON object to.</param>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureServiceBusResource">
+            <summary>
+            Represents an Azure Service Bus resource.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure Service Bus resource.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusResource.#ctor(System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            Represents an Azure Service Bus resource.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure Service Bus resource.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusResource.ServiceBusEndpoint">
+            <summary>
+            Gets the "serviceBusEndpoint" output reference from the bicep template for the Azure Storage resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusResource.ServiceBusHostName">
+            <summary>
+            Gets the "serviceBusHostName" output reference from the bicep template for the Azure Storage resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusResource.NameOutputReference">
+            <summary>
+            Gets the "name" output reference for the resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusResource.IsEmulator">
+            <summary>
+            Gets a value indicating whether the Azure Service Bus resource is running in the local emulator.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusResource.HostName">
+            <summary>
+            Gets the host name for the Service Bus namespace.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusResource.Port">
+            <summary>
+            Gets the port for the Service Bus namespace.
+            </summary>
+            <remarks>
+            In container mode, resolves to the container's primary endpoint port.
+            In Azure mode, return null.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusResource.UriExpression">
+            <summary>
+            Gets the connection URI expression for the Service Bus namespace.
+            </summary>
+            <remarks>
+            Format: <c>sb://{host}</c>.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string template for the manifest for the Azure Service Bus endpoint.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusResource.AddAsExistingResource(Aspire.Hosting.Azure.AzureResourceInfrastructure)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureServiceBusRule">
+            <summary>
+            Represents a Service Bus Rule.
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusRule"/> class.
+            </summary>
+            <remarks>
+            Use <see cref="M:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})"/> to configure specific <see cref="N:Aspire.Hosting.Azure.Provisioning"/> properties.
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusRule.#ctor(System.String)">
+            <summary>
+            Represents a Service Bus Rule.
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusRule"/> class.
+            </summary>
+            <remarks>
+            Use <see cref="M:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})"/> to configure specific <see cref="N:Aspire.Hosting.Azure.Provisioning"/> properties.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusRule.Name">
+            <summary>
+            The rule name.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusRule.CorrelationFilter">
+            <summary>
+            Properties of correlation filter.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusRule.FilterType">
+            <summary>
+            Filter type that is evaluated against a BrokeredMessage.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusRule.ToProvisioningEntity">
+            <summary>
+            Converts the current instance to a provisioning entity.
+            </summary>
+            <returns>A <see cref="T:Azure.Provisioning.ServiceBus.ServiceBusRule"/> instance.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusRule.WriteJsonObjectProperties(System.Text.Json.Utf8JsonWriter)">
+            <summary>
+            Converts the current instance to a JSON object.
+            </summary>
+            <param name="writer">The Utf8JsonWriter to write the JSON object to.</param>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource">
+            <summary>
+            Represents a Service Bus Subscription.
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource"/> class.
+            </summary>
+            <remarks>
+            Use <see cref="M:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})"/> to configure specific <see cref="N:Aspire.Hosting.Azure.Provisioning"/> properties.
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.#ctor(System.String,System.String,Aspire.Hosting.Azure.AzureServiceBusTopicResource)">
+            <summary>
+            Represents a Service Bus Subscription.
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource"/> class.
+            </summary>
+            <remarks>
+            Use <see cref="M:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})"/> to configure specific <see cref="N:Aspire.Hosting.Azure.Provisioning"/> properties.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.SubscriptionName">
+            <summary>
+            The subscription name.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.Parent">
+            <summary>
+            Gets the parent Azure Service Bus Topic resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string expression for the Azure Service Bus Subscription.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.DeadLetteringOnMessageExpiration">
+            <summary>
+            A value that indicates whether this queue has dead letter support when
+            a message expires.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.DefaultMessageTimeToLive">
+            <summary>
+            ISO 8601 default message timespan to live value. This is the duration
+            after which the message expires, starting from when the message is
+            sent to Service Bus. This is the default value used when TimeToLive is
+            not set on a message itself.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.ForwardDeadLetteredMessagesTo">
+            <summary>
+            Queue/Topic name to forward the Dead Letter message.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.ForwardTo">
+            <summary>
+            Queue/Topic name to forward the messages.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.LockDuration">
+            <summary>
+            ISO 8601 timespan duration of a peek-lock; that is, the amount of time
+            that the message is locked for other receivers. The maximum value for
+            LockDuration is 5 minutes; the default value is 1 minute.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.MaxDeliveryCount">
+            <summary>
+            The maximum delivery count. A message is automatically deadlettered
+            after this number of deliveries. default value is 10.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.RequiresSession">
+            <summary>
+            A value that indicates whether the queue supports the concept of
+            sessions.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.Rules">
+            <summary>
+            The rules for this subscription.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.ToProvisioningEntity">
+            <summary>
+            Converts the current instance to a provisioning entity.
+            </summary>
+            <returns>A <see cref="T:Azure.Provisioning.ServiceBus.ServiceBusSubscription"/> instance.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource.WriteJsonObjectProperties(System.Text.Json.Utf8JsonWriter)">
+            <summary>
+            Converts the current instance to a JSON object.
+            </summary>
+            <param name="writer">The Utf8JsonWriter to write the JSON object to.</param>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureServiceBusTopicResource">
+            <summary>
+            Represents a Service Bus Topic.
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusTopicResource"/> class.
+            </summary>
+            <remarks>
+            Use <see cref="M:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})"/> to configure specific <see cref="N:Aspire.Hosting.Azure.Provisioning"/> properties.
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusTopicResource.#ctor(System.String,System.String,Aspire.Hosting.Azure.AzureServiceBusResource)">
+            <summary>
+            Represents a Service Bus Topic.
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusTopicResource"/> class.
+            </summary>
+            <remarks>
+            Use <see cref="M:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})"/> to configure specific <see cref="N:Aspire.Hosting.Azure.Provisioning"/> properties.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusTopicResource.TopicName">
+            <summary>
+            The topic name.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusTopicResource.Parent">
+            <summary>
+            Gets the parent Azure Service Bus resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusTopicResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string expression for the Azure Service Bus Topic.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusTopicResource.DefaultMessageTimeToLive">
+            <summary>
+            ISO 8601 default message timespan to live value. This is the duration
+            after which the message expires, starting from when the message is
+            sent to Service Bus. This is the default value used when TimeToLive is
+            not set on a message itself.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusTopicResource.DuplicateDetectionHistoryTimeWindow">
+            <summary>
+            ISO 8601 timeSpan structure that defines the duration of the duplicate
+            detection history. The default value is 10 minutes.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusTopicResource.RequiresDuplicateDetection">
+            <summary>
+            A value indicating if this topic requires duplicate detection.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureServiceBusTopicResource.Subscriptions">
+            <summary>
+            The subscriptions for this topic.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusTopicResource.ToProvisioningEntity">
+            <summary>
+            Converts the current instance to a provisioning entity.
+            </summary>
+            <returns>A <see cref="T:Azure.Provisioning.ServiceBus.ServiceBusTopic"/> instance.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureServiceBusTopicResource.WriteJsonObjectProperties(System.Text.Json.Utf8JsonWriter)">
+            <summary>
+            Converts the current instance to a JSON object.
+            </summary>
+            <param name="writer">The Utf8JsonWriter to write the JSON object to.</param>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.ServiceBus.ConfigFileAnnotation">
+            <summary>
+            Represents an annotation for a custom config file source.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.ServiceBus.ConfigJsonAnnotation">
+            <summary>
+            Represents an annotation for updating the JSON content of a mounted document.
+            </summary>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.ServiceBus.ServiceBusEmulatorContainerImageTags.Registry">
+            <remarks>mcr.microsoft.com</remarks>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.ServiceBus.ServiceBusEmulatorContainerImageTags.Image">
+            <remarks>azure-messaging/servicebus-emulator</remarks>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.ServiceBus.ServiceBusEmulatorContainerImageTags.Tag">
+            <remarks>1.1.2</remarks>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.ServiceBus.ServiceBusEmulatorContainerImageTags.SqlServerRegistry">
+            <remarks>mcr.microsoft.com</remarks>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.ServiceBus.ServiceBusEmulatorContainerImageTags.SqlServerImage">
+            <remarks>mssql/server</remarks>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.ServiceBus.ServiceBusEmulatorContainerImageTags.SqlServerTag">
+            <remarks>2022-latest</remarks>
+        </member>
+        <member name="T:Aspire.Hosting.AzureServiceBusExtensions">
+            <summary>
+            Provides extension methods for adding the Azure Service Bus resources to the application model.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus(Aspire.Hosting.IDistributedApplicationBuilder,System.String)">
+             <summary>
+             Adds an Azure Service Bus Namespace resource to the application model. This resource can be used to create queue, topic, and subscription resources.
+             </summary>
+             <param name="builder">The builder for the distributed application.</param>
+             <param name="name">The name of the resource.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+             <remarks>
+             By default references to the Azure Service Bus resource will be assigned the following roles:
+            
+             - <see cref="P:Azure.Provisioning.ServiceBus.ServiceBusBuiltInRole.AzureServiceBusDataOwner"/>
+            
+             These can be replaced by calling <see cref="M:Aspire.Hosting.AzureServiceBusExtensions.WithRoleAssignments``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},Azure.Provisioning.ServiceBus.ServiceBusBuiltInRole[])"/>.
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.AddQueue(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String)">
+            <summary>
+            Adds an Azure Service Bus Queue resource to the application model.
+            </summary>
+            <param name="builder">The Azure Service Bus resource builder.</param>
+            <param name="name">The name of the queue resource.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String)">
+            <summary>
+            Adds an Azure Service Bus Queue resource to the application model.
+            </summary>
+            <param name="builder">The Azure Service Bus resource builder.</param>
+            <param name="name">The name of the queue resource.</param>
+            <param name="queueName">The name of the Service Bus Queue. If not provided, this defaults to the same value as <paramref name="name"/>.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.WithProperties(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusQueueResource},System.Action{Aspire.Hosting.Azure.AzureServiceBusQueueResource})">
+            <summary>
+            Allows setting the properties of an Azure Service Bus Queue resource.
+            </summary>
+            <param name="builder">The Azure Service Bus Queue resource builder.</param>
+            <param name="configure">A method that can be used for customizing the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusQueueResource"/>.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.AddTopic(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String)">
+            <summary>
+            Adds an Azure Service Bus Topic resource to the application model.
+            </summary>
+            <param name="builder">The Azure Service Bus resource builder.</param>
+            <param name="name">The name of the topic resource.</param>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.AddTopic(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String[])">
+            <summary>
+            Adds an Azure Service Bus Topic resource to the application model.
+            </summary>
+            <param name="builder">The Azure Service Bus resource builder.</param>
+            <param name="name">The name of the topic resource.</param>
+            <param name="subscriptions">The name of the subscriptions.</param>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusTopic(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String)">
+            <summary>
+            Adds an Azure Service Bus Topic resource to the application model.
+            </summary>
+            <param name="builder">The Azure Service Bus resource builder.</param>
+            <param name="name">The name of the topic resource.</param>
+            <param name="topicName">The name of the Service Bus Topic. If not provided, this defaults to the same value as <paramref name="name"/>.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.WithProperties(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusTopicResource},System.Action{Aspire.Hosting.Azure.AzureServiceBusTopicResource})">
+            <summary>
+            Allows setting the properties of an Azure Service Bus Topic resource.
+            </summary>
+            <param name="builder">The Azure Service Bus Topic resource builder.</param>
+            <param name="configure">A method that can be used for customizing the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusTopicResource"/>.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.AddSubscription(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String)">
+            <summary>
+            Adds an Azure Service Bus Subscription resource to the application model.
+            </summary>
+            <param name="builder">The Azure Service Bus resource builder.</param>
+            <param name="topicName">The name of the topic resource.</param>
+            <param name="subscriptionName">The name of the subscription.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusSubscription(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusTopicResource},System.String,System.String)">
+            <summary>
+            Adds an Azure Service Bus Subscription resource to the application model.
+            </summary>
+            <param name="builder">The Azure Service Bus Topic resource builder.</param>
+            <param name="name">The name of the subscription resource.</param>
+            <param name="subscriptionName">The name of the Service Bus Subscription. If not provided, this defaults to the same value as <paramref name="name"/>.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.WithProperties(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource},System.Action{Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource})">
+            <summary>
+            Allows setting the properties of an Azure Service Bus Subscription resource.
+            </summary>
+            <param name="builder">The Azure Service Bus Subscription resource builder.</param>
+            <param name="configure">A method that can be used for customizing the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource"/>.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.RunAsEmulator(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource}})">
+             <summary>
+             Configures an Azure Service Bus resource to be emulated. This resource requires an <see cref="T:Aspire.Hosting.Azure.AzureServiceBusResource"/> to be added to the application model.
+             </summary>
+             <remarks>
+             This version of the package defaults to the <inheritdoc cref="F:Aspire.Hosting.Azure.ServiceBus.ServiceBusEmulatorContainerImageTags.Tag"/> tag of the <inheritdoc cref="F:Aspire.Hosting.Azure.ServiceBus.ServiceBusEmulatorContainerImageTags.Registry"/>/<inheritdoc cref="F:Aspire.Hosting.Azure.ServiceBus.ServiceBusEmulatorContainerImageTags.Image"/> container image.
+             <param name="builder">The Azure Service Bus resource builder.</param>
+             <param name="configureContainer">Callback that exposes underlying container used for emulation to allow for customization.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+             <example>
+             The following example creates an Azure Service Bus resource that runs locally is an emulator and referencing that
+             resource in a .NET project.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var serviceBus = builder.AddAzureServiceBus("myservicebus")
+                .RunAsEmulator()
+                .AddQueue("queue");
+            
+             builder.AddProject&lt;Projects.InventoryService&gt;()
+                    .WithReference(serviceBus);
+            
+             builder.Build().Run();
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.WithConfigurationFile(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource},System.String)">
+            <summary>
+            Copies the configuration file into an Azure Service Bus emulator resource.
+            </summary>
+            <param name="builder">The builder for the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusEmulatorResource"/>.</param>
+            <param name="path">Path to the file on the AppHost where the emulator configuration is located.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.WithConfiguration(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource},System.Action{System.Text.Json.Nodes.JsonNode})">
+             <summary>
+             Alters the JSON configuration document used by the emulator.
+             </summary>
+             <param name="builder">The builder for the <see cref="T:Aspire.Hosting.Azure.AzureServiceBusEmulatorResource"/>.</param>
+             <param name="configJson">A callback to update the JSON object representation of the configuration.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+             <remarks>
+             <example>
+             Here is an example of how to configure the emulator to use a different logging mechanism:
+             <code language="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             builder.AddAzureServiceBus("servicebusns")
+                    .RunAsEmulator(configure => configure
+                        .WithConfiguration(document =>
+                        {
+                            document["UserConfig"]!["Logging"] = new JsonObject { ["Type"] = "Console" };
+                        });
+                    );
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.WithHostPort(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource},System.Nullable{System.Int32})">
+            <summary>
+            Configures the host port for the Azure Service Bus emulator is exposed on instead of using randomly assigned port.
+            </summary>
+            <param name="builder">Builder for the Azure Service Bus emulator container</param>
+            <param name="port">The port to bind on the host. If <see langword="null"/> is used, a random port will be assigned.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureServiceBusExtensions.WithRoleAssignments``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},Azure.Provisioning.ServiceBus.ServiceBusBuiltInRole[])">
+             <summary>
+             Assigns the specified roles to the given resource, granting it the necessary permissions
+             on the target Azure Service Bus namespace. This replaces the default role assignments for the resource.
+             </summary>
+             <param name="builder">The resource to which the specified roles will be assigned.</param>
+             <param name="target">The target Azure Service Bus namespace.</param>
+             <param name="roles">The built-in Service Bus roles to be assigned.</param>
+             <returns>The updated <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> with the applied role assignments.</returns>
+             <remarks>
+             <example>
+             Assigns the AzureServiceBusDataSender role to the 'Projects.Api' project.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var sb = builder.AddAzureServiceBus("bus");
+            
+             var api = builder.AddProject&lt;Projects.Api&gt;("api")
+               .WithRoleAssignments(sb, ServiceBusBuiltInRole.AzureServiceBusDataSender)
+               .WithReference(sb);
+             </code>
+             </example>
+             </remarks>
+        </member>
+    </members>
+</doc>

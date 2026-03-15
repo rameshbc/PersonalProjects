@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <UserSecretsId>dotnet-AspireContainerStarter.Calc1Worker-facd1d0e-5fff-444d-9645-b244d08801ae</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ServiceDefaults\AspireContainerStarter.ServiceDefaults\AspireContainerStarter.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\AspireContainerStarter.Infrastructure\AspireContainerStarter.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Contracts\AspireContainerStarter.Contracts\AspireContainerStarter.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,314 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Azure.StackExchangeRedis</name>
+    </assembly>
+    <members>
+        <member name="T:StackExchange.Redis.AzureCacheForRedis">
+            <summary>
+            An extension for StackExchange.Redis for configuring connections to Azure Cache for Redis resources.
+            </summary>
+        </member>
+        <member name="P:StackExchange.Redis.AzureCacheForRedis.ConfigureForAzure">
+            <summary>
+            Configures a Redis connection authenticated with an access key.
+            </summary>
+        </member>
+        <member name="M:StackExchange.Redis.AzureCacheForRedis.ConfigureForAzureWithSystemAssignedManagedIdentityAsync(StackExchange.Redis.ConfigurationOptions,System.String)">
+            <summary>
+            Configures a Redis connection authenticated using a system-assigned managed identity.
+            Throws on failure by default (configurable in the <see cref="M:StackExchange.Redis.AzureCacheForRedis.ConfigureForAzureAsync(StackExchange.Redis.ConfigurationOptions,Microsoft.Azure.StackExchangeRedis.AzureCacheOptions)"/> method).
+            </summary>
+            <param name="configurationOptions">The configuration to update.</param>
+            <param name="principalId">Principal (object) ID of the client resource's system-assigned managed identity.</param>
+            <exception cref="T:Microsoft.Identity.Client.MsalServiceException">When the token source is not supported or identified incorrectly.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Unable to contact the identity service to acquire a token.</exception>
+        </member>
+        <member name="M:StackExchange.Redis.AzureCacheForRedis.ConfigureForAzureWithUserAssignedManagedIdentityAsync(StackExchange.Redis.ConfigurationOptions,System.String,System.String)">
+            <summary>
+            Configures a Redis connection authenticated using a user-assigned managed identity.
+            Throws on failure by default (configurable in the <see cref="M:StackExchange.Redis.AzureCacheForRedis.ConfigureForAzureAsync(StackExchange.Redis.ConfigurationOptions,Microsoft.Azure.StackExchangeRedis.AzureCacheOptions)"/> method).
+            </summary>
+            <param name="configurationOptions">The configuration to update.</param>
+            <param name="clientId">Client ID or resource ID of the user-assigned managed identity.</param>
+            <param name="principalId">Principal (object) ID of the user-assigned managed identity.</param>
+            <exception cref="T:Microsoft.Identity.Client.MsalServiceException">When the token source is not supported or identified incorrectly.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Unable to contact the identity service to acquire a token.</exception>
+        </member>
+        <member name="M:StackExchange.Redis.AzureCacheForRedis.ConfigureForAzureWithServicePrincipalAsync(StackExchange.Redis.ConfigurationOptions,System.String,System.String,System.String,System.String,System.Security.Cryptography.X509Certificates.X509Certificate2,Microsoft.Identity.Client.AzureCloudInstance,System.String)">
+            <summary>
+            Configures a Redis connection authenticated using a service principal.
+            NOTE: Service principal authentication should only be used in scenarios where managed identity CANNOT be used.
+            Throws on failure by default (configurable in the <see cref="M:StackExchange.Redis.AzureCacheForRedis.ConfigureForAzureAsync(StackExchange.Redis.ConfigurationOptions,Microsoft.Azure.StackExchangeRedis.AzureCacheOptions)"/> method).
+            </summary>
+            <param name="configurationOptions">The configuration to update.</param>
+            <param name="clientId">Client ID of the service principal.</param>
+            <param name="principalId">Principal (object) ID of the service principal.</param>
+            <param name="tenantId">Tenant ID of the service principal.</param>
+            <param name="secret">Service principal secret. Either <paramref name="secret"/> or <paramref name="certificate"/> must be provided</param>
+            <param name="certificate">Service principal certificate. Either <paramref name="certificate"/> or <paramref name="secret"/> must be provided.</param>
+            <param name="cloud">Optional. Provide a value to use an Azure cloud other than the Public cloud.</param>
+            <param name="cloudUri">Optional. Provide a value to use an Azure cloud not included in <see cref="T:Microsoft.Identity.Client.AzureCloudInstance"/>. URI format will be similar to <c>https://login.microsoftonline.com)</c></param>
+            <exception cref="T:Microsoft.Identity.Client.MsalServiceException">When the token source is not supported or identified incorrectly.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Unable to contact the identity service to acquire a token.</exception>
+        </member>
+        <member name="M:StackExchange.Redis.AzureCacheForRedis.ConfigureForAzureWithTokenCredentialAsync(StackExchange.Redis.ConfigurationOptions,System.String,Azure.Core.TokenCredential)">
+            <summary>
+            Configures a Redis connection authenticated using a TokenCredential.
+            </summary>
+            <param name="configurationOptions">The configuration to update.</param>
+            <param name="userName">The user to be used for authentication.</param>
+            <param name="tokenCredential">The TokenCredential to be used.</param>
+            <returns></returns>
+        </member>
+        <member name="M:StackExchange.Redis.AzureCacheForRedis.ConfigureForAzureAsync(StackExchange.Redis.ConfigurationOptions,Microsoft.Azure.StackExchangeRedis.AzureCacheOptions)">
+            <summary>
+            Configures a connection to an Azure Cache for Redis using advanced options.
+            </summary>
+            <param name="configurationOptions">The configuration to update.</param>
+            <param name="azureCacheOptions">Options for configuring a connection to an Azure Cache for Redis.</param>
+            <exception cref="T:Microsoft.Identity.Client.MsalServiceException">When the token source is not supported or identified incorrectly.</exception>
+            <exception cref="T:System.Net.Http.HttpRequestException">Unable to contact the identity service to acquire a token.</exception>
+        </member>
+        <member name="T:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions">
+            <summary>
+            Options for configuring connections to Azure Cache for Redis.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.PrincipalId">
+            <summary>
+            Principal (object) ID of a managed identity or a service principal used to authenticate a connection to Redis.
+            Required when connecting with a managed identity or service principal.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.ClientId">
+            <summary>
+            Client ID of a managed identity or a service principal used to authenticate a connection to Redis.
+            Required when connecting with a user-assigned managed identity or a service principal.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.ServicePrincipalTenantId">
+            <summary>
+            Tenant ID of a service principal used to authenticate a connection to Redis.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.ServicePrincipalSecret">
+            <summary>
+            Service principal secret used to authenticate a connection to Redis.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.ServicePrincipalCertificate">
+            <summary>
+            Service principal certificate used to authenticate a connection to Redis.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.Cloud">
+            <summary>
+            Azure cloud where the application is running. Defaults to the Public cloud. To use a sovereign cloud, set to the appropriate <see cref="T:Microsoft.Identity.Client.AzureCloudInstance"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.CloudUri">
+            <summary>
+            URI for the Azure cloud where the application is running. Use this for clouds not included in <see cref="T:Microsoft.Identity.Client.AzureCloudInstance"/>
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.TokenCredential">
+            <summary>
+            TokenCredential used to authenticate a connection to Redis.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.ThrowOnTokenRefreshFailure">
+            <summary>
+            Whether or not to throw an exception on failure to refresh an expiring Microsoft Entra ID token.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.ShouldTokenBeRefreshed">
+            <summary>
+            Determines whether the current token should be refreshed, based on its age and lifespan
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.TokenHeartbeatInterval">
+            <summary>
+            Periodic interval to check token for expiration, acquire new tokens, and re-authenticate connections.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.MaxTokenRefreshAttempts">
+            <summary>
+            Number of attempts to acquire a new token.
+            If none of the attempts succeed, the same number of attempts will be made at the next timer interval.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Azure.StackExchangeRedis.AzureCacheOptions.TokenRefreshBackoff">
+            <summary>
+            Determines the interval between attempts to acquire a new token.
+            The function receives an integer indicating how many attempts have been made and the exception necessitating a retry. It returns a TimeSpan that determines the interval to wait before the next attempt.
+            By default, wait a number of seconds corresponding to the number of attempts completed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProvider">
+            <summary>
+            Redis connection configuration options provider for use with Azure Cache for Redis.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProvider.AbortOnConnectFail">
+            <summary>
+            Default to false to continue attempting to connect after an initial failure.
+            This provides more resilience in cloud application environments. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProvider.LibraryName">
+            <summary>
+            The identifier used to mark connections being managed by this extension package.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken">
+            <summary>
+            Redis connection configuration options provider for using Microsoft Entra ID authentication with Azure Cache for Redis.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.GetIdentityClient(Microsoft.Azure.StackExchangeRedis.AzureCacheOptions)">
+            <summary>
+            Instantiates a <see cref="T:Microsoft.Azure.StackExchangeRedis.CacheIdentityClient"/> configured for a specific authentication type, depending on the properties supplied in <paramref name="azureCacheOptions"/>
+            </summary>
+            <param name="azureCacheOptions">Options including details of the managed identity or service principal used for authentication</param>
+        </member>
+        <member name="M:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.GetDefaultSsl(StackExchange.Redis.EndPointCollection)">
+            <summary>
+            Require SSL on all connections using Microsoft Entra ID tokens for authentication.
+            </summary>
+            <returns>True for all cases.</returns>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.User">
+            <inheritdoc/>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.Password">
+            <inheritdoc/>
+        </member>
+        <member name="E:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.TokenRefreshed">
+            <inheritdoc/>
+        </member>
+        <member name="E:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.TokenRefreshFailed">
+            <inheritdoc/>
+        </member>
+        <member name="E:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.ConnectionReauthenticated">
+            <inheritdoc/>
+        </member>
+        <member name="E:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.ConnectionReauthenticationFailed">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.AfterConnectAsync(StackExchange.Redis.ConnectionMultiplexer,System.Action{System.String})">
+            <summary>
+            Initialize new Redis connections managed by this instance of the extension. 
+            Each StackExchange.Redis.ConnectionMultiplexer instance using these options will call this method when it first connects to Redis
+            </summary>
+            <param name="connectionMultiplexer">The multiplexer that just connected.</param>
+            <param name="log">The logger for the connection, to emit to the connection output log.</param>
+        </member>
+        <member name="M:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.AcquireTokenAsync(System.Boolean)">
+            <summary>
+            Acquires a token to authenticate connections to Azure Cache for Redis
+            </summary>
+            <param name="throwOnFailure"><see langword="true"/> to throw on failure, <see langword="false"/> to suppress handle exceptions and retry</param>
+        </member>
+        <member name="M:Microsoft.Azure.StackExchangeRedis.AzureCacheOptionsProviderWithToken.ReauthenticateConnectionsAsync">
+            <summary>
+            Re-authenticate all connections with the current token.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.StackExchangeRedis.ICacheIdentityClient">
+            <summary>
+            Acquires tokens from Microsoft Entra ID for authenticating connections to Azure Cache for Redis.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.StackExchangeRedis.ICacheIdentityClient.GetTokenAsync">
+            <summary>
+            Acquire a token to be used to authenticate a connection.
+            </summary>
+            <returns>A TokenResult containing a token and expiration</returns>
+        </member>
+        <member name="T:Microsoft.Azure.StackExchangeRedis.IAzureCacheTokenEvents">
+            <summary>
+            Events raised to notify Redis client applications about authentication token management operations.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Azure.StackExchangeRedis.IAzureCacheTokenEvents.TokenRefreshed">
+            <summary>
+            Raised when an authentication token is refreshed.
+            The TokenResult argument passed to handler contains the token and its expiry.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Azure.StackExchangeRedis.IAzureCacheTokenEvents.TokenRefreshFailed">
+            <summary>
+            Raised when an attempt to refresh an authentication token fails.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Azure.StackExchangeRedis.IAzureCacheTokenEvents.ConnectionReauthenticated">
+            <summary>
+            Raised when a Redis connection is re-authenticated.
+            The string argument passed to subscribers identifies the server endpoint that was re-authenticated.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Azure.StackExchangeRedis.IAzureCacheTokenEvents.ConnectionReauthenticationFailed">
+            <summary>
+            Raised when an attempt to re-authenticate a Redis connection fails.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.StackExchangeRedis.TokenRefreshFailedEventArgs">
+            <summary>
+            Contains information about a token refresh failure.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.TokenRefreshFailedEventArgs.Exception">
+            <summary>
+            Gets the exception if available (this can be null).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.TokenRefreshFailedEventArgs.Expiry">
+            <summary>
+            When token expires.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.StackExchangeRedis.ConnectionReauthenticationFailedEventArgs">
+            <summary>
+            Contains information about a failure to re-authenticate a Redis server connection.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.ConnectionReauthenticationFailedEventArgs.Exception">
+            <summary>
+            Gets the exception if available (this can be null).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.ConnectionReauthenticationFailedEventArgs.Endpoint">
+            <summary>
+            Server endpoint that failed to re-authenticate.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Azure.StackExchangeRedis.TokenResult">
+            <summary>
+            Result from getting a new token for authentication
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.TokenResult.Token">
+            <summary>
+            Token to be used for authentication.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.StackExchangeRedis.TokenResult.ExpiresOn">
+            <summary>
+            Expiry for the acquired token.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Azure.StackExchangeRedis.TokenResult.#ctor(Microsoft.Identity.Client.AuthenticationResult)">
+            <summary>
+            Creates a TokenResult from an AuthenticationResult.
+            </summary>
+            <param name="authenticationResult">An AuthenticationResult from getting a token through the Microsoft Identity Client.</param>
+        </member>
+        <member name="M:Microsoft.Azure.StackExchangeRedis.TokenResult.#ctor(Azure.Core.AccessToken)">
+            <summary>
+            Creates a TokenResult from an AccessToken.
+            </summary>
+            <param name="accessToken">An AccessToken from a TokenCredential.</param>
+        </member>
+    </members>
+</doc>

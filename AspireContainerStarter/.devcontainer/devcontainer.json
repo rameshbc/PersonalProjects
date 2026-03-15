@@ -1,0 +1,69 @@
+{
+  "name": "AspireContainerStarter — .NET 10",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  "features": {
+    // Docker-in-Docker: required for Aspire to start SQL Server / Redis containers.
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true,
+      "dockerDashComposeVersion": "v2"
+    },
+    // Azure CLI: used for az login (local MI simulation) and AZD deployments.
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "installBicep": true,
+      "version": "latest"
+    },
+    // Azure Developer CLI (azd): orchestrates Container Apps deployments.
+    "ghcr.io/azure/azure-dev/azd:latest": {},
+    // GitHub CLI: useful for working with PRs and Actions from the terminal.
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // C# & .NET
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.polyglot-notebooks",
+        // Aspire dashboard + container support
+        "ms-azuretools.vscode-docker",
+        // Azure tooling
+        "ms-azuretools.azure-dev",
+        "ms-azuretools.vscode-azurecontainerapps",
+        // Git & GitHub
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+        // Productivity
+        "editorconfig.editorconfig",
+        "streetsidesoftware.code-spell-checker"
+      ],
+      "settings": {
+        "dotnet.defaultSolution": "AspireContainerStarter.slnx",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-dotnettools.csharp",
+        "files.exclude": {
+          "**/bin": true,
+          "**/obj": true
+        }
+      }
+    }
+  },
+
+  // Symlink NuGet packages to the host volume (avoids filling the overlay FS),
+  // then restore packages and generate the HTTPS dev certificate.
+  "postCreateCommand": "mkdir -p ${containerWorkspaceFolder}/.nuget/packages && mkdir -p /home/vscode/.nuget && ln -sfn ${containerWorkspaceFolder}/.nuget/packages /home/vscode/.nuget/packages && mkdir -p ${containerWorkspaceFolder}/.dotnet/corefx/cryptography && mkdir -p /home/vscode/.dotnet/corefx && ln -sfn ${containerWorkspaceFolder}/.dotnet/corefx/cryptography /home/vscode/.dotnet/corefx/cryptography && dotnet restore AspireContainerStarter.slnx && dotnet dev-certs https",
+
+  // Run as non-root for security.
+  "remoteUser": "vscode",
+
+  // Forward Aspire dashboard (18888) and API dev port (5000/5001).
+  "forwardPorts": [18888, 5000, 5001],
+
+  // Request sufficient disk space for .NET SDK, NuGet packages, and Docker-in-Docker images.
+  "hostRequirements": {
+    "storage": "100gb"
+  }
+}

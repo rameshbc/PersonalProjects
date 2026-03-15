@@ -1,0 +1,33 @@
+version: "3.9"
+
+# ── Local development / single-replica test ─────────────────────────────────────
+# Run: docker compose up --build
+#
+# For multi-replica (3 replicas × 2 workbooks = 6 sessions):
+#   docker compose up --build --scale worker=3
+#   Requires ServiceBus:UseServiceBus=true and a real Service Bus namespace.
+
+services:
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      # Override config via environment variables (double-underscore = section separator)
+      - WorkbookRegistry__Workbooks__0__Id=workbook-01
+      - WorkbookRegistry__Workbooks__0__DisplayName=Primary Workbook
+      - WorkbookRegistry__Workbooks__0__SiteUrl=${SHAREPOINT_SITE_URL}
+      - WorkbookRegistry__Workbooks__0__WorkbookPath=${WORKBOOK_PATH}
+      - WorkbookRegistry__Workbooks__0__InsertRangeFlowUrl=${INSERT_FLOW_URL}
+      - WorkbookRegistry__Workbooks__0__UpdateRangeFlowUrl=${UPDATE_FLOW_URL}
+      - WorkbookRegistry__Workbooks__0__ExtractRangeFlowUrl=${EXTRACT_FLOW_URL}
+      - ServiceBus__UseServiceBus=${USE_SERVICE_BUS:-false}
+      - ServiceBus__ConnectionString=${SERVICEBUS_CONNECTION_STRING:-}
+      - ServiceBus__QueueName=${SERVICEBUS_QUEUE_NAME:-excel-operations}
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: "0.5"

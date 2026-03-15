@@ -1,0 +1,86 @@
+{
+  "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+  "_comment": "Reference definition for the InsertRange Power Automate flow. Configure this manually in the Power Automate designer.",
+
+  "HTTP_Trigger_Request_Schema": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "sheetName":  { "type": "string"  },
+      "tableName":  { "type": "string"  },
+      "rows": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {}
+        }
+      }
+    },
+    "required": ["sheetName", "tableName", "rows"]
+  },
+
+  "Run_Script_Action": {
+    "type": "OpenApiConnection",
+    "inputs": {
+      "host": {
+        "connectionName": "shared_excelonlinebusiness",
+        "operationId": "RunScript",
+        "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness"
+      },
+      "parameters": {
+        "source": "me",
+        "drive": "b!HARDCODED_DRIVE_ID",
+        "file": "HARDCODED_FILE_ID_OR_PATH",
+        "ScriptName": "InsertRangeScript",
+        "ScriptParameters/sheetName": "@{triggerBody()?['sheetName']}",
+        "ScriptParameters/tableName": "@{triggerBody()?['tableName']}",
+        "ScriptParameters/rows": "@{triggerBody()?['rows']}"
+      }
+    }
+  },
+
+  "Success_Response_Action": {
+    "type": "Response",
+    "kind": "Http",
+    "inputs": {
+      "statusCode": 200,
+      "headers": { "Content-Type": "application/json" },
+      "body": {
+        "status": "success",
+        "scriptOutput": "@{body('Run_Script')?['result']?['body']?['returnValue']}",
+        "timestamp": "@{utcNow()}"
+      }
+    },
+    "runAfter": {
+      "Run_Script": ["Succeeded"]
+    }
+  },
+
+  "Error_Response_Action": {
+    "type": "Response",
+    "kind": "Http",
+    "inputs": {
+      "statusCode": 500,
+      "headers": { "Content-Type": "application/json" },
+      "body": {
+        "status": "error",
+        "errorCode": "@{outputs('Run_Script')?['statusCode']}",
+        "errorMessage": "@{body('Run_Script')?['error']?['message']}",
+        "timestamp": "@{utcNow()}"
+      }
+    },
+    "runAfter": {
+      "Run_Script": ["Failed", "TimedOut", "Skipped"]
+    }
+  },
+
+  "Notes": [
+    "1. Create this flow in Power Automate with an HTTP Request trigger.",
+    "2. Paste the HTTP_Trigger_Request_Schema into the trigger's JSON schema field.",
+    "3. Add a 'Run script' (Excel Online Business) action, select the SharePoint site, library, file, and script.",
+    "4. Bind the ScriptParameters using the expressions above.",
+    "5. Add two Response actions: one for success (run after Succeeded), one for error (run after Failed/TimedOut/Skipped).",
+    "6. Copy the trigger URL (with SAS key) into appsettings.json PowerAutomate:InsertRangeFlowUrl.",
+    "7. Store the SAS-signed URL in Azure Key Vault — treat it as a secret credential."
+  ]
+}

@@ -1,0 +1,9 @@
+# ── Developer overrides (not committed with secrets) ────────────────────────────
+# Copy this file, fill in values, and add to .gitignore
+version: "3.9"
+
+services:
+  worker:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - Serilog__MinimumLevel__Default=Debug

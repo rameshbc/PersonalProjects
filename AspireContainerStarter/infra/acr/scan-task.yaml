@@ -1,0 +1,29 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# ACR Multi-Step Task: scheduled vulnerability scan
+#
+# Triggered daily by a timer (registered via register-tasks.sh).
+# Uses the task's system-assigned managed identity to authenticate to ACR —
+# no passwords or secrets are stored.
+#
+# Task steps:
+#   1. Run scan.sh inside the azure-cli image (which provides bash, curl, jq).
+#      scan.sh installs Trivy at runtime, exchanges the MI token for an ACR
+#      refresh token, and scans api:latest, calc1-worker:latest,
+#      calc2-worker:latest.
+#
+# Prerequisites (set up by register-tasks.sh):
+#   • Task created with --assign-identity
+#   • Task's managed identity has AcrPull on the ACR registry
+#   • Microsoft Defender for Containers enabled (continuous background scan)
+# ─────────────────────────────────────────────────────────────────────────────
+
+version: v1.1.0
+
+steps:
+  - id: scan
+    # azure-cli image provides bash, curl, and jq — everything scan.sh needs.
+    # Trivy is downloaded inside the script (pinned version).
+    cmd: >-
+      mcr.microsoft.com/azure-cli:2.67.0
+      bash /workspace/infra/acr/scan.sh {{.Run.Registry}}
+    timeout: 1800   # 30 min ceiling; typical run: 5–10 min

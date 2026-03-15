@@ -1,0 +1,38 @@
+@AspireContainerStarter.Api_HostAddress = http://localhost:5269
+
+### Submit a Calc1 job
+POST {{AspireContainerStarter.Api_HostAddress}}/jobs/calc1
+Content-Type: application/json
+
+{
+  "jobId": "00000000-0000-0000-0000-000000000001",
+  "taxYear": "2024",
+  "entityId": "ENT-001",
+  "submittedAt": "2025-01-01T00:00:00Z"
+}
+
+###
+
+### Submit a Calc2 job
+POST {{AspireContainerStarter.Api_HostAddress}}/jobs/calc2
+Content-Type: application/json
+
+{
+  "jobId": "00000000-0000-0000-0000-000000000002",
+  "taxYear": "2024",
+  "stateCode": "CA",
+  "entityId": "ENT-001",
+  "submittedAt": "2025-01-01T00:00:00Z"
+}
+
+###
+
+### Health check
+GET {{AspireContainerStarter.Api_HostAddress}}/health
+
+###
+
+### Liveness check
+GET {{AspireContainerStarter.Api_HostAddress}}/alive
+
+###

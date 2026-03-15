@@ -1,0 +1,323 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aspire.Hosting.SqlServer</name>
+    </assembly>
+    <members>
+        <member name="T:Aspire.Hosting.SqlServerBuilderExtensions">
+            <summary>
+            Provides extension methods for adding SQL Server resources to the application model.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.SqlServerBuilderExtensions.GoStatements">
+            <remarks>
+            Pattern:<br/>
+            <code>^\\s*GO(?&lt;repeat&gt;\\s+\\d{1,6})?(\\s*\\-{2,}.*)?\\s*$</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.CultureInvariant</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match a character in the set [Gg].<br/>
+            ○ Match a character in the set [Oo].<br/>
+            ○ Optional (greedy).<br/>
+                ○ "repeat" capture group.<br/>
+                    ○ Match a whitespace character atomically at least once.<br/>
+                    ○ Match a Unicode digit greedily at least 1 and at most 6 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a whitespace character atomically any number of times.<br/>
+                    ○ Match '-' greedily at least twice.<br/>
+                    ○ Match a character other than '\n' greedily any number of times.<br/>
+            ○ Match a whitespace character greedily any number of times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer(Aspire.Hosting.IDistributedApplicationBuilder,System.String,Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},System.Nullable{System.Int32})">
+            <summary>
+            Adds a SQL Server resource to the application model. A container is used for local development.
+            </summary>
+            <remarks>
+            This version of the package defaults to the <inheritdoc cref="F:Aspire.Hosting.SqlServerContainerImageTags.Tag"/> tag of the <inheritdoc cref="F:Aspire.Hosting.SqlServerContainerImageTags.Registry"/>/<inheritdoc cref="F:Aspire.Hosting.SqlServerContainerImageTags.Image"/> container image.
+            </remarks>
+            <param name="builder">The <see cref="T:Aspire.Hosting.IDistributedApplicationBuilder"/>.</param>
+            <param name="name">The name of the resource. This name will be used as the connection string name when referenced in a dependency.</param>
+            <param name="password">The parameter used to provide the administrator password for the SQL Server resource. If <see langword="null"/> a random password will be generated.</param>
+            <param name="port">The host port for the SQL Server.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource},System.String,System.String)">
+            <summary>
+            Adds a SQL Server database to the application model. This is a child resource of a <see cref="T:Aspire.Hosting.ApplicationModel.SqlServerServerResource"/>.
+            </summary>
+            <param name="builder">The SQL Server resource builders.</param>
+            <param name="name">The name of the resource. This name will be used as the connection string name when referenced in a dependency.</param>
+            <param name="databaseName">The name of the database. If not provided, this defaults to the same value as <paramref name="name"/>.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+            <remarks>
+            <para>
+            When adding a <see cref="T:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource"/> to your application model the resource can then
+            be referenced by other resources using the resource name. When the dependent resource is using
+            the extension method <see cref="M:Aspire.Hosting.ResourceBuilderExtensions.WaitFor``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.IResource})"/>
+            then the dependent resource will wait until the SQL Server database is available.
+            </para>
+            <para>
+            Note that calling <see cref="M:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource},System.String,System.String)"/>
+            will result in the database being created on the SQL Server when the server becomes ready.
+            The database creation happens automatically as part of the resource lifecycle.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.SqlServerBuilderExtensions.WithDataVolume(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource},System.String,System.Boolean)">
+            <summary>
+            Adds a named volume for the data folder to a SQL Server resource.
+            </summary>
+            <param name="builder">The resource builder.</param>
+            <param name="name">The name of the volume. Defaults to an auto-generated name based on the application and resource names.</param>
+            <param name="isReadOnly">A flag that indicates if this is a read-only volume.</param>
+            <returns>The <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.SqlServerBuilderExtensions.WithDataBindMount(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource},System.String,System.Boolean)">
+            <summary>
+            Adds a bind mount for the data folder to a SQL Server resource.
+            </summary>
+            <param name="builder">The resource builder.</param>
+            <param name="source">The source directory on the host to mount into the container.</param>
+            <param name="isReadOnly">A flag that indicates if this is a read-only mount.</param>
+            <returns>The <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+            <remarks>
+            The container starts up as non-root and the <paramref name="source"/> directory must be readable by the user that the container runs as.
+            https://learn.microsoft.com/sql/linux/sql-server-linux-docker-container-configure?view=sql-server-ver16&amp;pivots=cs1-bash#mount-a-host-directory-as-data-volume
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.SqlServerBuilderExtensions.WithCreationScript(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource},System.String)">
+            <summary>
+            Defines the SQL script used to create the database.
+            </summary>
+            <param name="builder">The builder for the <see cref="T:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource"/>.</param>
+            <param name="script">The SQL script used to create the database.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+            <remarks>
+            <value>Default script is <code>IF ( NOT EXISTS ( SELECT 1 FROM sys.databases WHERE name = @DatabaseName ) ) CREATE DATABASE [&lt;QUOTED_DATABASE_NAME%gt;];</code></value>
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.SqlServerBuilderExtensions.WithPassword(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})">
+            <summary>
+            Configures the password that the SqlServer resource is used.
+            </summary>
+            <param name="builder">The resource builder.</param>
+            <param name="password">The parameter used to provide the password for the SqlServer resource.</param>
+            <returns>The <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.SqlServerBuilderExtensions.WithHostPort(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource},System.Nullable{System.Int32})">
+            <summary>
+            Configures the host port that the SqlServer resource is exposed on instead of using randomly assigned port.
+            </summary>
+            <param name="builder">The resource builder.</param>
+            <param name="port">The port to bind on the host. If <see langword="null"/> is used random port will be assigned.</param>
+            <returns>The <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="F:Aspire.Hosting.SqlServerContainerImageTags.Registry">
+            <remarks>mcr.microsoft.com</remarks>
+        </member>
+        <member name="F:Aspire.Hosting.SqlServerContainerImageTags.Image">
+            <remarks>mssql/server</remarks>
+        </member>
+        <member name="F:Aspire.Hosting.SqlServerContainerImageTags.Tag">
+            <remarks>2022-latest</remarks>
+        </member>
+        <member name="T:Aspire.Hosting.SqlServerCreateDatabaseScriptAnnotation">
+            <summary>
+            Represents an annotation for defining a script to create a database in SQL Server.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.SqlServerCreateDatabaseScriptAnnotation.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.SqlServerCreateDatabaseScriptAnnotation"/> class.
+            </summary>
+            <param name="script">The script used to create the database.</param>
+        </member>
+        <member name="P:Aspire.Hosting.SqlServerCreateDatabaseScriptAnnotation.Script">
+            <summary>
+            Gets the script used to create the database.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource">
+            <summary>
+            A resource that represents a SQL Server database that is a child of a SQL Server container resource.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="databaseName">The database name.</param>
+            <param name="parent">The parent SQL Server server resource.</param>
+        </member>
+        <member name="M:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource.#ctor(System.String,System.String,Aspire.Hosting.ApplicationModel.SqlServerServerResource)">
+            <summary>
+            A resource that represents a SQL Server database that is a child of a SQL Server container resource.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="databaseName">The database name.</param>
+            <param name="parent">The parent SQL Server server resource.</param>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource.Parent">
+            <summary>
+            Gets the parent SQL Server container resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string expression for the SQL Server database.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource.UriExpression">
+            <summary>
+            Gets the connection URI expression for the SQL Server database.
+            </summary>
+            <remarks>
+            Format: <c>mssql://{Username}:{Password}@{Host}:{Port}</c>.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource.JdbcConnectionString">
+            <summary>
+            Gets the JDBC connection string for the SQL Server database.
+            </summary>
+            <remarks>
+            <para>Format: <c>jdbc:sqlserver://{host}:{port};trustServerCertificate=true;databaseName={database}</c>.</para>
+            <para>User and password credentials are not included in the JDBC connection string. Use the <c>Username</c> and <c>Password</c> connection properties to access credentials.</para>
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource.DatabaseName">
+            <summary>
+            Gets the database name.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.ApplicationModel.SqlServerServerResource">
+            <summary>
+            A resource that represents a SQL Server container.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.ApplicationModel.SqlServerServerResource.#ctor(System.String,Aspire.Hosting.ApplicationModel.ParameterResource)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.ApplicationModel.SqlServerServerResource"/> class.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="password">A parameter that contains the SQL Server password.</param>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerServerResource.PrimaryEndpoint">
+            <summary>
+            Gets the primary endpoint for the SQL Server.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerServerResource.Host">
+            <summary>
+            Gets the host endpoint reference for this resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerServerResource.Port">
+            <summary>
+            Gets the port endpoint reference for this resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerServerResource.PasswordParameter">
+            <summary>
+            Gets the parameter that contains the SQL Server password.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerServerResource.UserNameReference">
+            <summary>
+            Gets a reference to the user name for the SQL Server.
+            </summary>
+            <remarks>
+            Returns the user name parameter if specified, otherwise returns the default user name "sa".
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerServerResource.UriExpression">
+            <summary>
+            Gets the connection URI expression for the SQL Server.
+            </summary>
+            <remarks>
+            Format: <c>mssql://{Username}:{Password}@{Host}:{Port}</c>.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerServerResource.JdbcConnectionString">
+            <summary>
+            Gets the JDBC connection string for the SQL Server.
+            </summary>
+            <remarks>
+            <para>Format: <c>jdbc:sqlserver://{host}:{port};trustServerCertificate=true</c>.</para>
+            <para>User and password credentials are not included in the JDBC connection string. Use the <c>Username</c> and <c>Password</c> connection properties to access credentials.</para>
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerServerResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string expression for the SQL Server.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.ApplicationModel.SqlServerServerResource.GetConnectionStringAsync(System.Threading.CancellationToken)">
+            <summary>
+            Gets the connection string for the SQL Server.
+            </summary>
+            <param name="cancellationToken"> A <see cref="T:System.Threading.CancellationToken"/> to observe while waiting for the task to complete.</param>
+            <returns>A connection string for the SQL Server in the form "Server=host,port;User ID=sa;Password=password;TrustServerCertificate=true".</returns>
+        </member>
+        <member name="P:Aspire.Hosting.ApplicationModel.SqlServerServerResource.Databases">
+            <summary>
+            A dictionary where the key is the resource name and the value is the database name.
+            </summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.GoStatements_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the GoStatements method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.GoStatements_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GoStatements_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.GoStatements_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GoStatements_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.GoStatements_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GoStatements_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GoStatements_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GoStatements_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Pops 2 values from the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32)">
+            <summary>Pushes 1 value onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
+            <summary>Pushes 2 values onto the backtracking stack.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
+            <summary>Pushes 3 values onto the backtracking stack.</summary>
+        </member>
+    </members>
+</doc>

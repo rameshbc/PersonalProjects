@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aspire.Hosting.Azure.AppConfiguration</name>
+    </assembly>
+    <members>
+        <member name="F:Aspire.Hosting.Azure.AppConfiguration.AppConfigurationEmulatorContainerImageTags.Registry">
+            <remarks>mcr.microsoft.com</remarks>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.AppConfiguration.AppConfigurationEmulatorContainerImageTags.Image">
+            <remarks>azure-app-configuration/app-configuration-emulator</remarks>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.AppConfiguration.AppConfigurationEmulatorContainerImageTags.Tag">
+            <remarks>1.0.0-preview</remarks>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource">
+            <summary>
+            Wraps an <see cref="T:Aspire.Hosting.Azure.AzureAppConfigurationResource" /> in a type that exposes container extension methods.
+            </summary>
+            <param name="innerResource">The inner resource used to store annotations.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource.#ctor(Aspire.Hosting.Azure.AzureAppConfigurationResource)">
+            <summary>
+            Wraps an <see cref="T:Aspire.Hosting.Azure.AzureAppConfigurationResource" /> in a type that exposes container extension methods.
+            </summary>
+            <param name="innerResource">The inner resource used to store annotations.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource.Annotations">
+            <inheritdoc/>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureAppConfigurationResource">
+            <summary>
+            A resource that represents Azure App Configuration.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureAppConfigurationResource.#ctor(System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            A resource that represents Azure App Configuration.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureAppConfigurationResource.IsEmulator">
+            <summary>
+            Gets a value indicating whether the Azure App Configuration resource is running in the local emulator.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureAppConfigurationResource.Endpoint">
+            <summary>
+            Gets the appConfigEndpoint output reference for the Azure App Configuration resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureAppConfigurationResource.NameOutputReference">
+            <summary>
+            Gets the "name" output reference for the resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureAppConfigurationResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string template for the manifest for the Azure App Configuration resource.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureAppConfigurationResource.AddAsExistingResource(Aspire.Hosting.Azure.AzureResourceInfrastructure)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Aspire.Hosting.AzureAppConfigurationExtensions">
+            <summary>
+            Provides extension methods for adding the Azure AppConfiguration resources to the application model.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureAppConfigurationExtensions.AddAzureAppConfiguration(Aspire.Hosting.IDistributedApplicationBuilder,System.String)">
+             <summary>
+             Adds an Azure App Configuration resource to the application model.
+             </summary>
+             <param name="builder">The <see cref="T:Aspire.Hosting.IDistributedApplicationBuilder"/>.</param>
+             <param name="name">The name of the resource. This name will be used as the connection string name when referenced in a dependency.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+             <remarks>
+             By default references to the Azure App Configuration resource will be assigned the following roles:
+             
+             - <see cref="P:Azure.Provisioning.AppConfiguration.AppConfigurationBuiltInRole.AppConfigurationDataOwner"/>
+            
+             These can be replaced by calling <see cref="M:Aspire.Hosting.AzureAppConfigurationExtensions.WithRoleAssignments``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureAppConfigurationResource},Azure.Provisioning.AppConfiguration.AppConfigurationBuiltInRole[])"/>.
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureAppConfigurationExtensions.RunAsEmulator(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureAppConfigurationResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource}})">
+            <summary>
+            Configures an Azure App Configuration resource to be emulated. This resource requires an <see cref="T:Aspire.Hosting.Azure.AzureAppConfigurationResource"/> to be added to the application model.
+            </summary>
+            <remarks>
+            This version of the package defaults to the <inheritdoc cref="F:Aspire.Hosting.Azure.AppConfiguration.AppConfigurationEmulatorContainerImageTags.Tag"/> tag of the <inheritdoc cref="F:Aspire.Hosting.Azure.AppConfiguration.AppConfigurationEmulatorContainerImageTags.Registry"/>/<inheritdoc cref="F:Aspire.Hosting.Azure.AppConfiguration.AppConfigurationEmulatorContainerImageTags.Image"/> container image.
+            </remarks>
+            <param name="builder">The Azure App Configuration resource builder.</param>
+            <param name="configureEmulator">Callback that exposes underlying container used for emulation to allow for customization.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureAppConfigurationExtensions.WithDataBindMount(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource},System.String)">
+            <summary>
+            Adds a bind mount for the storage of an Azure App Configuration emulator resource.
+            </summary>
+            <param name="builder">The builder for the <see cref="T:Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource"/>.</param>
+            <param name="path">Relative path to the AppHost where emulator storage is persisted between runs. Defaults to the path '.aace'</param>
+            <returns>A builder for the <see cref="T:Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureAppConfigurationExtensions.WithDataVolume(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource},System.String)">
+            <summary>
+            Adds a named volume for the data folder to an Azure App Configuration emulator resource.
+            </summary>
+            <param name="builder">The builder for the <see cref="T:Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource"/>.</param>
+            <param name="name">The name of the volume. Defaults to an auto-generated name based on the application and resource names.</param>
+            <returns>A builder for the <see cref="T:Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureAppConfigurationExtensions.WithHostPort(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource},System.Nullable{System.Int32})">
+            <summary>
+            Configures the host port for the Azure App Configuration emulator is exposed on instead of using randomly assigned port.
+            </summary>
+            <param name="builder">Builder for the Azure App Configuration emulator container</param>
+            <param name="port">The port to bind on the host. If <see langword="null"/> is used, a random port will be assigned.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureAppConfigurationExtensions.WithRoleAssignments``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureAppConfigurationResource},Azure.Provisioning.AppConfiguration.AppConfigurationBuiltInRole[])">
+             <summary>
+             Assigns the specified roles to the given resource, granting it the necessary permissions
+             on the target Azure App Configuration resource. This replaces the default role assignments for the resource.
+             </summary>
+             <param name="builder">The resource to which the specified roles will be assigned.</param>
+             <param name="target">The target Azure App Configuration resource.</param>
+             <param name="roles">The built-in App Configuration roles to be assigned.</param>
+             <returns>The updated <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> with the applied role assignments.</returns>
+             <remarks>
+             <example>
+             Assigns the AppConfigurationDataReader role to the 'Projects.Api' project.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var appStore = builder.AddAzureAppConfiguration("appStore");
+             
+             var api = builder.AddProject&lt;Projects.Api&gt;("api")
+               .WithRoleAssignments(appStore, AppConfigurationBuiltInRole.AppConfigurationDataReader)
+               .WithReference(appStore);
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureAppConfigurationExtensions.WithAnonymousAccess(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureAppConfigurationEmulatorResource},System.String)">
+            <summary>
+            Configures anonymous authentication for the Azure App Configuration emulator resource.
+            </summary>
+            <param name="builder">The resource builder for the Azure App Configuration emulator.</param>
+            <param name="role">The role to assign to the anonymous user. Defaults to "Owner".</param>
+            <returns>The updated resource builder for further configuration.</returns>
+        </member>
+    </members>
+</doc>

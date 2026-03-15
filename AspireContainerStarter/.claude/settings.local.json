@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet new:*)",
+      "Bash(dotnet sln:*)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet package:*)",
+      "Bash(dotnet restore:*)",
+      "Bash(dotnet test:*)",
+      "Bash(strings:*)",
+      "Bash(dotnet ef:*)",
+      "Bash(grep:*)",
+      "Bash(python3:*)",
+      "Bash(docker info:*)"
+    ]
+  }
+}

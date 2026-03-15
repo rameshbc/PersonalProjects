@@ -1,0 +1,54 @@
+name: NuGet — Publish Infrastructure Package
+
+on:
+  push:
+    tags:
+      - "infra/v*"   # Trigger on tags like infra/v1.2.3
+
+permissions:
+  contents: read
+  packages: write   # Required for GitHub Packages
+
+env:
+  DOTNET_VERSION: "10.0.x"
+  PROJECT: src/Infrastructure/AspireContainerStarter.Infrastructure/AspireContainerStarter.Infrastructure.csproj
+
+jobs:
+  publish:
+    name: Pack & Publish NuGet
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET ${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+          # Authenticate to GitHub Packages — no extra secrets needed.
+          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract version from tag
+        id: version
+        # Tag format: infra/v1.2.3  →  version = 1.2.3
+        run: echo "VERSION=${GITHUB_REF#refs/tags/infra/v}" >> $GITHUB_OUTPUT
+
+      - name: Restore
+        run: dotnet restore ${{ env.PROJECT }}
+
+      - name: Pack
+        run: >
+          dotnet pack ${{ env.PROJECT }}
+          --configuration Release
+          --no-restore
+          /p:Version=${{ steps.version.outputs.VERSION }}
+          --output nupkgs
+
+      - name: Push to GitHub Packages
+        run: >
+          dotnet nuget push "nupkgs/*.nupkg"
+          --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+          --api-key ${{ secrets.GITHUB_TOKEN }}
+          --skip-duplicate

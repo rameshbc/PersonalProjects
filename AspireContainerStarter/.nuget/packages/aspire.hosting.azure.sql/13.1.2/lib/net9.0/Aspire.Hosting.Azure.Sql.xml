@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aspire.Hosting.Azure.Sql</name>
+    </assembly>
+    <members>
+        <member name="T:Aspire.Hosting.Azure.AzureSqlDatabaseResource">
+            <summary>
+            A resource that represents an Azure SQL database. This is a child resource of an <see cref="T:Aspire.Hosting.Azure.AzureSqlServerResource"/>.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="databaseName">The database name.</param>
+            <param name="parent">The Azure SQL Database (server) parent resource associated with this database.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureSqlDatabaseResource.#ctor(System.String,System.String,Aspire.Hosting.Azure.AzureSqlServerResource)">
+            <summary>
+            A resource that represents an Azure SQL database. This is a child resource of an <see cref="T:Aspire.Hosting.Azure.AzureSqlServerResource"/>.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="databaseName">The database name.</param>
+            <param name="parent">The Azure SQL Database (server) parent resource associated with this database.</param>
+        </member>
+        <member name="F:Aspire.Hosting.Azure.AzureSqlDatabaseResource.FREE_DB_SKU">
+            <summary>
+            SKU associated with the free offer
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlDatabaseResource.Parent">
+            <summary>
+            Gets the parent Azure SQL Database (server) resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlDatabaseResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string expression for the Azure SQL database.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlDatabaseResource.DatabaseName">
+            <summary>
+            Gets the database name.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlDatabaseResource.UseDefaultAzureSku">
+            <summary>  
+            Gets or Sets the database SKU name  
+            </summary>  
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlDatabaseResource.InnerResource">
+            <summary>
+            Gets the inner SqlServerDatabaseResource resource.
+            
+            This is set when RunAsContainer is called on the AzureSqlServerResource resource to create a local SQL Server container.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlDatabaseResource.IsContainer">
+            <summary>
+            Gets a value indicating whether the current resource represents a container. If so the actual resource is not running in Azure.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlDatabaseResource.UriExpression">
+            <summary>
+            Gets the connection URI expression for the Azure SQL database.
+            </summary>
+            <remarks>
+            Format: <c>mssql://{host}:{port}/{database}</c>.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlDatabaseResource.JdbcConnectionString">
+            <summary>
+            Gets the JDBC connection string for the Azure SQL database.
+            </summary>
+            <remarks>
+            Format: <c>jdbc:sqlserver://{host}:{port};database={database};encrypt=true;trustServerCertificate=false</c>.
+            When running in a container, inherits the container JDBC format including username and password.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlDatabaseResource.Annotations">
+            <inheritdoc />
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureSqlServerResource">
+            <summary>
+            Represents an Azure Sql Server resource.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureSqlServerResource.#ctor(System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureSqlServerResource"/> class.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureSqlServerResource.#ctor(Aspire.Hosting.ApplicationModel.SqlServerServerResource,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureSqlServerResource"/> class.
+            </summary>
+            <param name="innerResource">The <see cref="T:Aspire.Hosting.ApplicationModel.SqlServerServerResource"/> that this resource wraps.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.FullyQualifiedDomainName">
+            <summary>
+            Gets the fully qualified domain name (FQDN) output reference from the bicep template for the Azure SQL Server resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.NameOutputReference">
+            <summary>
+            Gets the "name" output reference for the resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.HostName">
+            <summary>
+            Gets the host name for the SQL Server.
+            </summary>
+            <remarks>
+            In container mode, resolves to the container's primary endpoint host.
+            In Azure mode, resolves to the Azure SQL Server's fully qualified domain name.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.Port">
+            <summary>
+            Gets the port for the PostgreSQL server.
+            </summary>
+            <remarks>
+            In container mode, resolves to the container's primary endpoint port.
+            In Azure mode, resolves to 1433.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.UriExpression">
+            <summary>
+            Gets the connection URI expression for the SQL Server.
+            </summary>
+            <remarks>
+            Format: <c>mssql://{host}:{port}</c>.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection template for the manifest for the Azure SQL Server resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.InnerResource">
+            <summary>
+            Gets the inner SqlServerServerResource resource.
+            
+            This is set when RunAsContainer is called on the AzureSqlServerResource resource to create a local SQL Server container.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.IsContainer">
+            <summary>
+            Gets a value indicating whether the current resource represents a container. If so the actual resource is not running in Azure.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.Annotations">
+            <inheritdoc />
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.AzureSqlDatabases">
+            <summary>
+            A dictionary where the key is the resource name and the value is the Azure SQL database resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.Databases">
+            <summary>
+            A dictionary where the key is the resource name and the value is the Azure SQL database name.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureSqlServerResource.AddAsExistingResource(Aspire.Hosting.Azure.AzureResourceInfrastructure)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureSqlServerResource.AddRoleAssignments(Aspire.Hosting.Azure.IAddRoleAssignmentsContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureSqlServerResource.JdbcConnectionString">
+            <summary>
+            Gets the JDBC connection string for the server.
+            </summary>
+            <remarks>
+            Format: <c>jdbc:sqlserver://{host}:{port};authentication=ActiveDirectoryIntegrated;encrypt=true;trustServerCertificate=true</c>.
+            </remarks>
+        </member>
+        <member name="T:Aspire.Hosting.AzureSqlExtensions">
+            <summary>
+            Provides extension methods for adding the Azure SQL resources to the application model.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureSqlExtensions.PublishAsAzureSqlDatabase(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource})">
+            <summary>
+            Configures SQL Server resource to be deployed as Azure SQL Database (server).
+            </summary>
+            <param name="builder">The builder for the SQL Server resource.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureSqlExtensions.AsAzureSqlDatabase(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource})">
+            <summary>
+            Configures SQL Server resource to be deployed as Azure SQL Database (server).
+            </summary>
+            <param name="builder">The builder for the SQL Server resource.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer(Aspire.Hosting.IDistributedApplicationBuilder,System.String)">
+            <summary>
+            Adds an Azure SQL Database (server) resource to the application model.
+            </summary>
+            <param name="builder">The builder for the distributed application.</param>
+            <param name="name">The name of the resource.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureSqlExtensions.AddDatabase(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureSqlServerResource},System.String,System.String)">
+            <summary>
+            Adds an Azure SQL Database to the application model.
+            The Free Offer option will be used when deploying the resource in Azure
+            </summary>
+            <param name="builder">The builder for the Azure SQL resource.</param>
+            <param name="name">The name of the resource. This name will be used as the connection string name when referenced in a dependency.</param>
+            <param name="databaseName">The name of the database. If not provided, this defaults to the same value as <paramref name="name"/>.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureSqlExtensions.WithDefaultAzureSku(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureSqlDatabaseResource})">
+            <summary>
+            Configures the Azure SQL Database to be deployed use the default SKU provided by Azure.
+            Please be aware that the Azure default Sku might not take advantage of the free offer.
+            </summary>
+            <param name="builder">The builder for the Azure SQL resource.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureSqlExtensions.RunAsContainer(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureSqlServerResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource}})">
+             <summary>
+             Configures an Azure SQL Database (server) resource to run locally in a container.
+             </summary>
+             <param name="builder">The builder for the Azure SQL resource.</param>
+             <param name="configureContainer">Callback that exposes underlying container to allow for customization.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+             <remarks>
+             <example>
+             The following example creates an Azure SQL Database (server) resource that runs locally in a
+             SQL Server container and referencing that resource in a .NET project.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var data = builder.AddAzureSqlServer("data")
+                 .RunAsContainer();
+            
+             builder.AddProject&lt;Projects.ProductService&gt;()
+                 .WithReference(data);
+            
+             builder.Build().Run();
+             </code>
+             </example>
+             </remarks>
+        </member>
+    </members>
+</doc>

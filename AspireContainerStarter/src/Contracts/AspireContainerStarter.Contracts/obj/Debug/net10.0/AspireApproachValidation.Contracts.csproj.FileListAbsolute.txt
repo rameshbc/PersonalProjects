@@ -1,0 +1,11 @@
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/bin/Debug/net10.0/AspireApproachValidation.Contracts.deps.json
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/bin/Debug/net10.0/AspireApproachValidation.Contracts.dll
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/bin/Debug/net10.0/AspireApproachValidation.Contracts.pdb
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/obj/Debug/net10.0/AspireApproachValidation.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/obj/Debug/net10.0/AspireApproachValidation.Contracts.AssemblyInfoInputs.cache
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/obj/Debug/net10.0/AspireApproachValidation.Contracts.AssemblyInfo.cs
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/obj/Debug/net10.0/AspireApproachValidation.Contracts.csproj.CoreCompileInputs.cache
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/obj/Debug/net10.0/AspireApproachValidation.Contracts.dll
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/obj/Debug/net10.0/refint/AspireApproachValidation.Contracts.dll
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/obj/Debug/net10.0/AspireApproachValidation.Contracts.pdb
+/workspaces/AspireApproachValidation/src/Contracts/AspireApproachValidation.Contracts/obj/Debug/net10.0/ref/AspireApproachValidation.Contracts.dll

@@ -1,0 +1,30 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.1.2">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <UserSecretsId>56af6016-a462-4045-8e49-54b902d1ebc4</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Azure hosting integrations (Container Apps, SQL, Service Bus, Redis, SignalR) -->
+    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="13.1.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.Sql" Version="13.1.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.ServiceBus" Version="13.1.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.Redis" Version="13.1.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.SignalR" Version="13.1.2" />
+    <!-- Azure App Configuration and Key Vault (cloud-only; no local emulators) -->
+    <PackageReference Include="Aspire.Hosting.Azure.AppConfiguration" Version="13.1.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.KeyVault" Version="13.1.2" />
+    <!-- Local dev containers -->
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.1.2" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="13.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Api\AspireContainerStarter.Api\AspireContainerStarter.Api.csproj" />
+    <ProjectReference Include="..\..\Workers\AspireContainerStarter.Calc1Worker\AspireContainerStarter.Calc1Worker.csproj" />
+    <ProjectReference Include="..\..\Workers\AspireContainerStarter.Calc2Worker\AspireContainerStarter.Calc2Worker.csproj" />
+  </ItemGroup>
+
+</Project>

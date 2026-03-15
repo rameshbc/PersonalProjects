@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Scalar.AspNetCore</id>
+    <version>2.0.0</version>
+    <title>Scalar</title>
+    <authors>Scalar</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <icon>icon.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://scalar.com/</projectUrl>
+    <description>Generate beautiful interactive API documentation from OpenAPI/Swagger documents.</description>
+    <releaseNotes>Please checkout https://github.com/scalar/scalar/blob/main/packages/scalar.aspnetcore/CHANGELOG.md</releaseNotes>
+    <tags>Scalar OpenAPI</tags>
+    <repository type="git" url="https://github.com/scalar/scalar" branch="refs/heads/main" commit="ba9413ab6d7671ca11cfc93cd81c7dc341965a07" />
+    <dependencies>
+      <group targetFramework="net8.0" />
+      <group targetFramework="net9.0" />
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+      <group targetFramework="net9.0">
+        <frameworkReference name="Microsoft.AspNetCore.App" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+</package>

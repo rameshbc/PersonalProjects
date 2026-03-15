@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+    <!-- Scalar UI — browsable API docs at /scalar (renders /openapi/v1.json) -->
+    <PackageReference Include="Scalar.AspNetCore" Version="2.0.0" />
+    <!-- Azure SignalR Service — scales SignalR across multiple API instances -->
+    <PackageReference Include="Microsoft.Azure.SignalR" Version="1.30.2" />
+    <PackageReference Include="Azure.Identity" Version="1.14.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ServiceDefaults\AspireContainerStarter.ServiceDefaults\AspireContainerStarter.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\AspireContainerStarter.Infrastructure\AspireContainerStarter.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Contracts\AspireContainerStarter.Contracts\AspireContainerStarter.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

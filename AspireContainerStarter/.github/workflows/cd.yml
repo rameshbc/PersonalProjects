@@ -1,0 +1,125 @@
+name: CD — Build, Scan & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  DOTNET_VERSION: "10.0.x"
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY }}.azurecr.io
+  RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+
+# OIDC + GitHub Security tab access
+permissions:
+  id-token: write       # OIDC token for Azure login
+  contents: read
+  security-events: write  # SARIF upload to GitHub Security tab
+
+jobs:
+  build-scan-push:
+    name: "${{ matrix.service.name }} — build · scan · push · deploy"
+    runs-on: ubuntu-latest
+    environment: production
+
+    strategy:
+      fail-fast: false   # let each service proceed independently
+      matrix:
+        service:
+          - name: api
+            project: src/Api/AspireContainerStarter.Api/AspireContainerStarter.Api.csproj
+            container-app: aspire-api
+
+          - name: calc1-worker
+            project: src/Workers/AspireContainerStarter.Calc1Worker/AspireContainerStarter.Calc1Worker.csproj
+            container-app: aspire-calc1-worker
+
+          - name: calc2-worker
+            project: src/Workers/AspireContainerStarter.Calc2Worker/AspireContainerStarter.Calc2Worker.csproj
+            container-app: aspire-calc2-worker
+
+    steps:
+      # ── Checkout ────────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── .NET ────────────────────────────────────────────────────────────────
+      - name: Setup .NET ${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: nuget-
+
+      - name: Restore
+        run: dotnet restore ${{ matrix.service.project }}
+
+      # ── Build to local Docker daemon (no registry push yet) ─────────────────
+      # Omitting /p:ContainerRegistry targets the local daemon so Trivy
+      # can scan the image before anything reaches ACR.
+      - name: Build container image (local daemon)
+        run: |
+          dotnet publish ${{ matrix.service.project }} \
+            --configuration Release \
+            --os linux --arch x64 \
+            /t:PublishContainer \
+            /p:ContainerImageName=${{ matrix.service.name }} \
+            /p:ContainerImageTag=${{ github.sha }}
+
+      # ── Vulnerability scan ──────────────────────────────────────────────────
+      # Fails the job on CRITICAL or HIGH findings that have a fix available.
+      # SARIF is uploaded regardless so all findings appear in GitHub Security.
+      - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: "${{ matrix.service.name }}:${{ github.sha }}"
+          format: sarif
+          output: "trivy-${{ matrix.service.name }}.sarif"
+          severity: CRITICAL,HIGH
+          exit-code: "1"
+          ignore-unfixed: true   # suppress CVEs that have no upstream fix yet
+
+      - name: Upload Trivy SARIF to GitHub Security
+        if: always()   # upload even when the scan step fails
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "trivy-${{ matrix.service.name }}.sarif"
+          category: "container/${{ matrix.service.name }}"
+
+      # ── Push to ACR (only reached if scan passed) ───────────────────────────
+      - name: Azure login via OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Log in to Azure Container Registry
+        run: az acr login --name ${{ secrets.AZURE_CONTAINER_REGISTRY }}
+
+      - name: Tag and push to ACR
+        run: |
+          # Push both a SHA-pinned tag (immutable) and 'latest' (convenience).
+          docker tag ${{ matrix.service.name }}:${{ github.sha }} \
+            ${{ env.REGISTRY }}/${{ matrix.service.name }}:${{ github.sha }}
+          docker tag ${{ matrix.service.name }}:${{ github.sha }} \
+            ${{ env.REGISTRY }}/${{ matrix.service.name }}:latest
+
+          docker push ${{ env.REGISTRY }}/${{ matrix.service.name }}:${{ github.sha }}
+          docker push ${{ env.REGISTRY }}/${{ matrix.service.name }}:latest
+
+      # ── Deploy ──────────────────────────────────────────────────────────────
+      # Use the SHA-pinned tag so every deployment is exactly reproducible.
+      - name: Deploy to Container App
+        run: |
+          az containerapp update \
+            --name ${{ matrix.service.container-app }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --image ${{ env.REGISTRY }}/${{ matrix.service.name }}:${{ github.sha }}

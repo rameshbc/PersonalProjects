@@ -1,0 +1,19 @@
+[
+  {
+    // Subpart F Income Inclusion — IRC 951 (pre-TCJA; most states conform)
+    "ruleId": "SUBPART_F_INCLUSION_V1",
+    "categoryCode": "SUBPART_F_INCL",
+    "formulaType": "NetOfTwoLinesWithFloor",
+    "inputLines": [
+      { "lineCode": "1120_SCH_C_L1_SUBPART_F",   "sign": 1, "description": "Subpart F gross income" },
+      { "lineCode": "1120_SCH_C_L9_FOREIGN_DIV",  "sign": 1, "description": "Previously taxed income (PTI) exclusion" }
+    ],
+    "rate": 1.0,
+    "effectiveFrom": 2010,
+    "effectiveTo": null,
+    "appliesToJurisdictions": ["ALL"],
+    "excludedJurisdictions": [],
+    "ircSection": "951",
+    "description": "Subpart F inclusion net of PTI distributions."
+  }
+]

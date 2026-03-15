@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aspire.Hosting.Azure.AppContainers</name>
+    </assembly>
+    <members>
+        <member name="T:Aspire.Hosting.AzureContainerAppContainerExtensions">
+            <summary>
+            Provides extension methods for publishing container resources as container apps in Azure.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})">
+            <summary>
+            Publishes the specified container resource as a container app.
+            </summary>
+            <typeparam name="T">The type of the container resource.</typeparam>
+            <param name="container">The container resource builder.</param>
+            <param name="configure">The configuration action for the container app.</param>
+            <returns>The updated container resource builder.</returns>
+            <remarks>
+            This method checks if the application is in publish mode. If it is, it adds the necessary infrastructure
+            for container apps and applies the provided configuration action to the container app.
+            <example>
+            <code>
+            builder.AddContainer("name", "image").PublishAsAzureContainerApp((infrastructure, app) =>
+            {
+                // Configure the container app here
+            });
+            </code>
+            </example>
+            </remarks>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureContainerAppCustomizationAnnotation">
+            <summary>
+            Represents an annotation for customizing an Azure Container App.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureContainerAppCustomizationAnnotation.#ctor(System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})">
+            <summary>
+            Represents an annotation for customizing an Azure Container App.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureContainerAppCustomizationAnnotation.Configure">
+            <summary>
+            Gets the configuration action for customizing the Azure Container App.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource">
+            <summary>
+            Represents an Azure Container App Environment resource.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.#ctor(System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource"/> class.
+            </summary>
+            <param name="name">The name of the Container App Environment.</param>
+            <param name="configureInfrastructure">The callback to configure the Azure infrastructure for this resource.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.EnableDashboard">
+            <summary>
+            Gets or sets a value indicating whether the Aspire dashboard should be included in the container app environment.
+            Default is true.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.ContainerAppEnvironmentId">
+            <summary>
+            Gets the unique identifier of the Container App Environment.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.ContainerAppDomain">
+            <summary>
+            Gets the default domain associated with the Container App Environment.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.ContainerRegistryName">
+            <summary>
+            Gets the name of the associated Azure Container Registry.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.ContainerRegistryUrl">
+            <summary>
+            Gets the URL endpoint of the associated Azure Container Registry.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.ContainerRegistryManagedIdentityId">
+            <summary>
+            Gets the managed identity ID associated with the Azure Container Registry.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.NameOutputReference">
+            <summary>
+            Gets the name of the Container App Environment.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.DefaultContainerRegistry">
+            <summary>
+            Gets the default container registry for this environment.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource.AddAsExistingResource(Aspire.Hosting.Azure.AzureResourceInfrastructure)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AppContainers.AzureContainerAppResource">
+            <summary>
+            Represents an Azure Container App resource.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AppContainers.AzureContainerAppResource.#ctor(System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure},Aspire.Hosting.ApplicationModel.IResource)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AppContainers.AzureContainerAppResource"/> class.
+            </summary>
+            <param name="name">The name of the resource in the Aspire application model.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+            <param name="targetResource">The target compute resource that this Azure Container App is being created for.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AppContainers.AzureContainerAppResource.TargetResource">
+            <summary>
+            Gets the target resource that this Azure Container App is being created for.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureContainerAppJobCustomizationAnnotation">
+            <summary>
+            Represents an annotation for customizing an Azure Container App Job.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureContainerAppJobCustomizationAnnotation.#ctor(System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})">
+            <summary>
+            Represents an annotation for customizing an Azure Container App Job.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureContainerAppJobCustomizationAnnotation.Configure">
+            <summary>
+            Gets the configuration action for customizing the Azure Container App Job.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureContainerAppsInfrastructure">
+            <summary>
+            Represents the infrastructure for Azure Container Apps within the Aspire Hosting environment.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureContainerAppsInfrastructure.#ctor(Microsoft.Extensions.Logging.ILogger{Aspire.Hosting.Azure.AzureContainerAppsInfrastructure},Aspire.Hosting.DistributedApplicationExecutionContext,Microsoft.Extensions.Options.IOptions{Aspire.Hosting.Azure.AzureProvisioningOptions})">
+            <summary>
+            Represents the infrastructure for Azure Container Apps within the Aspire Hosting environment.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.BaseContainerAppContext.NormalizedContainerAppName">
+            <summary>
+            The normalized container app name (lowercase) that will be used consistently 
+            throughout the container app creation process for both the resource identifier 
+            and endpoint mapping host names.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.Utils.BicepFormattingHelpers">
+            <summary>
+            Provides helper methods for formatting Bicep expressions with specific encodings.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.Utils.BicepFormattingHelpers.FormatBicepExpression(System.Object,System.String)">
+            <summary>
+            Formats a Bicep expression using the specified encoding format.
+            </summary>
+            <param name="val">The value to format, which must be a <see cref="T:Azure.Provisioning.ProvisioningParameter"/> or <see cref="T:Azure.Provisioning.IBicepValue"/>.</param>
+            <param name="format">The encoding format to apply. Currently, only "uri" is supported.</param>
+            <returns>A <see cref="T:Azure.Provisioning.Expressions.BicepExpression"/> representing the formatted expression.</returns>
+            <exception cref="T:System.ArgumentException">Thrown when the value type is not supported for formatting.</exception>
+            <exception cref="T:System.NotSupportedException">Thrown when the specified format is not supported.</exception>
+        </member>
+        <member name="T:Aspire.Hosting.AzureContainerAppExecutableExtensions">
+            <summary>
+            Provides extension methods for publishing executable resources (with docker files) as container apps in Azure.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})">
+            <summary>
+            Publishes the specified container resource as a container app.
+            </summary>
+            <typeparam name="T">The type of the container resource.</typeparam>
+            <param name="executable">The container resource builder.</param>
+            <param name="configure">The configuration action for the container app.</param>
+            <returns>The updated container resource builder.</returns>
+            <remarks>
+            This method checks if the application is in publish mode. If it is, it adds the necessary infrastructure
+            for container apps and applies the provided configuration action to the container app.
+            <example>
+            <code>
+            builder.AddNpmApp("name", "image").PublishAsAzureContainerApp((infrastructure, app) =>
+            {
+                // Configure the container app here
+            });
+            </code>
+            </example>
+            </remarks>
+        </member>
+        <member name="T:Aspire.Hosting.AzureContainerAppExtensions">
+            <summary>
+            Provides extension methods for customizing Azure Container App definitions for projects.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerAppExtensions.AddAzureContainerAppsInfrastructure(Aspire.Hosting.IDistributedApplicationBuilder)">
+            <summary>
+            Adds the necessary infrastructure for Azure Container Apps to the distributed application builder.
+            </summary>
+            <param name="builder">The distributed application builder.</param>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerAppExtensions.AddAzureContainerAppEnvironment(Aspire.Hosting.IDistributedApplicationBuilder,System.String)">
+            <summary>
+            Adds a container app environment resource to the distributed application builder.
+            </summary>
+            <param name="builder">The distributed application builder.</param>
+            <param name="name">The name of the resource.</param>
+            <returns><see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/></returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerAppExtensions.WithAzdResourceNaming(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource})">
+             <summary>
+             Configures the container app environment resources to use the same naming conventions as azd.
+             </summary>
+             <param name="builder">The AzureContainerAppEnvironmentResource to configure.</param>
+             <returns><see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/></returns>
+             <remarks>
+             By default, the container app environment resources use a different naming convention than azd.
+            
+             This method allows for reusing the previously deployed resources if the application was deployed using
+             azd without calling <see cref="M:Aspire.Hosting.AzureContainerAppExtensions.AddAzureContainerAppEnvironment(Aspire.Hosting.IDistributedApplicationBuilder,System.String)"/>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerAppExtensions.WithDashboard(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource},System.Boolean)">
+            <summary>
+            Configures whether the Aspire dashboard should be included in the container app environment.
+            </summary>
+            <param name="builder">The AzureContainerAppEnvironmentResource to configure.</param>
+            <param name="enable">Whether to include the Aspire dashboard. Default is true.</param>
+            <returns><see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/></returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerAppExtensions.WithAzureLogAnalyticsWorkspace(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AppContainers.AzureContainerAppEnvironmentResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceResource})">
+            <summary>
+            Configures the container app environment resource to use the specified Log Analytics Workspace.
+            </summary>
+            <param name="builder">The AzureContainerAppEnvironmentResource to configure.</param>
+            <param name="workspaceBuilder">The resource builder for the <see cref="T:Aspire.Hosting.Azure.AzureLogAnalyticsWorkspaceResource"/> to use.</param>
+            <returns><see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/></returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="builder"/> or <paramref name="workspaceBuilder"/> is null.</exception>
+        </member>
+        <member name="T:Aspire.Hosting.AzureContainerAppProjectExtensions">
+            <summary>
+            Provides extension methods for publishing project resources as container apps in Azure.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})">
+            <summary>
+            Allows configuring the specified project resource as a container app.
+            </summary>
+            <typeparam name="T">The type of the project resource.</typeparam>
+            <param name="project">The project resource builder.</param>
+            <param name="configure">The configuration action for the container app.</param>
+            <returns>The updated project resource builder.</returns>
+            <remarks>
+            This method adds the necessary infrastructure for container apps to the application builder
+            and applies the specified configuration to the container app.
+            <example>
+            <code>
+            builder.AddProject&lt;Projects.Api&gt;.PublishAsAzureContainerApp((infrastructure, app) =>
+            {
+                // Configure the container app here
+            });
+            </code>
+            </example>
+            </remarks>
+        </member>
+        <member name="T:Aspire.Hosting.ContainerAppExtensions">
+            <summary>
+            Provides extension methods for customizing Azure Container App resource.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain(Azure.Provisioning.AppContainers.ContainerApp,Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})">
+            <summary>
+            Configures the custom domain for the container app.
+            </summary>
+            <param name="app">The container app resource to configure for custom domain usage.</param>
+            <param name="customDomain">A resource builder for a parameter resource capturing the name of the custom domain.</param>
+            <param name="certificateName">A resource builder for a parameter resource capturing the name of the certificate configured in the Azure Portal.</param>
+            <exception cref="T:System.ArgumentException">Throws if the container app resource is not parented to a <see cref="T:Aspire.Hosting.Azure.AzureResourceInfrastructure"/>.</exception>
+            <remarks>
+            <para>The <see cref="M:Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain(Azure.Provisioning.AppContainers.ContainerApp,Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})"/> extension method
+            simplifies the process of assigning a custom domain to a container app resource when it is deployed. It has no impact on local development.</para>
+            <para>The <see cref="M:Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain(Azure.Provisioning.AppContainers.ContainerApp,Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})"/> method is used
+            in conjunction with the <see cref="M:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})"/>
+            callback. Assigning a custom domain to a container app resource is a multi-step process and requires multiple deployments.</para>
+            <para>The <see cref="M:Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain(Azure.Provisioning.AppContainers.ContainerApp,Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})"/> method takes
+            two arguments which are parameter resource builders. The first is a parameter that represents the custom domain and the second is a parameter that
+            represents the name of the managed certificate provisioned via the Azure Portal</para>
+            <para>When deploying with custom domains configured for the first time leave the <paramref name="certificateName"/> parameter empty (when prompted
+            by the Azure Developer CLI). Once the application is deployed successfully access to the Azure Portal to bind the custom domain to a managed SSL
+            certificate. Once the certificate is successfully provisioned, subsequent deployments of the application can use this certificate name when the
+            <paramref name="certificateName"/> is prompted.</para>
+            <para>For deployments triggered locally by the Azure Developer CLI the <c>config.json</c> file in the <c>.azure/{environment name}</c> path
+            can by modified with the certificate name since Azure Developer CLI will not prompt again for the value.</para>
+            <example>
+            This example shows declaring two parameters to capture the custom domain and certificate name and
+            passing them to the <see cref="M:Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain(Azure.Provisioning.AppContainers.ContainerApp,Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})"/>
+            method via the <see cref="M:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})"/>
+            extension method.
+            <code lang="C#">
+            var builder = DistributedApplication.CreateBuilder();
+            var customDomain = builder.AddParameter("customDomain"); // Value provided at first deployment.
+            var certificateName = builder.AddParameter("certificateName"); // Value provided at second and subsequent deployments.
+            builder.AddProject&lt;Projects.InventoryService&gt;("inventory")
+                   .PublishAsAzureContainerApp((module, app) =>
+                   {
+                     app.ConfigureCustomDomain(customDomain, certificateName);
+                   });
+            </code>
+            </example>
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.ContainerAppExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})">
+            <summary>
+            Allows configuring the specified compute resource as an Azure Container App Job.
+            </summary>
+            <typeparam name="T">The type of the compute resource.</typeparam>
+            <param name="resource">The compute resource builder.</param>
+            <param name="configure">The configuration action for the container app job.</param>
+            <returns>The updated compute resource builder.</returns>
+            <remarks>
+            This method adds the necessary infrastructure for container app jobs to the application builder
+            and applies the specified configuration to the container app job.
+            
+            Note that the default trigger type for the job is set to Manual, and the default replica timeout is set to 1800 seconds (30 minutes).
+            
+            <example>
+            <code>
+            builder.AddProject&lt;Projects.Api&gt;.PublishAsAzureContainerAppJob((infrastructure, job) =>
+            {
+                // Configure the container app job here
+                job.Configuration.TriggerType = ContainerAppJobTriggerType.Schedule;
+                job.Configuration.ScheduleTriggerConfig.CronExpression = "0 0 * * *"; // every day at midnight
+            });
+            </code>
+            </example>
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.ContainerAppExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0})">
+            <summary>
+            Configures the specified compute resource as a manually triggered Azure Container App Job.
+            </summary>
+            <typeparam name="T">The type of the compute resource.</typeparam>
+            <param name="resource">The compute resource builder.</param>
+            <returns>The updated compute resource builder.</returns>
+            <remarks>
+            This is a convenience overload for the common case of manually triggered jobs. Manual trigger 
+            is the default trigger type, so this method provides a simpler API when no additional job 
+            configuration is needed.
+            
+            <example>
+            <code>
+            builder.AddProject&lt;Projects.ProcessorJob&gt;("processor-job")
+                   .PublishAsAzureContainerAppJob(); // Manual trigger (default)
+            </code>
+            </example>
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.ContainerAppExtensions.PublishAsScheduledAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})">
+            <summary>
+            Configures the specified compute resource as a scheduled Azure Container App Job with the provided cron expression.
+            </summary>
+            <typeparam name="T">The type of the compute resource.</typeparam>
+            <param name="resource">The compute resource builder.</param>
+            <param name="cronExpression">The cron expression that defines the schedule for the job.</param>
+            <param name="configure">The configuration action for the container app job.</param>
+            <returns>The updated compute resource builder.</returns>
+            <remarks>
+            This method is a convenience wrapper around <see cref="M:Aspire.Hosting.ContainerAppExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})"/>
+            that automatically configures the job with a schedule trigger using the specified cron expression.
+            
+            <example>
+            <code>
+            builder.AddProject&lt;Projects.ProcessorJob&gt;("job")
+                   .PublishAsScheduledAzureContainerAppJob("0 0 * * *"); // Run every day at midnight
+            </code>
+            </example>
+            </remarks>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,3405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <assembly>
+        <name>Azure.Provisioning.Redis</name>
+    </assembly>
+    <members>
+        <member name="T:System.Diagnostics.CodeAnalysis.ExperimentalAttribute">
+            <summary>
+             Indicates that an API is experimental and it may change in the future.
+            </summary>
+            <remarks>
+              This attribute allows call sites to be flagged with a diagnostic that indicates that an experimental
+              feature is used. Authors can use this attribute to ship preview features in their assemblies.
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.ExperimentalAttribute.#ctor(System.String)">
+            <summary>
+             Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.ExperimentalAttribute" /> class, specifying the ID that the compiler will use
+             when reporting a use of the API the attribute applies to.
+            </summary>
+            <param name="diagnosticId">The ID that the compiler will use when reporting a use of the API the attribute applies to.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.ExperimentalAttribute.DiagnosticId">
+            <summary>
+             Gets the ID that the compiler will use when reporting a use of the API the attribute applies to.
+            </summary>
+            <value>The unique diagnostic ID.</value>
+            <remarks>
+             The diagnostic ID is shown in build output for warnings and errors.
+             <para>This property represents the unique ID that can be used to suppress the warnings or errors, if needed.</para>
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.ExperimentalAttribute.UrlFormat">
+            <summary>
+             Gets or sets the URL for corresponding documentation.
+             The API accepts a format string instead of an actual URL, creating a generic URL that includes the diagnostic ID.
+            </summary>
+            <value>The format string that represents a URL to corresponding documentation.</value>
+            <remarks>An example format string is <c>https://contoso.com/obsoletion-warnings/{0}</c>.</remarks>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.RequiresDynamicCodeAttribute">
+            <summary>
+            Indicates that the specified method requires the ability to generate new code at runtime,
+            for example through <see cref="N:System.Reflection" />.
+            </summary>
+            <remarks>
+            This allows tools to understand which methods are unsafe to call when compiling ahead of time.
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.RequiresDynamicCodeAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.RequiresDynamicCodeAttribute" /> class
+            with the specified message.
+            </summary>
+            <param name="message">
+            A message that contains information about the usage of dynamic code.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.RequiresDynamicCodeAttribute.Message">
+            <summary>
+            Gets a message that contains information about the usage of dynamic code.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.RequiresDynamicCodeAttribute.Url">
+            <summary>
+            Gets or sets an optional URL that contains more information about the method,
+            why it requires dynamic code, and what options a consumer has to deal with it.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute">
+            <summary>
+            Indicates that the specified method requires dynamic access to code that is not referenced
+            statically, for example through <see cref="N:System.Reflection" />.
+            </summary>
+            <remarks>
+            This allows tools to understand which methods are unsafe to call when removing unreferenced
+            code from an application.
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute" /> class
+            with the specified message.
+            </summary>
+            <param name="message">
+            A message that contains information about the usage of unreferenced code.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute.Message">
+            <summary>
+            Gets a message that contains information about the usage of unreferenced code.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute.Url">
+            <summary>
+            Gets or sets an optional URL that contains more information about the method,
+            why it requires unreferenced code, and what options a consumer has to deal with it.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute">
+            <summary>
+            Suppresses reporting of a specific rule violation, allowing multiple suppressions on a
+            single code artifact.
+            </summary>
+            <remarks>
+            <see cref="T:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute" /> is different than
+            <see cref="T:System.Diagnostics.CodeAnalysis.SuppressMessageAttribute" /> in that it doesn't have a
+            <see cref="T:System.Diagnostics.ConditionalAttribute" />. So it is always preserved in the compiled assembly.
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute" />
+            class, specifying the category of the tool and the identifier for an analysis rule.
+            </summary>
+            <param name="category">The category for the attribute.</param>
+            <param name="checkId">The identifier of the analysis rule the attribute applies to.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Category">
+            <summary>
+            Gets the category identifying the classification of the attribute.
+            </summary>
+            <remarks>
+            The <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Category" /> property describes the tool or tool analysis category
+            for which a message suppression attribute applies.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.CheckId">
+            <summary>
+            Gets the identifier of the analysis tool rule to be suppressed.
+            </summary>
+            <remarks>
+            Concatenated together, the <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Category" /> and <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.CheckId" />
+            properties form a unique check identifier.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Scope">
+            <summary>
+            Gets or sets the scope of the code that is relevant for the attribute.
+            </summary>
+            <remarks>
+            The Scope property is an optional argument that specifies the metadata scope for which
+            the attribute is relevant.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Target">
+            <summary>
+            Gets or sets a fully qualified path that represents the target of the attribute.
+            </summary>
+            <remarks>
+            The <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Target" /> property is an optional argument identifying the analysis target
+            of the attribute. An example value is "System.IO.Stream.ctor():System.Void".
+            Because it is fully qualified, it can be long, particularly for targets such as parameters.
+            The analysis tool user interface should be capable of automatically formatting the parameter.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.MessageId">
+            <summary>
+            Gets or sets an optional argument expanding on exclusion criteria.
+            </summary>
+            <remarks>
+            The <see cref="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.MessageId" /> property is an optional argument that specifies additional
+            exclusion where the literal metadata target is not sufficiently precise. For example,
+            the <see cref="T:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute" /> cannot be applied within a method,
+            and it may be desirable to suppress a violation against a statement in the method that will
+            give a rule violation, but not against all statements in the method.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute.Justification">
+            <summary>
+            Gets or sets the justification for suppressing the code analysis message.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute">
+            <summary>
+            States a dependency that one member has on another.
+            </summary>
+            <remarks>
+            This can be used to inform tooling of a dependency that is otherwise not evident purely from
+            metadata and IL, for example a member relied on via reflection.
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute" /> class
+            with the specified signature of a member on the same type as the consumer.
+            </summary>
+            <param name="memberSignature">The signature of the member depended on.</param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.#ctor(System.String,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute" /> class
+            with the specified signature of a member on a <see cref="T:System.Type" />.
+            </summary>
+            <param name="memberSignature">The signature of the member depended on.</param>
+            <param name="type">The <see cref="T:System.Type" /> containing <paramref name="memberSignature" />.</param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute" /> class
+            with the specified signature of a member on a type in an assembly.
+            </summary>
+            <param name="memberSignature">The signature of the member depended on.</param>
+            <param name="typeName">The full name of the type containing the specified member.</param>
+            <param name="assemblyName">The assembly name of the type containing the specified member.</param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.#ctor(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute" /> class
+            with the specified types of members on a <see cref="T:System.Type" />.
+            </summary>
+            <param name="memberTypes">The types of members depended on.</param>
+            <param name="type">The <see cref="T:System.Type" /> containing the specified members.</param>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.#ctor(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute" /> class
+            with the specified types of members on a type in an assembly.
+            </summary>
+            <param name="memberTypes">The types of members depended on.</param>
+            <param name="typeName">The full name of the type containing the specified members.</param>
+            <param name="assemblyName">The assembly name of the type containing the specified members.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.MemberSignature">
+            <summary>
+            Gets the signature of the member depended on.
+            </summary>
+            <remarks>
+            Either <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.MemberSignature" /> must be a valid string or <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.MemberTypes" />
+            must not equal <see cref="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.None" />, but not both.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.MemberTypes">
+            <summary>
+            Gets the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes" /> which specifies the type
+            of members depended on.
+            </summary>
+            <remarks>
+            Either <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.MemberSignature" /> must be a valid string or <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.MemberTypes" />
+            must not equal <see cref="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.None" />, but not both.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.Type">
+            <summary>
+            Gets the <see cref="T:System.Type" /> containing the specified member.
+            </summary>
+            <remarks>
+            If neither <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.Type" /> nor <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.TypeName" /> are specified,
+            the type of the consumer is assumed.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.TypeName">
+            <summary>
+            Gets the full name of the type containing the specified member.
+            </summary>
+            <remarks>
+            If neither <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.Type" /> nor <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.TypeName" /> are specified,
+            the type of the consumer is assumed.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.AssemblyName">
+            <summary>
+            Gets the assembly name of the specified type.
+            </summary>
+            <remarks>
+            <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.AssemblyName" /> is only valid when <see cref="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.TypeName" /> is specified.
+            </remarks>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute.Condition">
+            <summary>
+            Gets or sets the condition in which the dependency is applicable, e.g. "DEBUG".
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute">
+             <summary>
+             Indicates that certain members on a specified <see cref="T:System.Type" /> are accessed dynamically,
+             for example through <see cref="N:System.Reflection" />.
+             </summary>
+             <remarks>
+             This allows tools to understand which members are being accessed during the execution
+             of a program.
+            
+             This attribute is valid on members whose type is <see cref="T:System.Type" /> or <see cref="T:System.String" />.
+            
+             When this attribute is applied to a location of type <see cref="T:System.String" />, the assumption is
+             that the string represents a fully qualified type name.
+            
+             When this attribute is applied to a class, interface, or struct, the members specified
+             can be accessed dynamically on <see cref="T:System.Type" /> instances returned from calling
+             <see cref="M:System.Object.GetType" /> on instances of that class, interface, or struct.
+            
+             If the attribute is applied to a method it's treated as a special case and it implies
+             the attribute should be applied to the "this" parameter of the method. As such the attribute
+             should only be used on instance methods of types assignable to System.Type (or string, but no methods
+             will use it there).
+             </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute.#ctor(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute" /> class
+            with the specified member types.
+            </summary>
+            <param name="memberTypes">The types of members dynamically accessed.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute.MemberTypes">
+            <summary>
+            Gets the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes" /> which specifies the type
+            of members dynamically accessed.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes">
+             <summary>
+             Specifies the types of members that are dynamically accessed.
+            
+             This enumeration has a <see cref="T:System.FlagsAttribute" /> attribute that allows a
+             bitwise combination of its member values.
+             </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.None">
+            <summary>
+            Specifies no members.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicParameterlessConstructor">
+            <summary>
+            Specifies the default, parameterless public constructor.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicConstructors">
+            <summary>
+            Specifies all public constructors.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicConstructors">
+            <summary>
+            Specifies all non-public constructors.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicMethods">
+            <summary>
+            Specifies all public methods.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicMethods">
+            <summary>
+            Specifies all non-public methods.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicFields">
+            <summary>
+            Specifies all public fields.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicFields">
+            <summary>
+            Specifies all non-public fields.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicNestedTypes">
+            <summary>
+            Specifies all public nested types.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicNestedTypes">
+            <summary>
+            Specifies all non-public nested types.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicProperties">
+            <summary>
+            Specifies all public properties.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicProperties">
+            <summary>
+            Specifies all non-public properties.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicEvents">
+            <summary>
+            Specifies all public events.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicEvents">
+            <summary>
+            Specifies all non-public events.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.Interfaces">
+            <summary>
+            Specifies all interfaces implemented by the type.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.All">
+            <summary>
+            Specifies all members.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.AccessPolicyAssignmentProvisioningState">
+            <summary>
+            Provisioning state of an access policy assignment set.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyAssignmentProvisioningState.Updating">
+            <summary>
+            Updating.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyAssignmentProvisioningState.Succeeded">
+            <summary>
+            Succeeded.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyAssignmentProvisioningState.Deleting">
+            <summary>
+            Deleting.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyAssignmentProvisioningState.Deleted">
+            <summary>
+            Deleted.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyAssignmentProvisioningState.Canceled">
+            <summary>
+            Canceled.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyAssignmentProvisioningState.Failed">
+            <summary>
+            Failed.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.AccessPolicyProvisioningState">
+            <summary>
+            Provisioning state of access policy.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyProvisioningState.Updating">
+            <summary>
+            Updating.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyProvisioningState.Succeeded">
+            <summary>
+            Succeeded.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyProvisioningState.Deleting">
+            <summary>
+            Deleting.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyProvisioningState.Deleted">
+            <summary>
+            Deleted.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyProvisioningState.Canceled">
+            <summary>
+            Canceled.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyProvisioningState.Failed">
+            <summary>
+            Failed.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.AccessPolicyType">
+            <summary>
+            Built-In or Custom access policy.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyType.Custom">
+            <summary>
+            Custom.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.AccessPolicyType.BuiltIn">
+            <summary>
+            BuiltIn.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisAccessKeys">
+            <summary>
+            Redis cache access keys.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisAccessKeys.PrimaryKey">
+            <summary>
+            The current primary key that clients can use to authenticate with Redis
+            cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisAccessKeys.SecondaryKey">
+            <summary>
+            The current secondary key that clients can use to authenticate with
+            Redis cache.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisAccessKeys.#ctor">
+            <summary>
+            Creates a new RedisAccessKeys.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisAccessKeys.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of RedisAccessKeys.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisCommonConfiguration">
+            <summary>
+            All Redis Settings. Few possible keys:
+            rdb-backup-enabled,rdb-storage-connection-string,rdb-backup-frequency,maxmemory-delta,
+            maxmemory-policy,notify-keyspace-events, aof-backup-enabled,
+            aof-storage-connection-string-0, aof-storage-connection-string-1 etc.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.IsRdbBackupEnabled">
+            <summary>
+            Specifies whether the rdb backup is enabled.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.RdbBackupFrequency">
+            <summary>
+            Specifies the frequency for creating rdb backup in minutes. Valid
+            values: (15, 30, 60, 360, 720, 1440).
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.RdbBackupMaxSnapshotCount">
+            <summary>
+            Specifies the maximum number of snapshots for rdb backup.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.RdbStorageConnectionString">
+            <summary>
+            The storage account connection string for storing rdb file.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.IsAofBackupEnabled">
+            <summary>
+            Specifies whether the aof backup is enabled.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.AofStorageConnectionString0">
+            <summary>
+            First storage account connection string.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.AofStorageConnectionString1">
+            <summary>
+            Second storage account connection string.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.MaxFragmentationMemoryReserved">
+            <summary>
+            Value in megabytes reserved for fragmentation per shard.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.MaxMemoryPolicy">
+            <summary>
+            The eviction strategy used when your data won't fit within its
+            memory limit.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.MaxMemoryReserved">
+            <summary>
+            Value in megabytes reserved for non-cache usage per shard e.g. failover.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.MaxMemoryDelta">
+            <summary>
+            Value in megabytes reserved for non-cache usage per shard e.g. failover.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.MaxClients">
+            <summary>
+            The max clients config.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.NotifyKeyspaceEvents">
+            <summary>
+            The keyspace events which should be monitored.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.PreferredDataArchiveAuthMethod">
+            <summary>
+            Preferred auth method to communicate to storage account used for data
+            archive, specify SAS or ManagedIdentity, default value is SAS.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.PreferredDataPersistenceAuthMethod">
+            <summary>
+            Preferred auth method to communicate to storage account used for data
+            persistence, specify SAS or ManagedIdentity, default value is SAS.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.ZonalConfiguration">
+            <summary>
+            Zonal Configuration.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.AuthNotRequired">
+            <summary>
+            Specifies whether the authentication is disabled. Setting this property
+            is highly discouraged from security point of view.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.StorageSubscriptionId">
+            <summary>
+            SubscriptionId of the storage account for persistence (aof/rdb) using
+            ManagedIdentity.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.IsAadEnabled">
+            <summary>
+            Specifies whether AAD based authentication has been enabled or disabled
+            for the cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCommonConfiguration.AdditionalProperties">
+            <summary>
+            Additional Properties                          To assign an object to
+            the value of this property use
+            System.BinaryData.FromObjectAsJson``1(``0,System.Text.Json.JsonSerializerOptions).
+            To assign an already formatted json string to
+            this property use System.BinaryData.FromString(System.String).
+            Examples:
+            BinaryData.FromObjectAsJson("foo")Creates a
+            payload of
+            "foo".BinaryData.FromString("\"foo\"")Creates
+            a payload of "foo".BinaryData.FromObjectAsJson(new { key =
+            "value" })Creates a payload of { "key":
+            "value" }.BinaryData.FromString("{\"key\":
+            \"value\"}")Creates a payload of { "key":
+            "value" }.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisCommonConfiguration.#ctor">
+            <summary>
+            Creates a new RedisCommonConfiguration.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisCommonConfiguration.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of RedisCommonConfiguration.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisDayOfWeek">
+            <summary>
+            Day of the week when a cache can be patched.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisDayOfWeek.Monday">
+            <summary>
+            Monday.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisDayOfWeek.Tuesday">
+            <summary>
+            Tuesday.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisDayOfWeek.Wednesday">
+            <summary>
+            Wednesday.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisDayOfWeek.Thursday">
+            <summary>
+            Thursday.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisDayOfWeek.Friday">
+            <summary>
+            Friday.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisDayOfWeek.Saturday">
+            <summary>
+            Saturday.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisDayOfWeek.Sunday">
+            <summary>
+            Sunday.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisDayOfWeek.Everyday">
+            <summary>
+            Everyday.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisDayOfWeek.Weekend">
+            <summary>
+            Weekend.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisInstanceDetails">
+            <summary>
+            Details of single instance of redis.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisInstanceDetails.SslPort">
+            <summary>
+            Redis instance SSL port.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisInstanceDetails.NonSslPort">
+            <summary>
+            If enableNonSslPort is true, provides Redis instance Non-SSL port.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisInstanceDetails.Zone">
+            <summary>
+            If the Cache uses availability zones, specifies availability zone where
+            this instance is located.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisInstanceDetails.ShardId">
+            <summary>
+            If clustering is enabled, the Shard ID of Redis Instance.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisInstanceDetails.IsMaster">
+            <summary>
+            Specifies whether the instance is a primary node.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisInstanceDetails.IsPrimary">
+            <summary>
+            Specifies whether the instance is a primary node.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisInstanceDetails.#ctor">
+            <summary>
+            Creates a new RedisInstanceDetails.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisInstanceDetails.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of RedisInstanceDetails.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisLinkedServerRole">
+            <summary>
+            Role of the linked server.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerRole.Primary">
+            <summary>
+            Primary.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerRole.Secondary">
+            <summary>
+            Secondary.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPatchScheduleDefaultName">
+            <summary>
+            The RedisPatchScheduleDefaultName.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchScheduleDefaultName.Default">
+            <summary>
+            default.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPatchScheduleSetting">
+            <summary>
+            Patch schedule entry for a Premium Redis Cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPatchScheduleSetting.DayOfWeek">
+            <summary>
+            Day of the week when a cache can be patched.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPatchScheduleSetting.StartHourUtc">
+            <summary>
+            Start hour after which cache patching can start.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPatchScheduleSetting.MaintenanceWindow">
+            <summary>
+            ISO8601 timespan specifying how much time cache patching can take.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPatchScheduleSetting.#ctor">
+            <summary>
+            Creates a new RedisPatchScheduleSetting.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPatchScheduleSetting.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of RedisPatchScheduleSetting.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionData">
+            <summary>
+            A class representing the RedisPrivateEndpointConnection data model.
+            The Private Endpoint Connection resource.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionData.PrivateEndpointId">
+            <summary>
+            Gets Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionData.RedisPrivateLinkServiceConnectionState">
+            <summary>
+            A collection of information about the state of the connection between
+            service consumer and provider.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionData.RedisProvisioningState">
+            <summary>
+            The provisioning state of the private endpoint connection resource.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionData.Id">
+            <summary>
+            Gets the Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionData.Name">
+            <summary>
+            Gets the Name.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionData.SystemData">
+            <summary>
+            Gets the SystemData.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionData.#ctor">
+            <summary>
+            Creates a new RedisPrivateEndpointConnectionData.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionData.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of
+            RedisPrivateEndpointConnectionData.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionProvisioningState">
+            <summary>
+            The current provisioning state.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionProvisioningState.Succeeded">
+            <summary>
+            Succeeded.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionProvisioningState.Creating">
+            <summary>
+            Creating.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionProvisioningState.Deleting">
+            <summary>
+            Deleting.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnectionProvisioningState.Failed">
+            <summary>
+            Failed.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPrivateEndpointServiceConnectionStatus">
+            <summary>
+            The private endpoint connection status.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointServiceConnectionStatus.Pending">
+            <summary>
+            Pending.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointServiceConnectionStatus.Approved">
+            <summary>
+            Approved.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointServiceConnectionStatus.Rejected">
+            <summary>
+            Rejected.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPrivateLinkServiceConnectionState">
+            <summary>
+            A collection of information about the state of the connection between
+            service consumer and provider.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateLinkServiceConnectionState.Status">
+            <summary>
+            Indicates whether the connection has been Approved/Rejected/Removed by
+            the owner of the service.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateLinkServiceConnectionState.Description">
+            <summary>
+            The reason for approval/rejection of the connection.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateLinkServiceConnectionState.ActionsRequired">
+            <summary>
+            A message indicating if changes on the service provider require any
+            updates on the consumer.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPrivateLinkServiceConnectionState.#ctor">
+            <summary>
+            Creates a new RedisPrivateLinkServiceConnectionState.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPrivateLinkServiceConnectionState.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of
+            RedisPrivateLinkServiceConnectionState.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisProvisioningState">
+            <summary>
+            Redis instance provisioning status.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Creating">
+            <summary>
+            Creating.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Deleting">
+            <summary>
+            Deleting.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Disabled">
+            <summary>
+            Disabled.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Failed">
+            <summary>
+            Failed.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Linking">
+            <summary>
+            Linking.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Provisioning">
+            <summary>
+            Provisioning.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.RecoveringScaleFailure">
+            <summary>
+            RecoveringScaleFailure.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Scaling">
+            <summary>
+            Scaling.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Succeeded">
+            <summary>
+            Succeeded.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Unlinking">
+            <summary>
+            Unlinking.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Unprovisioning">
+            <summary>
+            Unprovisioning.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.Updating">
+            <summary>
+            Updating.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisProvisioningState.ConfiguringAAD">
+            <summary>
+            ConfiguringAAD.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPublicNetworkAccess">
+            <summary>
+            Whether or not public endpoint access is allowed for this cache.  Value is
+            optional but if passed in, must be 'Enabled' or
+            'Disabled'. If 'Disabled', private endpoints are the
+            exclusive access method. Default value is 'Enabled'.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPublicNetworkAccess.Enabled">
+            <summary>
+            Enabled.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPublicNetworkAccess.Disabled">
+            <summary>
+            Disabled.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisSku">
+            <summary>
+            SKU parameters supplied to the create Redis operation.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisSku.Name">
+            <summary>
+            The type of Redis cache to deploy. Valid values: (Basic, Standard,
+            Premium).
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisSku.Family">
+            <summary>
+            The SKU family to use. Valid values: (C, P). (C = Basic/Standard, P =
+            Premium).
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisSku.Capacity">
+            <summary>
+            The size of the Redis cache to deploy. Valid values: for C
+            (Basic/Standard) family (0, 1, 2, 3, 4, 5, 6), for P (Premium) family
+            (1, 2, 3, 4).
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisSku.#ctor">
+            <summary>
+            Creates a new RedisSku.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisSku.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of RedisSku.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisSkuFamily">
+            <summary>
+            The SKU family to use. Valid values: (C, P). (C = Basic/Standard, P =
+            Premium).
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisSkuFamily.BasicOrStandard">
+            <summary>
+            C.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisSkuFamily.Premium">
+            <summary>
+            P.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisSkuName">
+            <summary>
+            The type of Redis cache to deploy. Valid values: (Basic, Standard, Premium).
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisSkuName.Basic">
+            <summary>
+            Basic.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisSkuName.Standard">
+            <summary>
+            Standard.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisSkuName.Premium">
+            <summary>
+            Premium.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisTlsVersion">
+            <summary>
+            Optional: requires clients to use a specified TLS version (or higher) to
+            connect (e,g, '1.0', '1.1', '1.2')
+            Serialized Name: TlsVersion
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisTlsVersion.Tls1_0">
+            <summary>
+            1.0             Serialized Name: TlsVersion.1.0
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisTlsVersion.Tls1_1">
+            <summary>
+            1.1             Serialized Name: TlsVersion.1.1
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisTlsVersion.Tls1_2">
+            <summary>
+            1.2             Serialized Name: TlsVersion.1.2
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.UpdateChannel">
+            <summary>
+            Optional: Specifies the update channel for the monthly Redis updates your
+            Redis Cache will receive. Caches using 'Preview' update channel
+            get latest Redis updates at least 4 weeks ahead of 'Stable'
+            channel caches. Default value is 'Stable'.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.UpdateChannel.Stable">
+            <summary>
+            Stable.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.UpdateChannel.Preview">
+            <summary>
+            Preview.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.ZonalAllocationPolicy">
+            <summary>
+            Optional: Specifies how availability zones are allocated to the Redis
+            cache. 'Automatic' enables zone redundancy and Azure will
+            automatically select zones based on regional availability and capacity.
+            'UserDefined' will select availability zones passed in by you
+            using the 'zones' parameter. 'NoZones' will produce a
+            non-zonal cache. If 'zonalAllocationPolicy' is not passed, it
+            will be set to 'UserDefined' when zones are passed in,
+            otherwise, it will be set to 'Automatic' in regions where zones
+            are supported and 'NoZones' in regions where zones are not
+            supported.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.ZonalAllocationPolicy.Automatic">
+            <summary>
+            Automatic.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.ZonalAllocationPolicy.UserDefined">
+            <summary>
+            UserDefined.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.ZonalAllocationPolicy.NoZones">
+            <summary>
+            NoZones.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisBuiltInRole">
+            <summary>
+            Built-in Redis roles that you can assign to users, groups, service
+            principals, and managed identities.
+            </summary>
+            <param name="value">The ID value of the role.</param>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisBuiltInRole.#ctor(System.String)">
+            <summary>
+            Built-in Redis roles that you can assign to users, groups, service
+            principals, and managed identities.
+            </summary>
+            <param name="value">The ID value of the role.</param>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisBuiltInRole.RedisCacheContributor">
+            <summary>
+            Lets you manage Redis caches, but not access to them.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisBuiltInRole.GetBuiltInRoleName(Azure.Provisioning.Redis.RedisBuiltInRole)">
+            <summary>
+            Try to get the name of a built-in Redis role from its ID value.
+            </summary>
+            <param name="value">The role value.</param>
+            <returns>
+            The name of the built-in Redis role if known, otherwise the ID will be returned.
+            </returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisBuiltInRole.op_Equality(Azure.Provisioning.Redis.RedisBuiltInRole,Azure.Provisioning.Redis.RedisBuiltInRole)">
+            <summary>
+            Determines if two RedisBuiltInRole values are the same.
+            </summary>
+            <param name="left">The first RedisBuiltInRole to compare.</param>
+            <param name="right">The second RedisBuiltInRole to compare.</param>
+            <returns>True if <paramref name="left" /> and <paramref name="right" /> are the same; otherwise, false.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisBuiltInRole.op_Inequality(Azure.Provisioning.Redis.RedisBuiltInRole,Azure.Provisioning.Redis.RedisBuiltInRole)">
+            <summary>
+            Determines if two RedisBuiltInRole values are different.
+            </summary>
+            <param name="left">The first RedisBuiltInRole to compare.</param>
+            <param name="right">The second RedisBuiltInRole to compare.</param>
+            <returns>True if <paramref name="left" /> and <paramref name="right" /> are different; otherwise, false.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisBuiltInRole.op_Implicit(System.String)~Azure.Provisioning.Redis.RedisBuiltInRole">
+            <summary>
+            Converts a string to a RedisBuiltInRole.
+            </summary>
+            <param name="value">The string value to convert.</param>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisBuiltInRole.Equals(System.Object)">
+            <summary>Indicates whether this instance and a specified object are equal.</summary><param name="obj">The object to compare with the current instance.</param><returns><see langword="true" /> if <paramref name="obj" /> and this instance are the same type and represent the same value; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisBuiltInRole.Equals(Azure.Provisioning.Redis.RedisBuiltInRole)">
+            <summary>Indicates whether the current object is equal to another object of the same type.</summary><param name="other">An object to compare with this object.</param><returns><see langword="true" /> if the current object is equal to the <paramref name="other" /> parameter; otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisBuiltInRole.GetHashCode">
+            <summary>Returns the hash code for this instance.</summary><returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisBuiltInRole.ToString">
+            <summary>Returns the fully qualified type name of this instance.</summary><returns>The fully qualified type name.</returns>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisCacheAccessPolicy">
+            <summary>
+            RedisCacheAccessPolicy.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicy.Name">
+            <summary>
+            The name of the access policy that is being added to the Redis cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicy.Permissions">
+            <summary>
+            Permissions for the access policy. Learn how to configure permissions
+            at https://aka.ms/redis/AADPreRequisites.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicy.Id">
+            <summary>
+            Gets the Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ProvisioningState">
+            <summary>
+            Provisioning state of access policy.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicy.SystemData">
+            <summary>
+            Gets the SystemData.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicy.TypePropertiesType">
+            <summary>
+            Built-In or Custom access policy.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicy.Parent">
+            <summary>
+            Gets or sets a reference to the parent RedisResource.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisCacheAccessPolicy.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new RedisCacheAccessPolicy.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisCacheAccessPolicy resource.
+            This can be used to refer to the resource in expressions, but is not
+            the Azure name of the resource.  This value can contain letters,
+            numbers, and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisCacheAccessPolicy.</param>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisCacheAccessPolicy.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of RedisCacheAccessPolicy.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions">
+            <summary>
+            Supported RedisCacheAccessPolicy resource versions.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2024_11_01">
+            <summary>
+            2024-11-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2024_03_01">
+            <summary>
+            2024-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2023_08_01">
+            <summary>
+            2023-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2023_04_01">
+            <summary>
+            2023-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2022_06_01">
+            <summary>
+            2022-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2022_05_01">
+            <summary>
+            2022-05-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2021_06_01">
+            <summary>
+            2021-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2020_12_01">
+            <summary>
+            2020-12-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2020_06_01">
+            <summary>
+            2020-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2019_07_01">
+            <summary>
+            2019-07-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2018_03_01">
+            <summary>
+            2018-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2017_10_01">
+            <summary>
+            2017-10-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2017_02_01">
+            <summary>
+            2017-02-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2016_04_01">
+            <summary>
+            2016-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2015_08_01">
+            <summary>
+            2015-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2015_03_01">
+            <summary>
+            2015-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicy.ResourceVersions.V2014_04_01">
+            <summary>
+            2014-04-01.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisCacheAccessPolicy.FromExisting(System.String,System.String)">
+            <summary>
+            Creates a reference to an existing RedisCacheAccessPolicy.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisCacheAccessPolicy resource.
+            This can be used to refer to the resource in expressions, but is not
+            the Azure name of the resource.  This value can contain letters,
+            numbers, and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisCacheAccessPolicy.</param>
+            <returns>The existing RedisCacheAccessPolicy resource.</returns>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment">
+            <summary>
+            RedisCacheAccessPolicyAssignment.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.Name">
+            <summary>
+            The name of the access policy assignment.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.AccessPolicyName">
+            <summary>
+            The name of the access policy that is being assigned.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ObjectId">
+            <summary>
+            Object Id to assign access policy to.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ObjectIdAlias">
+            <summary>
+            User friendly name for object id. Also represents username for token
+            based authentication.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.Id">
+            <summary>
+            Gets the Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ProvisioningState">
+            <summary>
+            Provisioning state of an access policy assignment set.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.SystemData">
+            <summary>
+            Gets the SystemData.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.Parent">
+            <summary>
+            Gets or sets a reference to the parent RedisResource.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new RedisCacheAccessPolicyAssignment.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisCacheAccessPolicyAssignment
+            resource.  This can be used to refer to the resource in expressions,
+            but is not the Azure name of the resource.  This value can contain
+            letters, numbers, and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisCacheAccessPolicyAssignment.</param>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of
+            RedisCacheAccessPolicyAssignment.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions">
+            <summary>
+            Supported RedisCacheAccessPolicyAssignment resource versions.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2024_11_01">
+            <summary>
+            2024-11-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2024_03_01">
+            <summary>
+            2024-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2023_08_01">
+            <summary>
+            2023-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2023_04_01">
+            <summary>
+            2023-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2022_06_01">
+            <summary>
+            2022-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2022_05_01">
+            <summary>
+            2022-05-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2021_06_01">
+            <summary>
+            2021-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2020_12_01">
+            <summary>
+            2020-12-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2020_06_01">
+            <summary>
+            2020-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2019_07_01">
+            <summary>
+            2019-07-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2018_03_01">
+            <summary>
+            2018-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2017_10_01">
+            <summary>
+            2017-10-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2017_02_01">
+            <summary>
+            2017-02-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2016_04_01">
+            <summary>
+            2016-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2015_08_01">
+            <summary>
+            2015-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2015_03_01">
+            <summary>
+            2015-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.ResourceVersions.V2014_04_01">
+            <summary>
+            2014-04-01.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisCacheAccessPolicyAssignment.FromExisting(System.String,System.String)">
+            <summary>
+            Creates a reference to an existing RedisCacheAccessPolicyAssignment.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisCacheAccessPolicyAssignment
+            resource.  This can be used to refer to the resource in expressions,
+            but is not the Azure name of the resource.  This value can contain
+            letters, numbers, and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisCacheAccessPolicyAssignment.</param>
+            <returns>The existing RedisCacheAccessPolicyAssignment resource.</returns>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisFirewallRule">
+            <summary>
+            RedisFirewallRule.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisFirewallRule.Name">
+            <summary>
+            The name of the firewall rule.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisFirewallRule.EndIP">
+            <summary>
+            highest IP address included in the range.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisFirewallRule.StartIP">
+            <summary>
+            lowest IP address included in the range.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisFirewallRule.Id">
+            <summary>
+            Gets the Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisFirewallRule.SystemData">
+            <summary>
+            Gets the SystemData.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisFirewallRule.Parent">
+            <summary>
+            Gets or sets a reference to the parent RedisResource.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisFirewallRule.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new RedisFirewallRule.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisFirewallRule resource.  This
+            can be used to refer to the resource in expressions, but is not the
+            Azure name of the resource.  This value can contain letters, numbers,
+            and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisFirewallRule.</param>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisFirewallRule.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of RedisFirewallRule.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions">
+            <summary>
+            Supported RedisFirewallRule resource versions.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2024_11_01">
+            <summary>
+            2024-11-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2024_03_01">
+            <summary>
+            2024-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2023_08_01">
+            <summary>
+            2023-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2023_04_01">
+            <summary>
+            2023-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2022_06_01">
+            <summary>
+            2022-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2022_05_01">
+            <summary>
+            2022-05-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2021_06_01">
+            <summary>
+            2021-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2020_12_01">
+            <summary>
+            2020-12-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2020_06_01">
+            <summary>
+            2020-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2019_07_01">
+            <summary>
+            2019-07-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2018_03_01">
+            <summary>
+            2018-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2017_10_01">
+            <summary>
+            2017-10-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2017_02_01">
+            <summary>
+            2017-02-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2016_04_01">
+            <summary>
+            2016-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2015_08_01">
+            <summary>
+            2015-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2015_03_01">
+            <summary>
+            2015-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisFirewallRule.ResourceVersions.V2014_04_01">
+            <summary>
+            2014-04-01.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisFirewallRule.FromExisting(System.String,System.String)">
+            <summary>
+            Creates a reference to an existing RedisFirewallRule.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisFirewallRule resource.  This
+            can be used to refer to the resource in expressions, but is not the
+            Azure name of the resource.  This value can contain letters, numbers,
+            and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisFirewallRule.</param>
+            <returns>The existing RedisFirewallRule resource.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisFirewallRule.GetResourceNameRequirements">
+            <summary>
+            Get the requirements for naming this RedisFirewallRule resource.
+            </summary>
+            <returns>Naming requirements.</returns>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisLinkedServerWithProperty">
+            <summary>
+            RedisLinkedServerWithProperty.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.Name">
+            <summary>
+            The name of the linked server that is being added to the Redis cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.LinkedRedisCacheId">
+            <summary>
+            Fully qualified resourceId of the linked redis cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.LinkedRedisCacheLocation">
+            <summary>
+            Location of the linked redis cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ServerRole">
+            <summary>
+            Role of the linked server.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.GeoReplicatedPrimaryHostName">
+            <summary>
+            The unchanging DNS name which will always point to current geo-primary
+            cache among the linked redis caches for seamless Geo Failover
+            experience.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.Id">
+            <summary>
+            Gets the Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.PrimaryHostName">
+            <summary>
+            The changing DNS name that resolves to the current geo-primary cache
+            among the linked redis caches before or after the Geo Failover.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ProvisioningState">
+            <summary>
+            Terminal state of the link between primary and secondary redis cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.SystemData">
+            <summary>
+            Gets the SystemData.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.Parent">
+            <summary>
+            Gets or sets a reference to the parent RedisResource.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new RedisLinkedServerWithProperty.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisLinkedServerWithProperty
+            resource.  This can be used to refer to the resource in expressions,
+            but is not the Azure name of the resource.  This value can contain
+            letters, numbers, and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisLinkedServerWithProperty.</param>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of
+            RedisLinkedServerWithProperty.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions">
+            <summary>
+            Supported RedisLinkedServerWithProperty resource versions.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2024_11_01">
+            <summary>
+            2024-11-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2024_03_01">
+            <summary>
+            2024-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2023_08_01">
+            <summary>
+            2023-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2023_04_01">
+            <summary>
+            2023-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2022_06_01">
+            <summary>
+            2022-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2022_05_01">
+            <summary>
+            2022-05-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2021_06_01">
+            <summary>
+            2021-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2020_12_01">
+            <summary>
+            2020-12-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2020_06_01">
+            <summary>
+            2020-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2019_07_01">
+            <summary>
+            2019-07-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2018_03_01">
+            <summary>
+            2018-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2017_10_01">
+            <summary>
+            2017-10-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2017_02_01">
+            <summary>
+            2017-02-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2016_04_01">
+            <summary>
+            2016-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2015_08_01">
+            <summary>
+            2015-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2015_03_01">
+            <summary>
+            2015-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.ResourceVersions.V2014_04_01">
+            <summary>
+            2014-04-01.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisLinkedServerWithProperty.FromExisting(System.String,System.String)">
+            <summary>
+            Creates a reference to an existing RedisLinkedServerWithProperty.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisLinkedServerWithProperty
+            resource.  This can be used to refer to the resource in expressions,
+            but is not the Azure name of the resource.  This value can contain
+            letters, numbers, and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisLinkedServerWithProperty.</param>
+            <returns>The existing RedisLinkedServerWithProperty resource.</returns>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPatchSchedule">
+            <summary>
+            RedisPatchSchedule.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPatchSchedule.Name">
+            <summary>
+            Gets the Name.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPatchSchedule.ScheduleEntries">
+            <summary>
+            List of patch schedules for a Redis cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPatchSchedule.Id">
+            <summary>
+            Gets the Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPatchSchedule.Location">
+            <summary>
+            The geo-location where the resource lives.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPatchSchedule.SystemData">
+            <summary>
+            Gets the SystemData.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPatchSchedule.Parent">
+            <summary>
+            Gets or sets a reference to the parent RedisResource.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPatchSchedule.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new RedisPatchSchedule.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisPatchSchedule resource.  This
+            can be used to refer to the resource in expressions, but is not the
+            Azure name of the resource.  This value can contain letters, numbers,
+            and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisPatchSchedule.</param>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPatchSchedule.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of RedisPatchSchedule.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions">
+            <summary>
+            Supported RedisPatchSchedule resource versions.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2024_11_01">
+            <summary>
+            2024-11-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2024_03_01">
+            <summary>
+            2024-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2023_08_01">
+            <summary>
+            2023-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2023_04_01">
+            <summary>
+            2023-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2022_06_01">
+            <summary>
+            2022-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2022_05_01">
+            <summary>
+            2022-05-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2021_06_01">
+            <summary>
+            2021-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2020_12_01">
+            <summary>
+            2020-12-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2020_06_01">
+            <summary>
+            2020-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2019_07_01">
+            <summary>
+            2019-07-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2018_03_01">
+            <summary>
+            2018-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2017_10_01">
+            <summary>
+            2017-10-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2017_02_01">
+            <summary>
+            2017-02-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2016_04_01">
+            <summary>
+            2016-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2015_08_01">
+            <summary>
+            2015-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2015_03_01">
+            <summary>
+            2015-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPatchSchedule.ResourceVersions.V2014_04_01">
+            <summary>
+            2014-04-01.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPatchSchedule.FromExisting(System.String,System.String)">
+            <summary>
+            Creates a reference to an existing RedisPatchSchedule.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisPatchSchedule resource.  This
+            can be used to refer to the resource in expressions, but is not the
+            Azure name of the resource.  This value can contain letters, numbers,
+            and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisPatchSchedule.</param>
+            <returns>The existing RedisPatchSchedule resource.</returns>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPrivateEndpointConnection">
+            <summary>
+            RedisPrivateEndpointConnection.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.Name">
+            <summary>
+            The name of the private endpoint connection associated with the Azure
+            resource.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.RedisPrivateLinkServiceConnectionState">
+            <summary>
+            A collection of information about the state of the connection between
+            service consumer and provider.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.Id">
+            <summary>
+            Gets the Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.PrivateEndpointId">
+            <summary>
+            Gets Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.RedisProvisioningState">
+            <summary>
+            The provisioning state of the private endpoint connection resource.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.SystemData">
+            <summary>
+            Gets the SystemData.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.Parent">
+            <summary>
+            Gets or sets a reference to the parent RedisResource.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new RedisPrivateEndpointConnection.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisPrivateEndpointConnection
+            resource.  This can be used to refer to the resource in expressions,
+            but is not the Azure name of the resource.  This value can contain
+            letters, numbers, and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisPrivateEndpointConnection.</param>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of
+            RedisPrivateEndpointConnection.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions">
+            <summary>
+            Supported RedisPrivateEndpointConnection resource versions.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2024_11_01">
+            <summary>
+            2024-11-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2024_03_01">
+            <summary>
+            2024-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2023_08_01">
+            <summary>
+            2023-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2023_04_01">
+            <summary>
+            2023-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2022_06_01">
+            <summary>
+            2022-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2022_05_01">
+            <summary>
+            2022-05-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2021_06_01">
+            <summary>
+            2021-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2020_12_01">
+            <summary>
+            2020-12-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2020_06_01">
+            <summary>
+            2020-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.ResourceVersions.V2019_07_01">
+            <summary>
+            2019-07-01.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisPrivateEndpointConnection.FromExisting(System.String,System.String)">
+            <summary>
+            Creates a reference to an existing RedisPrivateEndpointConnection.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisPrivateEndpointConnection
+            resource.  This can be used to refer to the resource in expressions,
+            but is not the Azure name of the resource.  This value can contain
+            letters, numbers, and underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisPrivateEndpointConnection.</param>
+            <returns>The existing RedisPrivateEndpointConnection resource.</returns>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisResource">
+            <summary>
+            RedisResource.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.Name">
+            <summary>
+            The name of the Redis cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.Location">
+            <summary>
+            The geo-location where the resource lives.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.Sku">
+            <summary>
+            The SKU of the Redis cache to deploy.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.EnableNonSslPort">
+            <summary>
+            Specifies whether the non-ssl Redis server port (6379) is enabled.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.Identity">
+            <summary>
+            The identity of the resource.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.IsAccessKeyAuthenticationDisabled">
+            <summary>
+            Authentication to Redis through access keys is disabled when set as
+            true. Default value is false.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.MinimumTlsVersion">
+            <summary>
+            Optional: requires clients to use a specified TLS version (or higher)
+            to connect (e,g, '1.0', '1.1', '1.2').
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.PublicNetworkAccess">
+            <summary>
+            Whether or not public endpoint access is allowed for this cache.  Value
+            is optional but if passed in, must be 'Enabled' or
+            'Disabled'. If 'Disabled', private endpoints are
+            the exclusive access method. Default value is 'Enabled'.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.RedisConfiguration">
+            <summary>
+            All Redis Settings. Few possible keys:
+            rdb-backup-enabled,rdb-storage-connection-string,rdb-backup-frequency,maxmemory-delta,
+            maxmemory-policy,notify-keyspace-events, aof-backup-enabled,
+            aof-storage-connection-string-0, aof-storage-connection-string-1 etc.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.RedisVersion">
+            <summary>
+            Redis version. This should be in the form 'major[.minor]'
+            (only 'major' is required) or the value 'latest'
+            which refers to the latest stable Redis version that is available.
+            Supported versions: 4.0, 6.0 (latest). Default value is
+            'latest'.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.ReplicasPerMaster">
+            <summary>
+            The number of replicas to be created per primary.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.ReplicasPerPrimary">
+            <summary>
+            The number of replicas to be created per primary.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.ShardCount">
+            <summary>
+            The number of shards to be created on a Premium Cluster Cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.StaticIP">
+            <summary>
+            Static IP address. Optionally, may be specified when deploying a Redis
+            cache inside an existing Azure Virtual Network; auto assigned by
+            default.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.SubnetId">
+            <summary>
+            The full resource ID of a subnet in a virtual network to deploy the
+            Redis cache in. Example format:
+            /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/Microsoft.{Network|ClassicNetwork}/VirtualNetworks/vnet1/subnets/subnet1.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.Tags">
+            <summary>
+            Resource tags.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.TenantSettings">
+            <summary>
+            A dictionary of tenant settings.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.UpdateChannel">
+            <summary>
+            Optional: Specifies the update channel for the monthly Redis updates
+            your Redis Cache will receive. Caches using 'Preview' update
+            channel get latest Redis updates at least 4 weeks ahead of
+            'Stable' channel caches. Default value is 'Stable'.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.ZonalAllocationPolicy">
+            <summary>
+            Optional: Specifies how availability zones are allocated to the Redis
+            cache. 'Automatic' enables zone redundancy and Azure will
+            automatically select zones based on regional availability and
+            capacity. 'UserDefined' will select availability zones
+            passed in by you using the 'zones' parameter.
+            'NoZones' will produce a non-zonal cache. If
+            'zonalAllocationPolicy' is not passed, it will be set to
+            'UserDefined' when zones are passed in, otherwise, it will
+            be set to 'Automatic' in regions where zones are supported
+            and 'NoZones' in regions where zones are not supported.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.Zones">
+            <summary>
+            A list of availability zones denoting where the resource needs to come
+            from.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.AccessKeys">
+            <summary>
+            The keys of the Redis cache - not set if this object is not the
+            response to Create or Update redis cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.HostName">
+            <summary>
+            Redis host name.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.Id">
+            <summary>
+            Gets the Id.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.Instances">
+            <summary>
+            List of the Redis instances associated with the cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.LinkedServers">
+            <summary>
+            List of the linked servers associated with the cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.Port">
+            <summary>
+            Redis non-SSL port.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.PrivateEndpointConnections">
+            <summary>
+            List of private endpoint connection associated with the specified redis
+            cache.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.ProvisioningState">
+            <summary>
+            Redis instance provisioning status.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.SslPort">
+            <summary>
+            Redis SSL port.
+            </summary>
+        </member>
+        <member name="P:Azure.Provisioning.Redis.RedisResource.SystemData">
+            <summary>
+            Gets the SystemData.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisResource.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new RedisResource.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisResource resource.  This can
+            be used to refer to the resource in expressions, but is not the Azure
+            name of the resource.  This value can contain letters, numbers, and
+            underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisResource.</param>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisResource.DefineProvisionableProperties">
+            <summary>
+            Define all the provisionable properties of RedisResource.
+            </summary>
+        </member>
+        <member name="T:Azure.Provisioning.Redis.RedisResource.ResourceVersions">
+            <summary>
+            Supported RedisResource resource versions.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2024_11_01">
+            <summary>
+            2024-11-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2024_03_01">
+            <summary>
+            2024-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2023_08_01">
+            <summary>
+            2023-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2023_04_01">
+            <summary>
+            2023-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2022_06_01">
+            <summary>
+            2022-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2022_05_01">
+            <summary>
+            2022-05-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2021_06_01">
+            <summary>
+            2021-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2020_12_01">
+            <summary>
+            2020-12-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2020_06_01">
+            <summary>
+            2020-06-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2019_07_01">
+            <summary>
+            2019-07-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2018_03_01">
+            <summary>
+            2018-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2017_10_01">
+            <summary>
+            2017-10-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2017_02_01">
+            <summary>
+            2017-02-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2016_04_01">
+            <summary>
+            2016-04-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2015_08_01">
+            <summary>
+            2015-08-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2015_03_01">
+            <summary>
+            2015-03-01.
+            </summary>
+        </member>
+        <member name="F:Azure.Provisioning.Redis.RedisResource.ResourceVersions.V2014_04_01">
+            <summary>
+            2014-04-01.
+            </summary>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisResource.FromExisting(System.String,System.String)">
+            <summary>
+            Creates a reference to an existing RedisResource.
+            </summary>
+            <param name="bicepIdentifier">
+            The the Bicep identifier name of the RedisResource resource.  This can
+            be used to refer to the resource in expressions, but is not the Azure
+            name of the resource.  This value can contain letters, numbers, and
+            underscores.
+            </param>
+            <param name="resourceVersion">Version of the RedisResource.</param>
+            <returns>The existing RedisResource resource.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisResource.GetResourceNameRequirements">
+            <summary>
+            Get the requirements for naming this RedisResource resource.
+            </summary>
+            <returns>Naming requirements.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisResource.GetKeys">
+            <summary>
+            Get access keys for this RedisResource resource.
+            </summary>
+            <returns>The keys for this RedisResource resource.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisResource.CreateRoleAssignment(Azure.Provisioning.Redis.RedisBuiltInRole,Azure.Provisioning.Roles.UserAssignedIdentity)">
+            <summary>
+            Creates a role assignment for a user-assigned identity that grants
+            access to this RedisResource.
+            </summary>
+            <param name="role">The role to grant.</param>
+            <param name="identity">The <see cref="T:Azure.Provisioning.Roles.UserAssignedIdentity" />.</param>
+            <returns>The <see cref="T:Azure.Provisioning.Authorization.RoleAssignment" />.</returns>
+        </member>
+        <member name="M:Azure.Provisioning.Redis.RedisResource.CreateRoleAssignment(Azure.Provisioning.Redis.RedisBuiltInRole,Azure.Provisioning.BicepValue{Azure.Provisioning.Authorization.RoleManagementPrincipalType},Azure.Provisioning.BicepValue{System.Guid},System.String)">
+            <summary>
+            Creates a role assignment for a principal that grants access to this
+            RedisResource.
+            </summary>
+            <param name="role">The role to grant.</param>
+            <param name="principalType">The type of the principal to assign to.</param>
+            <param name="principalId">The principal to assign to.</param>
+            <param name="bicepIdentifierSuffix">Optional role assignment identifier name suffix.</param>
+            <returns>The <see cref="T:Azure.Provisioning.Authorization.RoleAssignment" />.</returns>
+        </member>
+        <member name="T:Azure.Core.AppContextSwitchHelper">
+            <summary>
+            Helper for interacting with AppConfig settings and their related Environment variable settings.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.AppContextSwitchHelper.GetConfigValue(System.String,System.String)">
+            <summary>
+            Determines if either an AppContext switch or its corresponding Environment Variable is set
+            </summary>
+            <param name="appContexSwitchName">Name of the AppContext switch.</param>
+            <param name="environmentVariableName">Name of the Environment variable.</param>
+            <returns>If the AppContext switch has been set, returns the value of the switch.
+            If the AppContext switch has not been set, returns the value of the environment variable.
+            False if neither is set.
+            </returns>
+        </member>
+        <member name="T:Azure.Core.AsyncLockWithValue`1">
+            <summary>
+            Primitive that combines async lock and value cache
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Azure.Core.AsyncLockWithValue`1.GetLockOrValueAsync(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Method that either returns cached value or acquire a lock.
+            If one caller has acquired a lock, other callers will be waiting for the lock to be released.
+            If value is set, lock is released and all waiters get that value.
+            If value isn't set, the next waiter in the queue will get the lock.
+            </summary>
+            <param name="async"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Azure.Core.AsyncLockWithValue`1.LockOrValue.HasValue">
+            <summary>
+            Returns true if lock contains the cached value. Otherwise false.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.AsyncLockWithValue`1.LockOrValue.Value">
+            <summary>
+            Returns cached value if it was set when lock has been created. Throws exception otherwise.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Value isn't set.</exception>
+        </member>
+        <member name="M:Azure.Core.AsyncLockWithValue`1.LockOrValue.SetValue(`0)">
+            <summary>
+            Set value to the cache and to all the waiters.
+            </summary>
+            <param name="value"></param>
+            <exception cref="T:System.InvalidOperationException">Value is set already.</exception>
+        </member>
+        <member name="M:Azure.Core.Pipeline.ClientDiagnostics.#ctor(Azure.Core.ClientOptions,System.Nullable{System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.Core.Pipeline.ClientDiagnostics" /> class.
+            </summary>
+            <param name="options">The customer provided client options object.</param>
+            <param name="suppressNestedClientActivities">Flag controlling if <see cref="T:System.Diagnostics.Activity" />
+             created by this <see cref="T:Azure.Core.Pipeline.ClientDiagnostics" /> for client method calls should be suppressed when called
+             by other Azure SDK client methods.  It's recommended to set it to true for new clients; use default (null)
+             for backward compatibility reasons, or set it to false to explicitly disable suppression for specific cases.
+             The default value could change in the future, the flag should be only set to false if suppression for the client
+             should never be enabled.</param>
+        </member>
+        <member name="M:Azure.Core.Pipeline.ClientDiagnostics.#ctor(System.String,System.String,Azure.Core.DiagnosticsOptions,System.Nullable{System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.Core.Pipeline.ClientDiagnostics" /> class.
+            </summary>
+            <param name="optionsNamespace">Namespace of the client class, such as Azure.Storage or Azure.AppConfiguration.</param>
+            <param name="providerNamespace">Azure Resource Provider namespace of the Azure service SDK is primarily used for.</param>
+            <param name="diagnosticsOptions">The customer provided client diagnostics options.</param>
+            <param name="suppressNestedClientActivities">Flag controlling if <see cref="T:System.Diagnostics.Activity" />
+             created by this <see cref="T:Azure.Core.Pipeline.ClientDiagnostics" /> for client method calls should be suppressed when called
+             by other Azure SDK client methods.  It's recommended to set it to true for new clients, use default (null) for old clients
+             for backward compatibility reasons, or set it to false to explicitly disable suppression for specific cases.
+             The default value could change in the future, the flag should be only set to false if suppression for the client
+             should never be enabled.</param>
+        </member>
+        <member name="M:Azure.Core.Pipeline.DiagnosticScope.AddLink(System.String,System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Adds a link to the scope. This must be called before <see cref="M:Azure.Core.Pipeline.DiagnosticScope.Start" /> has been called for the DiagnosticScope.
+            </summary>
+            <param name="traceparent">The traceparent for the link.</param>
+            <param name="tracestate">The tracestate for the link.</param>
+            <param name="attributes">Optional attributes to associate with the link.</param>
+        </member>
+        <member name="M:Azure.Core.Pipeline.DiagnosticScope.SetTraceContext(System.String,System.String)">
+            <summary>
+            Sets the trace context for the current scope.
+            </summary>
+            <param name="traceparent">The trace parent to set for the current scope.</param>
+            <param name="tracestate">The trace state to set for the current scope.</param>
+        </member>
+        <member name="M:Azure.Core.Pipeline.DiagnosticScope.Failed(System.Exception)">
+            <summary>
+            Marks the scope as failed.
+            </summary>
+            <param name="exception">The exception to associate with the failed scope.</param>
+        </member>
+        <member name="M:Azure.Core.Pipeline.DiagnosticScope.Failed(System.String)">
+            <summary>
+            Marks the scope as failed with low-cardinality error.type attribute.
+            </summary>
+            <param name="errorCode">Error code to associate with the failed scope.</param>
+        </member>
+        <member name="T:Azure.Core.Pipeline.ActivityExtensions">
+            <summary>
+            Until Activity Source is no longer considered experimental.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.Pipeline.DiagnosticScopeFactory.#ctor(System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Creates diagnostic scope factory.
+            </summary>
+            <param name="clientNamespace">The namespace which is used as a prefix for all ActivitySources created by the factory and the name of DiagnosticSource (when used).</param>
+            <param name="resourceProviderNamespace">Azure resource provider namespace.</param>
+            <param name="isActivityEnabled">Flag indicating if distributed tracing is enabled.</param>
+            <param name="suppressNestedClientActivities">Flag indicating if nested Azure SDK activities describing public API calls should be suppressed.</param>
+            <param name="isStable">Whether instrumentation is considered stable. When false, experimental feature flag controls if tracing is enabled.</param>
+        </member>
+        <member name="T:Azure.Core.Pipeline.TaskExtensions.Enumerable`1">
+            <summary>
+            Both <see cref="T:Azure.Core.Pipeline.TaskExtensions.Enumerable`1" /> and <see cref="T:Azure.Core.Pipeline.TaskExtensions.Enumerator`1" /> are defined as public structs so that foreach can use duck typing
+            to call <see cref="M:Azure.Core.Pipeline.TaskExtensions.Enumerable`1.GetEnumerator" /> and avoid heap memory allocation.
+            Please don't delete this method and don't make these types private.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Azure.Core.FixedDelayWithNoJitterStrategy">
+            <summary>
+            A delay strategy that uses a fixed delay with no jitter applied. This is used by data plane LROs.
+            </summary>
+        </member>
+        <member name="T:Azure.Core.OperationInternal">
+            <summary>
+            A helper class used to build long-running operation instances. In order to use this helper:
+            <list type="number">
+              <item>Make sure your LRO implements the <see cref="T:Azure.Core.IOperation" /> interface.</item>
+              <item>Add a private <see cref="T:Azure.Core.OperationInternal" /> field to your LRO, and instantiate it during construction.</item>
+              <item>Delegate method calls to the <see cref="T:Azure.Core.OperationInternal" /> implementations.</item>
+            </list>
+            Supported members:
+            <list type="bullet">
+              <item>
+                <description><see cref="P:Azure.Core.OperationInternalBase.HasCompleted" /></description>
+              </item>
+              <item>
+                <description><see cref="P:Azure.Core.OperationInternalBase.RawResponse" />, used for <see cref="M:Azure.Operation.GetRawResponse" /></description>
+              </item>
+              <item>
+                <description><see cref="M:Azure.Core.OperationInternalBase.UpdateStatus(System.Threading.CancellationToken)" /></description>
+              </item>
+              <item>
+                <description><see cref="M:Azure.Core.OperationInternalBase.UpdateStatusAsync(System.Threading.CancellationToken)" /></description>
+              </item>
+              <item>
+                <description><see cref="M:Azure.Core.OperationInternalBase.WaitForCompletionResponseAsync(System.Threading.CancellationToken)" /></description>
+              </item>
+              <item>
+                <description><see cref="M:Azure.Core.OperationInternalBase.WaitForCompletionResponseAsync(System.TimeSpan,System.Threading.CancellationToken)" /></description>
+              </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Azure.Core.OperationInternal.Succeeded(Azure.Response)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.Core.OperationInternal" /> class in a final successful state.
+            </summary>
+            <param name="rawResponse">The final value of <see cref="P:Azure.Core.OperationInternalBase.RawResponse" />.</param>
+        </member>
+        <member name="M:Azure.Core.OperationInternal.Failed(Azure.Response,Azure.RequestFailedException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.Core.OperationInternal" /> class in a final failed state.
+            </summary>
+            <param name="rawResponse">The final value of <see cref="P:Azure.Core.OperationInternalBase.RawResponse" />.</param>
+            <param name="operationFailedException">The exception that will be thrown by <c>UpdateStatusAsync</c>.</param>
+        </member>
+        <member name="M:Azure.Core.OperationInternal.#ctor(Azure.Core.IOperation,Azure.Core.Pipeline.ClientDiagnostics,Azure.Response,System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}},Azure.Core.DelayStrategy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.Core.OperationInternal" /> class.
+            </summary>
+            <param name="operation">The long-running operation making use of this class. Passing "<c>this</c>" is expected.</param>
+            <param name="clientDiagnostics">Used for diagnostic scope and exception creation. This is expected to be the instance created during the construction of your main client.</param>
+            <param name="rawResponse">
+                The initial value of <see cref="P:Azure.Core.OperationInternalBase.RawResponse" />. Usually, long-running operation objects can be instantiated in two ways:
+                <list type="bullet">
+                    <item>
+                        When calling a client's "<c>Start&lt;OperationName&gt;</c>" method, a service call is made to start the operation, and an <see cref="T:Azure.Operation" /> instance is returned.
+                        In this case, the response received from this service call can be passed here.
+                    </item>
+                    <item>
+                        When a user instantiates an <see cref="T:Azure.Operation" /> directly using a public constructor, there's no previous service call. In this case, passing <c>null</c> is expected.
+                    </item>
+                </list>
+            </param>
+            <param name="operationTypeName">
+                The type name of the long-running operation making use of this class. Used when creating diagnostic scopes. If left <c>null</c>, the type name will be inferred based on the
+                parameter <paramref name="operation" />.
+            </param>
+            <param name="scopeAttributes">The attributes to use during diagnostic scope creation.</param>
+            <param name="fallbackStrategy"> The delay strategy to use. Default is <see cref="T:Azure.Core.FixedDelayWithNoJitterStrategy" />.</param>
+        </member>
+        <member name="T:Azure.Core.IOperation">
+            <summary>
+            An interface used by <see cref="T:Azure.Core.OperationInternal" /> for making service calls and updating state. It's expected that
+            your long-running operation classes implement this interface.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.IOperation.UpdateStateAsync(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Calls the service and updates the state of the long-running operation. Properties directly handled by the
+            <see cref="T:Azure.Core.OperationInternal" /> class, such as <see cref="P:Azure.Core.OperationInternalBase.RawResponse" />
+            don't need to be updated. Operation-specific properties, such as "<c>CreateOn</c>" or "<c>LastModified</c>",
+            must be manually updated by the operation implementing this method.
+            <example>Usage example:
+            <code>
+              async ValueTask&lt;OperationState&gt; IOperation.UpdateStateAsync(bool async, CancellationToken cancellationToken)<br />
+              {<br />
+                Response&lt;R&gt; response = async ? &lt;async service call&gt; : &lt;sync service call&gt;;<br />
+                if (&lt;operation succeeded&gt;) return OperationState.Success(response.GetRawResponse(), &lt;parse response&gt;);<br />
+                if (&lt;operation failed&gt;) return OperationState.Failure(response.GetRawResponse());<br />
+                return OperationState.Pending(response.GetRawResponse());<br />
+              }
+            </code>
+            </example>
+            </summary>
+            <param name="async"><c>true</c> if the call should be executed asynchronously. Otherwise, <c>false</c>.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>
+            A structure indicating the current operation state. The <see cref="T:Azure.Core.OperationState" /> structure must be instantiated by one of
+            its static methods:
+            <list type="bullet">
+              <item>Use <see cref="M:Azure.Core.OperationState.Success(Azure.Response)" /> when the operation has completed successfully.</item>
+              <item>Use <see cref="M:Azure.Core.OperationState.Failure(Azure.Response,Azure.RequestFailedException)" /> when the operation has completed with failures.</item>
+              <item>Use <see cref="M:Azure.Core.OperationState.Pending(Azure.Response)" /> when the operation has not completed yet.</item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Azure.Core.IOperation.GetRehydrationToken">
+            <summary>
+            Get a token that can be used to rehydrate the operation.
+            </summary>
+        </member>
+        <member name="T:Azure.Core.OperationState">
+            <summary>
+            A helper structure passed to <see cref="T:Azure.Core.OperationInternal" /> to indicate the current operation state. This structure must be
+            instantiated by one of its static methods, depending on the operation state:
+            <list type="bullet">
+              <item>Use <see cref="M:Azure.Core.OperationState.Success(Azure.Response)" /> when the operation has completed successfully.</item>
+              <item>Use <see cref="M:Azure.Core.OperationState.Failure(Azure.Response,Azure.RequestFailedException)" /> when the operation has completed with failures.</item>
+              <item>Use <see cref="M:Azure.Core.OperationState.Pending(Azure.Response)" /> when the operation has not completed yet.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Azure.Core.OperationState.Success(Azure.Response)">
+            <summary>
+            Instantiates an <see cref="T:Azure.Core.OperationState" /> indicating the operation has completed successfully.
+            </summary>
+            <param name="rawResponse">The HTTP response obtained during the status update.</param>
+            <returns>A new <see cref="T:Azure.Core.OperationState" /> instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="rawResponse" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationState.Failure(Azure.Response,Azure.RequestFailedException)">
+            <summary>
+            Instantiates an <see cref="T:Azure.Core.OperationState" /> indicating the operation has completed with failures.
+            </summary>
+            <param name="rawResponse">The HTTP response obtained during the status update.</param>
+            <param name="operationFailedException">
+            The exception to throw from <c>UpdateStatus</c> because of the operation failure. If left <c>null</c>,
+            a default exception is created based on the <paramref name="rawResponse" /> parameter.
+            </param>
+            <returns>A new <see cref="T:Azure.Core.OperationState" /> instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="rawResponse" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationState.Pending(Azure.Response)">
+            <summary>
+            Instantiates an <see cref="T:Azure.Core.OperationState" /> indicating the operation has not completed yet.
+            </summary>
+            <param name="rawResponse">The HTTP response obtained during the status update.</param>
+            <returns>A new <see cref="T:Azure.Core.OperationState" /> instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="rawResponse" /> is <c>null</c>.</exception>
+        </member>
+        <member name="P:Azure.Core.OperationInternalBase.RawResponse">
+            <summary>
+            The last HTTP response received from the server. Its update already handled in calls to "<c>UpdateStatus</c>" and
+            "<c>WaitForCompletionAsync</c>", but custom methods not supported by this class, such as "<c>CancelOperation</c>",
+            must update it as well.
+            <example>Usage example:
+            <code>
+              public Response GetRawResponse() =&gt; _operationInternal.RawResponse;
+            </code>
+            </example>
+            </summary>
+        </member>
+        <member name="P:Azure.Core.OperationInternalBase.HasCompleted">
+            <summary>
+            Returns <c>true</c> if the long-running operation has completed.
+            <example>Usage example:
+            <code>
+              public bool HasCompleted =&gt; _operationInternal.HasCompleted;
+            </code>
+            </example>
+            </summary>
+        </member>
+        <member name="M:Azure.Core.OperationInternalBase.UpdateStatusAsync(System.Threading.CancellationToken)">
+            <summary>
+            Calls the server to get the latest status of the long-running operation, handling diagnostic scope creation for distributed
+            tracing. The default scope name can be changed with the "<c>operationTypeName</c>" parameter passed to the constructor.
+            <example>Usage example:
+            <code>
+              public async ValueTask&lt;Response&gt; UpdateStatusAsync(CancellationToken cancellationToken) =&gt;
+                await _operationInternal.UpdateStatusAsync(cancellationToken).ConfigureAwait(false);
+            </code>
+            </example>
+            </summary>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The HTTP response received from the server.</returns>
+            <remarks>
+            After a successful run, this method will update <see cref="P:Azure.Core.OperationInternalBase.RawResponse" /> and might update <see cref="P:Azure.Core.OperationInternalBase.HasCompleted" />.
+            </remarks>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationInternalBase.UpdateStatus(System.Threading.CancellationToken)">
+            <summary>
+            Calls the server to get the latest status of the long-running operation, handling diagnostic scope creation for distributed
+            tracing. The default scope name can be changed with the "<c>operationTypeName</c>" parameter passed to the constructor.
+            <example>Usage example:
+            <code>
+              public Response UpdateStatus(CancellationToken cancellationToken) =&gt; _operationInternal.UpdateStatus(cancellationToken);
+            </code>
+            </example>
+            </summary>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The HTTP response received from the server.</returns>
+            <remarks>
+            After a successful run, this method will update <see cref="P:Azure.Core.OperationInternalBase.RawResponse" /> and might update <see cref="P:Azure.Core.OperationInternalBase.HasCompleted" />.
+            </remarks>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationInternalBase.WaitForCompletionResponseAsync(System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls <see cref="M:Azure.Core.OperationInternalBase.UpdateStatusAsync(System.Threading.CancellationToken)" /> until the long-running operation completes.
+            After each service call, a retry-after header may be returned to communicate that there is no reason to poll
+            for status change until the specified time has passed.  The maximum of the retry after value and the fallback strategy
+            is then used as the wait interval.
+            Headers supported are: "Retry-After", "retry-after-ms", and "x-ms-retry-after-ms",
+            <example>Usage example:
+            <code>
+              public async ValueTask&lt;Response&lt;T&gt;&gt; WaitForCompletionAsync(CancellationToken cancellationToken) =&gt;
+                await _operationInternal.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+            </code>
+            </example>
+            </summary>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The last HTTP response received from the server, including the final result of the long-running operation.</returns>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationInternalBase.WaitForCompletionResponseAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls <see cref="M:Azure.Core.OperationInternalBase.UpdateStatusAsync(System.Threading.CancellationToken)" /> until the long-running operation completes. The interval
+            between calls is defined by the parameter <paramref name="pollingInterval" />, but it can change based on information returned
+            from the server. After each service call, a retry-after header may be returned to communicate that there is no reason to poll
+            for status change until the specified time has passed. In this case, the maximum value between the <paramref name="pollingInterval" />
+            parameter and the retry-after header is chosen as the wait interval. Headers supported are: "Retry-After", "retry-after-ms",
+            and "x-ms-retry-after-ms".
+            <example>Usage example:
+            <code>
+              public async ValueTask&lt;Response&lt;T&gt;&gt; WaitForCompletionAsync(TimeSpan pollingInterval, CancellationToken cancellationToken) =&gt;
+                await _operationInternal.WaitForCompletionAsync(pollingInterval, cancellationToken).ConfigureAwait(false);
+            </code>
+            </example>
+            </summary>
+            <param name="pollingInterval">The interval between status requests to the server. <strong></strong></param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The last HTTP response received from the server, including the final result of the long-running operation.</returns>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationInternalBase.WaitForCompletionResponse(System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls <see cref="M:Azure.Core.OperationInternalBase.UpdateStatus(System.Threading.CancellationToken)" /> until the long-running operation completes.
+            After each service call, a retry-after header may be returned to communicate that there is no reason to poll
+            for status change until the specified time has passed.  The maximum of the retry after value and the fallback strategy
+            is then used as the wait interval.
+            Headers supported are: "Retry-After", "retry-after-ms", and "x-ms-retry-after-ms",
+            and "x-ms-retry-after-ms".
+            <example>Usage example:
+            <code>
+              public async ValueTask&lt;Response&lt;T&gt;&gt; WaitForCompletionAsync(TimeSpan pollingInterval, CancellationToken cancellationToken) =&gt;
+                await _operationInternal.WaitForCompletionAsync(pollingInterval, cancellationToken).ConfigureAwait(false);
+            </code>
+            </example>
+            </summary>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The last HTTP response received from the server, including the final result of the long-running operation.</returns>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationInternalBase.WaitForCompletionResponse(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls <see cref="M:Azure.Core.OperationInternalBase.UpdateStatus(System.Threading.CancellationToken)" /> until the long-running operation completes. The interval
+            between calls is defined by the parameter <paramref name="pollingInterval" />, but it can change based on information returned
+            from the server. After each service call, a retry-after header may be returned to communicate that there is no reason to poll
+            for status change until the specified time has passed. In this case, the maximum value between the <paramref name="pollingInterval" />
+            parameter and the retry-after header is chosen as the wait interval. Headers supported are: "Retry-After", "retry-after-ms",
+            and "x-ms-retry-after-ms".
+            <example>Usage example:
+            <code>
+              public async ValueTask&lt;Response&lt;T&gt;&gt; WaitForCompletionAsync(TimeSpan pollingInterval, CancellationToken cancellationToken) =&gt;
+                await _operationInternal.WaitForCompletionAsync(pollingInterval, cancellationToken).ConfigureAwait(false);
+            </code>
+            </example>
+            </summary>
+            <param name="pollingInterval">The interval between status requests to the server.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The last HTTP response received from the server, including the final result of the long-running operation.</returns>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="T:Azure.Core.OperationInternal`1">
+            <summary>
+            A helper class used to build long-running operation instances. In order to use this helper:
+            <list type="number">
+              <item>Make sure your LRO implements the <see cref="T:Azure.Core.IOperation`1" /> interface.</item>
+              <item>Add a private <see cref="T:Azure.Core.OperationInternal`1" /> field to your LRO, and instantiate it during construction.</item>
+              <item>Delegate method calls to the <see cref="T:Azure.Core.OperationInternal`1" /> implementations.</item>
+            </list>
+            Supported members:
+            <list type="bullet">
+              <item>
+                <description><see cref="P:Azure.Core.OperationInternal`1.HasValue" /></description>
+              </item>
+              <item>
+                <description><see cref="P:Azure.Core.OperationInternalBase.HasCompleted" /></description>
+              </item>
+              <item>
+                <description><see cref="P:Azure.Core.OperationInternal`1.Value" /></description>
+              </item>
+              <item>
+                <description><see cref="P:Azure.Core.OperationInternalBase.RawResponse" />, used for <see cref="M:Azure.Operation.GetRawResponse" /></description>
+              </item>
+              <item>
+                <description><see cref="M:Azure.Core.OperationInternalBase.UpdateStatus(System.Threading.CancellationToken)" /></description>
+              </item>
+              <item>
+                <description><see cref="M:Azure.Core.OperationInternalBase.UpdateStatusAsync(System.Threading.CancellationToken)" /></description>
+              </item>
+              <item>
+                <description><see cref="M:Azure.Core.OperationInternal`1.WaitForCompletionAsync(System.Threading.CancellationToken)" /></description>
+              </item>
+              <item>
+                <description><see cref="M:Azure.Core.OperationInternal`1.WaitForCompletionAsync(System.TimeSpan,System.Threading.CancellationToken)" /></description>
+              </item>
+            </list>
+            </summary>
+            <typeparam name="T">The final result of the long-running operation. Must match the type used in <see cref="T:Azure.Operation`1" />.</typeparam>
+        </member>
+        <member name="M:Azure.Core.OperationInternal`1.Succeeded(Azure.Response,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.Core.OperationInternal" /> class in a final successful state.
+            </summary>
+            <param name="rawResponse">The final value of <see cref="P:Azure.Core.OperationInternalBase.RawResponse" />.</param>
+            <param name="value">The final result of the long-running operation.</param>
+        </member>
+        <member name="M:Azure.Core.OperationInternal`1.Failed(Azure.Response,Azure.RequestFailedException)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.Core.OperationInternal" /> class in a final failed state.
+            </summary>
+            <param name="rawResponse">The final value of <see cref="P:Azure.Core.OperationInternalBase.RawResponse" />.</param>
+            <param name="operationFailedException">The exception that will be thrown by <c>UpdateStatusAsync</c>.</param>
+        </member>
+        <member name="M:Azure.Core.OperationInternal`1.#ctor(Azure.Core.IOperation{`0},Azure.Core.Pipeline.ClientDiagnostics,Azure.Response,System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}},Azure.Core.DelayStrategy)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.Core.OperationInternal`1" /> class.
+            </summary>
+            <param name="operation">The long-running operation making use of this class. Passing "<c>this</c>" is expected.</param>
+            <param name="clientDiagnostics">Used for diagnostic scope and exception creation. This is expected to be the instance created during the construction of your main client.</param>
+            <param name="rawResponse">
+                The initial value of <see cref="P:Azure.Core.OperationInternalBase.RawResponse" />. Usually, long-running operation objects can be instantiated in two ways:
+                <list type="bullet">
+                    <item>
+                        When calling a client's "<c>Start&lt;OperationName&gt;</c>" method, a service call is made to start the operation, and an <see cref="T:Azure.Operation`1" /> instance is returned.
+                        In this case, the response received from this service call can be passed here.
+                    </item>
+                    <item>
+                        When a user instantiates an <see cref="T:Azure.Operation`1" /> directly using a public constructor, there's no previous service call. In this case, passing <c>null</c> is expected.
+                    </item>
+                </list>
+            </param>
+            <param name="operationTypeName">
+                The type name of the long-running operation making use of this class. Used when creating diagnostic scopes. If left <c>null</c>, the type name will be inferred based on the
+                parameter <paramref name="operation" />.
+            </param>
+            <param name="scopeAttributes">The attributes to use during diagnostic scope creation.</param>
+            <param name="fallbackStrategy">The delay strategy when Retry-After header is not present.  When it is present, the longer of the two delays will be used.
+                Default is <see cref="T:Azure.Core.FixedDelayWithNoJitterStrategy" />.</param>
+        </member>
+        <member name="P:Azure.Core.OperationInternal`1.HasValue">
+            <summary>
+            Returns <c>true</c> if the long-running operation completed successfully and has produced a final result.
+            <example>Usage example:
+            <code>
+              public bool HasValue =&gt; _operationInternal.HasValue;
+            </code>
+            </example>
+            </summary>
+        </member>
+        <member name="P:Azure.Core.OperationInternal`1.Value">
+            <summary>
+            The final result of the long-running operation.
+            <example>Usage example:
+            <code>
+              public T Value =&gt; _operationInternal.Value;
+            </code>
+            </example>
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown when the operation has not completed yet.</exception>
+            <exception cref="T:Azure.RequestFailedException">Thrown when the operation has completed with failures.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationInternal`1.WaitForCompletionAsync(System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls <see cref="M:Azure.Core.OperationInternalBase.UpdateStatusAsync(System.Threading.CancellationToken)" /> until the long-running operation completes.
+            After each service call, a retry-after header may be returned to communicate that there is no reason to poll
+            for status change until the specified time has passed.
+            Headers supported are: "Retry-After", "retry-after-ms", and "x-ms-retry-after-ms",
+            <example>Usage example:
+            <code>
+              public async ValueTask&lt;Response&lt;T&gt;&gt; WaitForCompletionAsync(CancellationToken cancellationToken) =&gt;
+                await _operationInternal.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+            </code>
+            </example>
+            </summary>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The last HTTP response received from the server, including the final result of the long-running operation.</returns>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationInternal`1.WaitForCompletionAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls <see cref="M:Azure.Core.OperationInternalBase.UpdateStatusAsync(System.Threading.CancellationToken)" /> until the long-running operation completes. The interval
+            between calls is defined by the parameter <paramref name="pollingInterval" />, but it can change based on information returned
+            from the server. After each service call, a retry-after header may be returned to communicate that there is no reason to poll
+            for status change until the specified time has passed. In this case, the maximum value between the <paramref name="pollingInterval" />
+            parameter and the retry-after header is chosen as the wait interval. Headers supported are: "Retry-After", "retry-after-ms",
+            and "x-ms-retry-after-ms".
+            <example>Usage example:
+            <code>
+              public async ValueTask&lt;Response&lt;T&gt;&gt; WaitForCompletionAsync(TimeSpan pollingInterval, CancellationToken cancellationToken) =&gt;
+                await _operationInternal.WaitForCompletionAsync(pollingInterval, cancellationToken).ConfigureAwait(false);
+            </code>
+            </example>
+            </summary>
+            <param name="pollingInterval">The interval between status requests to the server.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The last HTTP response received from the server, including the final result of the long-running operation.</returns>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationInternal`1.WaitForCompletion(System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls <see cref="M:Azure.Core.OperationInternalBase.UpdateStatus(System.Threading.CancellationToken)" /> until the long-running operation completes.
+            After each service call, a retry-after header may be returned to communicate that there is no reason to poll
+            for status change until the specified time has passed.
+            Headers supported are: "Retry-After", "retry-after-ms", and "x-ms-retry-after-ms",
+            <example>Usage example:
+            <code>
+              public async ValueTask&lt;Response&lt;T&gt;&gt; WaitForCompletionAsync(CancellationToken cancellationToken) =&gt;
+                await _operationInternal.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+            </code>
+            </example>
+            </summary>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The last HTTP response received from the server, including the final result of the long-running operation.</returns>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationInternal`1.WaitForCompletion(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls <see cref="M:Azure.Core.OperationInternalBase.UpdateStatus(System.Threading.CancellationToken)" /> until the long-running operation completes. The interval
+            between calls is defined by the <see cref="T:Azure.Core.FixedDelayWithNoJitterStrategy" />, which takes into account any retry-after header that is returned
+            from the server.
+            <example>Usage example:
+            <code>
+              public async ValueTask&lt;Response&lt;T&gt;&gt; WaitForCompletionAsync(CancellationToken cancellationToken) =&gt;
+                await _operationInternal.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
+            </code>
+            </example>
+            </summary>
+            <param name="pollingInterval">The interval between status requests to the server.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>The last HTTP response received from the server, including the final result of the long-running operation.</returns>
+            <exception cref="T:Azure.RequestFailedException">Thrown if there's been any issues during the connection, or if the operation has completed with failures.</exception>
+        </member>
+        <member name="T:Azure.Core.IOperation`1">
+            <summary>
+            An interface used by <see cref="T:Azure.Core.OperationInternal`1" /> for making service calls and updating state. It's expected that
+            your long-running operation classes implement this interface.
+            </summary>
+            <typeparam name="T">The final result of the long-running operation. Must match the type used in <see cref="T:Azure.Operation`1" />.</typeparam>
+        </member>
+        <member name="M:Azure.Core.IOperation`1.UpdateStateAsync(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Calls the service and updates the state of the long-running operation. Properties directly handled by the
+            <see cref="T:Azure.Core.OperationInternal`1" /> class, such as <see cref="P:Azure.Core.OperationInternalBase.RawResponse" /> or
+            <see cref="P:Azure.Core.OperationInternal`1.Value" />, don't need to be updated. Operation-specific properties, such
+            as "<c>CreateOn</c>" or "<c>LastModified</c>", must be manually updated by the operation implementing this
+            method.
+            <example>Usage example:
+            <code>
+              async ValueTask&lt;OperationState&lt;T&gt;&gt; IOperation&lt;T&gt;.UpdateStateAsync(bool async, CancellationToken cancellationToken)<br />
+              {<br />
+                Response&lt;R&gt; response = async ? &lt;async service call&gt; : &lt;sync service call&gt;;<br />
+                if (&lt;operation succeeded&gt;) return OperationState&lt;T&gt;.Success(response.GetRawResponse(), &lt;parse response&gt;);<br />
+                if (&lt;operation failed&gt;) return OperationState&lt;T&gt;.Failure(response.GetRawResponse());<br />
+                return OperationState&lt;T&gt;.Pending(response.GetRawResponse());<br />
+              }
+            </code>
+            </example>
+            </summary>
+            <param name="async"><c>true</c> if the call should be executed asynchronously. Otherwise, <c>false</c>.</param>
+            <param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> controlling the request lifetime.</param>
+            <returns>
+            A structure indicating the current operation state. The <see cref="T:Azure.Core.OperationState`1" /> structure must be instantiated by one of
+            its static methods:
+            <list type="bullet">
+              <item>Use <see cref="M:Azure.Core.OperationState`1.Success(Azure.Response,`0)" /> when the operation has completed successfully.</item>
+              <item>Use <see cref="M:Azure.Core.OperationState`1.Failure(Azure.Response,Azure.RequestFailedException)" /> when the operation has completed with failures.</item>
+              <item>Use <see cref="M:Azure.Core.OperationState`1.Pending(Azure.Response)" /> when the operation has not completed yet.</item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Azure.Core.IOperation`1.GetRehydrationToken">
+            <summary>
+            Get a token that can be used to rehydrate the operation.
+            </summary>
+        </member>
+        <member name="T:Azure.Core.OperationState`1">
+            <summary>
+            A helper structure passed to <see cref="T:Azure.Core.OperationInternal`1" /> to indicate the current operation state. This structure must be
+            instantiated by one of its static methods, depending on the operation state:
+            <list type="bullet">
+              <item>Use <see cref="M:Azure.Core.OperationState`1.Success(Azure.Response,`0)" /> when the operation has completed successfully.</item>
+              <item>Use <see cref="M:Azure.Core.OperationState`1.Failure(Azure.Response,Azure.RequestFailedException)" /> when the operation has completed with failures.</item>
+              <item>Use <see cref="M:Azure.Core.OperationState`1.Pending(Azure.Response)" /> when the operation has not completed yet.</item>
+            </list>
+            </summary>
+            <typeparam name="T">The final result of the long-running operation. Must match the type used in <see cref="T:Azure.Operation`1" />.</typeparam>
+        </member>
+        <member name="M:Azure.Core.OperationState`1.Success(Azure.Response,`0)">
+            <summary>
+            Instantiates an <see cref="T:Azure.Core.OperationState`1" /> indicating the operation has completed successfully.
+            </summary>
+            <param name="rawResponse">The HTTP response obtained during the status update.</param>
+            <param name="value">The final result of the long-running operation.</param>
+            <returns>A new <see cref="T:Azure.Core.OperationState`1" /> instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="rawResponse" /> or <paramref name="value" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationState`1.Failure(Azure.Response,Azure.RequestFailedException)">
+            <summary>
+            Instantiates an <see cref="T:Azure.Core.OperationState`1" /> indicating the operation has completed with failures.
+            </summary>
+            <param name="rawResponse">The HTTP response obtained during the status update.</param>
+            <param name="operationFailedException">
+            The exception to throw from <c>UpdateStatus</c> because of the operation failure. The same exception will be thrown when
+            <see cref="P:Azure.Core.OperationInternal`1.Value" /> is called. If left <c>null</c>, a default exception is created based on the
+            <paramref name="rawResponse" /> parameter.
+            </param>
+            <returns>A new <see cref="T:Azure.Core.OperationState`1" /> instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="rawResponse" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Azure.Core.OperationState`1.Pending(Azure.Response)">
+            <summary>
+            Instantiates an <see cref="T:Azure.Core.OperationState`1" /> indicating the operation has not completed yet.
+            </summary>
+            <param name="rawResponse">The HTTP response obtained during the status update.</param>
+            <returns>A new <see cref="T:Azure.Core.OperationState`1" /> instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="rawResponse" /> is <c>null</c>.</exception>
+        </member>
+        <member name="T:Azure.Core.OperationPoller">
+            <summary>
+            Implementation of LRO polling logic.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.ProtocolOperation`1.Id">
+            <summary>
+            Gets an ID representing the operation that can be used to poll for
+            the status of the long-running operation.
+            There are cases that operation id is not available, we return "NOT_SET" for unavailable operation id.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.ProtocolOperation`1.GetRehydrationToken">
+            <summary>
+            Get a token that can be used to rehydrate the operation.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.ProtocolOperation`1.Value">
+            <summary>
+            Final result of the long-running operation.
+            </summary><remarks>
+            This property can be accessed only after the operation completes successfully (HasValue is true).
+            </remarks>
+        </member>
+        <member name="P:Azure.Core.ProtocolOperation`1.HasCompleted">
+            <summary>
+            Returns true if the long-running operation completed.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.ProtocolOperation`1.HasValue">
+            <summary>
+            Returns true if the long-running operation completed successfully and has produced final result (accessible by Value property).
+            </summary>
+        </member>
+        <member name="M:Azure.Core.ProtocolOperation`1.GetRawResponse">
+            <summary>
+            The last HTTP response received from the server.
+            </summary><remarks>
+            The last response returned from the server during the lifecycle of this instance.
+            An instance of <see cref="T:Azure.Operation`1" /> sends requests to a server in UpdateStatusAsync, UpdateStatus, and other methods.
+            Responses from these requests can be accessed using GetRawResponse.
+            </remarks>
+        </member>
+        <member name="M:Azure.Core.ProtocolOperation`1.UpdateStatus(System.Threading.CancellationToken)">
+            <summary>
+            Calls the server to get updated status of the long-running operation.
+            </summary><param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> used for the service call.</param><returns>The HTTP response received from the server.</returns><remarks>
+            This operation will update the value returned from GetRawResponse and might update HasCompleted.
+            </remarks>
+        </member>
+        <member name="M:Azure.Core.ProtocolOperation`1.UpdateStatusAsync(System.Threading.CancellationToken)">
+            <summary>
+            Calls the server to get updated status of the long-running operation.
+            </summary><param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> used for the service call.</param><returns>The HTTP response received from the server.</returns><remarks>
+            This operation will update the value returned from GetRawResponse and might update HasCompleted.
+            </remarks>
+        </member>
+        <member name="M:Azure.Core.ProtocolOperation`1.WaitForCompletionAsync(System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls the server till the long-running operation completes.
+            </summary><param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> used for the periodical service calls.</param><returns>The last HTTP response received from the server.</returns><remarks>
+            This method will periodically call UpdateStatusAsync till HasCompleted is true, then return the final result of the operation.
+            </remarks>
+        </member>
+        <member name="M:Azure.Core.ProtocolOperation`1.WaitForCompletionAsync(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Periodically calls the server till the long-running operation completes.
+            </summary><param name="pollingInterval">
+            The interval between status requests to the server.
+            The interval can change based on information returned from the server.
+            For example, the server might communicate to the client that there is not reason to poll for status change sooner than some time.
+            </param><param name="cancellationToken">A <see cref="T:System.Threading.CancellationToken" /> used for the periodical service calls.</param><returns>The last HTTP response received from the server.</returns><remarks>
+            This method will periodically call UpdateStatusAsync till HasCompleted is true, then return the final result of the operation.
+            </remarks>
+        </member>
+        <member name="T:Azure.Core.SequentialDelayStrategy">
+            <summary>
+            A delay strategy that uses a fixed sequence of delays with no jitter applied. This is used by management LROs.
+            </summary>
+        </member>
+        <member name="T:Azure.Core.ArrayBufferWriter`1">
+            <summary>
+            Represents a heap-based, array-backed output sink into which <typeparam name="T" /> data can be written.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.ArrayBufferWriter`1.#ctor">
+            <summary>
+            Creates an instance of an <see cref="T:Azure.Core.ArrayBufferWriter`1" />, in which data can be written to,
+            with the default initial capacity.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.ArrayBufferWriter`1.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of an <see cref="T:Azure.Core.ArrayBufferWriter`1" />, in which data can be written to,
+            with an initial capacity specified.
+            </summary>
+            <param name="initialCapacity">The minimum capacity with which to initialize the underlying buffer.</param>
+            <exception cref="T:System.ArgumentException">
+            Thrown when <paramref name="initialCapacity" /> is not positive (i.e. less than or equal to 0).
+            </exception>
+        </member>
+        <member name="P:Azure.Core.ArrayBufferWriter`1.WrittenMemory">
+            <summary>
+            Returns the data written to the underlying buffer so far, as a <see cref="T:System.ReadOnlyMemory`1" />.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.ArrayBufferWriter`1.WrittenSpan">
+            <summary>
+            Returns the data written to the underlying buffer so far, as a <see cref="T:System.ReadOnlySpan`1" />.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.ArrayBufferWriter`1.WrittenCount">
+            <summary>
+            Returns the amount of data written to the underlying buffer so far.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.ArrayBufferWriter`1.Capacity">
+            <summary>
+            Returns the total amount of space within the underlying buffer.
+            </summary>
+        </member>
+        <member name="P:Azure.Core.ArrayBufferWriter`1.FreeCapacity">
+            <summary>
+            Returns the amount of space available that can still be written into without forcing the underlying buffer to grow.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.ArrayBufferWriter`1.Clear">
+            <summary>
+            Clears the data written to the underlying buffer.
+            </summary>
+            <remarks>
+            You must clear the <see cref="T:Azure.Core.ArrayBufferWriter`1" /> before trying to re-use it.
+            </remarks>
+        </member>
+        <member name="M:Azure.Core.ArrayBufferWriter`1.Advance(System.Int32)">
+            <summary>
+            Notifies <see cref="T:System.Buffers.IBufferWriter`1" /> that <paramref name="count" /> amount of data was written to the output <see cref="T:System.Span`1" />/<see cref="T:System.Memory`1" />.
+            </summary>
+            <exception cref="T:System.ArgumentException">
+            Thrown when <paramref name="count" /> is negative.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown when attempting to advance past the end of the underlying buffer.
+            </exception>
+            <remarks>
+            You must request a new buffer after calling Advance to continue writing more data and cannot write to a previously acquired buffer.
+            </remarks>
+        </member>
+        <member name="M:Azure.Core.ArrayBufferWriter`1.GetMemory(System.Int32)">
+            <summary>
+            Returns a <see cref="T:System.Memory`1" /> to write to that is at least the requested length (specified by <paramref name="sizeHint" />).
+            If no <paramref name="sizeHint" /> is provided (or it's equal to <code>0</code>), some non-empty buffer is returned.
+            </summary>
+            <exception cref="T:System.ArgumentException">
+            Thrown when <paramref name="sizeHint" /> is negative.
+            </exception>
+            <remarks>
+            This will never return an empty <see cref="T:System.Memory`1" />.
+            </remarks>
+            <remarks>
+            There is no guarantee that successive calls will return the same buffer or the same-sized buffer.
+            </remarks>
+            <remarks>
+            You must request a new buffer after calling Advance to continue writing more data and cannot write to a previously acquired buffer.
+            </remarks>
+        </member>
+        <member name="M:Azure.Core.ArrayBufferWriter`1.GetSpan(System.Int32)">
+            <summary>
+            Returns a <see cref="T:System.Span`1" /> to write to that is at least the requested length (specified by <paramref name="sizeHint" />).
+            If no <paramref name="sizeHint" /> is provided (or it's equal to <code>0</code>), some non-empty buffer is returned.
+            </summary>
+            <exception cref="T:System.ArgumentException">
+            Thrown when <paramref name="sizeHint" /> is negative.
+            </exception>
+            <remarks>
+            This will never return an empty <see cref="T:System.Span`1" />.
+            </remarks>
+            <remarks>
+            There is no guarantee that successive calls will return the same buffer or the same-sized buffer.
+            </remarks>
+            <remarks>
+            You must request a new buffer after calling Advance to continue writing more data and cannot write to a previously acquired buffer.
+            </remarks>
+        </member>
+        <member name="T:Azure.Core.AzureResourceProviderNamespaceAttribute">
+            <summary>
+            This attribute should be set on all client assemblies with value of one of the resource providers
+            from the https://docs.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers list.
+            </summary>
+        </member>
+        <member name="T:Azure.Core.ForwardsClientCallsAttribute">
+            <summary>
+            Marks methods that call methods on other client and don't need their diagnostics verified.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.ForwardsClientCallsAttribute.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Azure.Core.ForwardsClientCallsAttribute" />.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.ForwardsClientCallsAttribute.#ctor(System.Boolean)">
+            <summary>
+            Creates a new instance of <see cref="T:Azure.Core.ForwardsClientCallsAttribute" />.
+            </summary>
+            <param name="skipChecks"> Sets whether or not diagnostic scope validation should happen. </param>
+        </member>
+        <member name="P:Azure.Core.ForwardsClientCallsAttribute.SkipChecks">
+            <summary>
+            Gets whether or not we should validate DiagnosticScope for this API.
+            In the case where there is an internal API that makes the Azure API call and a public API that uses it we need ForwardsClientCalls.
+            If the public API will cache the results then the diagnostic scope will not always be created because an Azure API is not always called.
+            In this case we need to turn off this validation for this API only.
+            </summary>
+        </member>
+        <member name="P:Azure.NoValueResponse`1.HasValue">
+            <summary>
+            Gets a value indicating whether the current instance has a valid value of its underlying type.
+            </summary>
+        </member>
+        <member name="M:Azure.Core.Pipeline.TaskExtensions.Enumerable`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <summary>Returns an enumerator that iterates through the collection.</summary><returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Azure.Core.Pipeline.TaskExtensions.Enumerable`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>Returns an enumerator that iterates through a collection.</summary><returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="P:Azure.Core.Pipeline.TaskExtensions.Enumerator`1.System#Collections#IEnumerator#Current">
+            <summary>Gets the element in the collection at the current position of the enumerator.</summary><returns>The element in the collection at the current position of the enumerator.</returns>
+        </member>
+    </members>
+</doc>

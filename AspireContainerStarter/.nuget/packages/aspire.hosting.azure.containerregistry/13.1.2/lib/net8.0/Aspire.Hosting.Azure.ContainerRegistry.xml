@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aspire.Hosting.Azure.ContainerRegistry</name>
+    </assembly>
+    <members>
+        <member name="T:Aspire.Hosting.AzureContainerRegistryExtensions">
+            <summary>
+            Provides extension methods for adding Azure Container Registry resources to the application model.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerRegistryExtensions.AddAzureContainerRegistry(Aspire.Hosting.IDistributedApplicationBuilder,System.String)">
+            <summary>
+            Adds an Azure Container Registry resource to the application model.
+            </summary>
+            <param name="builder">The builder for the distributed application.</param>
+            <param name="name">The name of the resource.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="builder"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">Thrown when <paramref name="name"/> is null or empty.</exception>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerRegistryExtensions.SubscribeToAddRegistryTargetAnnotations(Aspire.Hosting.IDistributedApplicationBuilder,Aspire.Hosting.Azure.AzureContainerRegistryResource)">
+            <summary>
+            Subscribes to BeforeStartEvent to add RegistryTargetAnnotation to all resources in the model.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerRegistryExtensions.WithAzureContainerRegistry``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureContainerRegistryResource})">
+            <summary>
+            Configures a resource that implements <see cref="T:Aspire.Hosting.ApplicationModel.IContainerRegistry"/> to use the specified Azure Container Registry.
+            </summary>
+            <typeparam name="T">The resource type that implements <see cref="T:Aspire.Hosting.ApplicationModel.IContainerRegistry"/>.</typeparam>
+            <param name="builder">The resource builder for a resource that implements <see cref="T:Aspire.Hosting.ApplicationModel.IContainerRegistry"/>.</param>
+            <param name="registryBuilder">The resource builder for the <see cref="T:Aspire.Hosting.Azure.AzureContainerRegistryResource"/> to use.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="builder"/> or <paramref name="registryBuilder"/> is null.</exception>
+        </member>
+        <member name="M:Aspire.Hosting.AzureContainerRegistryExtensions.WithRoleAssignments``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureContainerRegistryResource},Azure.Provisioning.ContainerRegistry.ContainerRegistryBuiltInRole[])">
+            <summary>
+            Adds role assignments to the specified Azure Container Registry resource.
+            </summary>
+            <typeparam name="T">The type of the resource being configured.</typeparam>
+            <param name="builder">The resource builder for the resource that will have role assignments.</param>
+            <param name="target">The target Azure Container Registry resource.</param>
+            <param name="roles">The roles to assign to the resource.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/>.</returns>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureContainerRegistryHelpers">
+            <summary>
+            Helper methods for Azure Container Registry operations.
+            </summary>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureContainerRegistryResource">
+            <summary>
+            Represents an Azure Container Registry resource.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureContainerRegistryResource.#ctor(System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Aspire.Hosting.Azure.AzureContainerRegistryResource"/> class.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">The callback to configure the Azure infrastructure for this resource.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureContainerRegistryResource.NameOutputReference">
+            <summary>
+            The name of the Azure Container Registry.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureContainerRegistryResource.RegistryEndpoint">
+            <summary>
+            The endpoint of the Azure Container Registry.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureContainerRegistryResource.Aspire#Hosting#ApplicationModel#IContainerRegistry#Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureContainerRegistryResource.Aspire#Hosting#ApplicationModel#IContainerRegistry#Endpoint">
+            <inheritdoc/>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureContainerRegistryResource.AddAsExistingResource(Aspire.Hosting.Azure.AzureResourceInfrastructure)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,467 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aspire.Microsoft.EntityFrameworkCore.SqlServer</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions">
+            <summary>
+            Extension methods for configuring EntityFrameworkCore DbContext to Azure SQL, MS SQL server
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext``1(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.String,System.Action{Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings},System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder})">
+            <summary>
+            Registers the given <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> as a service in the services provided by the <paramref name="builder"/>.
+            Enables db context pooling, retries, health check, logging and telemetry for the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.
+            </summary>
+            <typeparam name="TContext">The <see cref="T:Microsoft.EntityFrameworkCore.DbContext" /> that needs to be registered.</typeparam>
+            <param name="builder">The <see cref="T:Microsoft.Extensions.Hosting.IHostApplicationBuilder" /> to read config from and add services to.</param>
+            <param name="connectionName">A name used to retrieve the connection string from the ConnectionStrings configuration section.</param>
+            <param name="configureSettings">An optional delegate that can be used for customizing options. It's invoked after the settings are read from the configuration.</param>
+            <param name="configureDbContextOptions">An optional delegate to configure the <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions"/> for the context.</param>
+            <remarks>Reads the configuration from "Aspire:Microsoft:EntityFrameworkCore:SqlServer:{typeof(TContext).Name}" config section, or "Aspire:Microsoft:EntityFrameworkCore:SqlServer" if former does not exist.</remarks>
+            <exception cref="T:System.ArgumentNullException">Thrown if mandatory <paramref name="builder"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when mandatory <see cref="P:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings.ConnectionString"/> is not provided.</exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.EnrichSqlServerDbContext``1(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.Action{Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings})">
+            <summary>
+            Configures retries, health check, logging and telemetry for the <see cref="T:Microsoft.EntityFrameworkCore.DbContext" />.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Thrown if mandatory <paramref name="builder"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when mandatory <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> is not registered in DI.</exception>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.Binder.SourceGeneration.BindingExtensions.Bind_MicrosoftEntityFrameworkCoreSqlServerSettings(Microsoft.Extensions.Configuration.IConfiguration,System.Object)">
+            <summary>Attempts to bind the given object instance to configuration values by matching property names against configuration keys recursively.</summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.Binder.SourceGeneration.BindingExtensions.TryGetConfigurationValue(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.String@)">
+            <summary>Tries to get the configuration value for the specified key.</summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.Binder.SourceGeneration.BindingExtensions.ValidateConfigurationKeys(System.Type,System.Lazy{System.Collections.Generic.HashSet{System.String}},Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Configuration.BinderOptions)">
+            <summary>If required by the binder options, validates that there are no unknown keys in the input configuration object.</summary>
+        </member>
+        <member name="T:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings">
+            <summary>
+            Provides the client configuration settings for connecting to a SQL Server database using EntityFrameworkCore.
+            </summary>
+        </member>
+        <member name="P:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings.ConnectionString">
+            <summary>
+            The connection string of the SQL server database to connect to.
+            </summary>
+        </member>
+        <member name="P:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings.DisableRetry">
+            <summary>
+            Gets or sets whether retries should be disabled.
+            </summary>
+            <value>
+            The default value is <see langword="false"/>.
+            </value>
+        </member>
+        <member name="P:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings.DisableHealthChecks">
+            <summary>
+            Gets or sets a boolean value that indicates whether the database health check is disabled or not.
+            </summary>
+            <value>
+            The default value is <see langword="false"/>.
+            </value>
+        </member>
+        <member name="P:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings.DisableTracing">
+            <summary>
+            Gets or sets a boolean value that indicates whether the OpenTelemetry tracing is disabled or not.
+            </summary>
+            <value>
+            The default value is <see langword="false"/>.
+            </value>
+        </member>
+        <member name="P:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings.CommandTimeout">
+            <summary>
+            Gets or sets the time in seconds to wait for the command to execute.
+            </summary>
+        </member>
+        <member name="T:Aspire.ConfigurationSchemaAttribute">
+            <summary>
+            Attribute used to automatically generate a JSON schema for a component's configuration.
+            </summary>
+        </member>
+        <member name="P:Aspire.ConfigurationSchemaAttribute.Path">
+            <summary>
+            The path corresponding to which config section <see cref="P:Aspire.ConfigurationSchemaAttribute.Type"/> binds to.
+            </summary>
+        </member>
+        <member name="P:Aspire.ConfigurationSchemaAttribute.Type">
+            <summary>
+            The type that is bound to the configuration. This type will be walked and generate a JSON schema for all the properties.
+            </summary>
+        </member>
+        <member name="P:Aspire.ConfigurationSchemaAttribute.ExclusionPaths">
+            <summary>
+            (optional) The config sections to exclude from the ConfigurationSchema. This is useful if there are properties you don't want to publicize in the config schema.
+            </summary>
+        </member>
+        <member name="T:Aspire.LoggingCategoriesAttribute">
+            <summary>
+            Provides information to describe the logging categories produced by a component.
+            </summary>
+        </member>
+        <member name="P:Aspire.LoggingCategoriesAttribute.Categories">
+            <summary>
+            The list of log categories produced by the component. These categories will show up under the Logging:LogLevel section in appsettings.json.
+            </summary>
+        </member>
+        <member name="M:Aspire.HealthChecksExtensions.TryAddHealthCheck(Microsoft.Extensions.Hosting.IHostApplicationBuilder,Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration)">
+            <summary>
+            Adds a HealthCheckRegistration if one hasn't already been added to the builder.
+            </summary>
+        </member>
+        <member name="M:Aspire.HealthChecksExtensions.TryAddHealthCheck(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.String,System.Action{Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder})">
+            <summary>
+            Invokes the <paramref name="addHealthCheck"/> action if the given <paramref name="name"/> hasn't already been added to the builder.
+            </summary>
+        </member>
+        <member name="M:Aspire.EntityFrameworkUtils.GetDbContextSettings``2(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.String,System.String,System.Action{``1,Microsoft.Extensions.Configuration.IConfiguration})">
+            <summary>
+            Binds the DbContext specific configuration section to settings when available.
+            </summary>
+        </member>
+        <member name="M:Aspire.EntityFrameworkUtils.CheckDbContextRegistered``1(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.String)">
+            <summary>
+            Ensures a <see cref="T:Microsoft.EntityFrameworkCore.DbContext"/> is registered in DI.
+            </summary>
+        </member>
+        <member name="M:Aspire.EntityFrameworkUtils.PatchServiceDescriptor``1(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.Action{Microsoft.EntityFrameworkCore.DbContextOptionsBuilder{``0}},System.String)">
+            <summary>
+            Enriches the DbContext options service descriptor with custom alterations.
+            </summary>
+        </member>
+        <member name="T:OpenTelemetry.Instrumentation.SqlClient.Implementation.SqlActivitySourceHelper">
+            <summary>
+            Helper class to hold common properties used by both SqlClientDiagnosticListener on .NET Core
+            and SqlEventSourceListener on .NET Framework.
+            </summary>
+        </member>
+        <member name="T:OpenTelemetry.Instrumentation.SqlClient.Implementation.SqlClientInstrumentationEventSource">
+            <summary>
+            EventSource events emitted from the project.
+            </summary>
+        </member>
+        <member name="T:OpenTelemetry.Instrumentation.SqlClient.SqlClientInstrumentation">
+            <summary>
+            SqlClient instrumentation.
+            </summary>
+        </member>
+        <member name="M:OpenTelemetry.Instrumentation.SqlClient.SqlClientInstrumentation.#ctor(OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenTelemetry.Instrumentation.SqlClient.SqlClientInstrumentation"/> class.
+            </summary>
+            <param name="options">Configuration options for sql instrumentation.</param>
+        </member>
+        <member name="M:OpenTelemetry.Instrumentation.SqlClient.SqlClientInstrumentation.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions">
+            <summary>
+            Options for <see cref="T:OpenTelemetry.Instrumentation.SqlClient.SqlClientInstrumentation"/>.
+            </summary>
+            <remarks>
+            For help and examples see: <a href="https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry.Instrumentation.SqlClient/README.md#advanced-configuration" />.
+            </remarks>
+        </member>
+        <member name="F:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions.NamedPipeRegex">
+            <summary>
+            In a Data Source string like "np:\\serverName\pipe\MSSQL$instanceName\pipeName" match the
+            "pipe\MSSQL$instanceName" segment to extract instanceName if it is available.
+            </summary>
+            <see>
+            <a href="https://docs.microsoft.com/previous-versions/sql/sql-server-2016/ms189307(v=sql.130)"/>
+            </see>
+        </member>
+        <member name="P:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions.SetDbStatementForStoredProcedure">
+            <summary>
+            Gets or sets a value indicating whether or not the <see
+            cref="T:OpenTelemetry.Instrumentation.SqlClient.SqlClientInstrumentation"/> should add the names of <see
+            cref="F:System.Data.CommandType.StoredProcedure"/> commands as the <see
+            cref="F:OpenTelemetry.Trace.SemanticConventions.AttributeDbStatement"/> tag. Default
+            value: <see langword="true"/>.
+            </summary>
+            <remarks>
+            <para><b>SetDbStatementForStoredProcedure is only supported on .NET
+            and .NET Core runtimes.</b></para>
+            </remarks>
+        </member>
+        <member name="P:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions.SetDbStatementForText">
+            <summary>
+            Gets or sets a value indicating whether or not the <see
+            cref="T:OpenTelemetry.Instrumentation.SqlClient.SqlClientInstrumentation"/> should add the text of commands as
+            the <see cref="F:OpenTelemetry.Trace.SemanticConventions.AttributeDbStatement"/> tag.
+            Default value: <see langword="false"/>.
+            </summary>
+            <remarks>
+            <para>
+            <b>WARNING: SetDbStatementForText will capture the raw
+            <c>CommandText</c>. Make sure your <c>CommandText</c> property never
+            contains any sensitive data.</b>
+            </para>
+            <para><b>SetDbStatementForText is supported on all runtimes.</b>
+            <list type="bullet">
+            <item>On .NET and .NET Core SetDbStatementForText only applies to
+            <c>SqlCommand</c>s with <see cref="F:System.Data.CommandType.Text"/>.</item>
+            <item>On .NET Framework SetDbStatementForText applies to all
+            <c>SqlCommand</c>s regardless of <see cref="T:System.Data.CommandType"/>.
+            <list type="bullet">
+            <item>When using <c>System.Data.SqlClient</c> use
+            SetDbStatementForText to capture StoredProcedure command
+            names.</item>
+            <item>When using <c>Microsoft.Data.SqlClient</c> use
+            SetDbStatementForText to capture Text, StoredProcedure, and all
+            other command text.</item>
+            </list></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="P:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions.EnableConnectionLevelAttributes">
+            <summary>
+            Gets or sets a value indicating whether or not the <see
+            cref="T:OpenTelemetry.Instrumentation.SqlClient.SqlClientInstrumentation"/> should parse the DataSource on a
+            SqlConnection into server name, instance name, and/or port
+            connection-level attribute tags. Default value: <see
+            langword="false"/>.
+            </summary>
+            <remarks>
+            <para>
+            <b>EnableConnectionLevelAttributes is supported on all runtimes.</b>
+            </para>
+            <para>
+            The default behavior is to set the SqlConnection DataSource as the <see cref="F:OpenTelemetry.Trace.SemanticConventions.AttributePeerService"/> tag.
+            If enabled, SqlConnection DataSource will be parsed and the server name will be sent as the
+            <see cref="F:OpenTelemetry.Trace.SemanticConventions.AttributeServerAddress"/> or <see cref="F:OpenTelemetry.Trace.SemanticConventions.AttributeServerSocketAddress"/> tag,
+            the instance name will be sent as the <see cref="F:OpenTelemetry.Trace.SemanticConventions.AttributeDbMsSqlInstanceName"/> tag,
+            and the port will be sent as the <see cref="F:OpenTelemetry.Trace.SemanticConventions.AttributeServerPort"/> tag if it is not 1433 (the default port).
+            </para>
+            </remarks>
+        </member>
+        <member name="P:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions.Enrich">
+            <summary>
+            Gets or sets an action to enrich an <see cref="T:System.Diagnostics.Activity"/> with the
+            raw <c>SqlCommand</c> object.
+            </summary>
+            <remarks>
+            <para><b>Enrich is only executed on .NET and .NET Core
+            runtimes.</b></para>
+            The parameters passed to the enrich action are:
+            <list type="number">
+            <item>The <see cref="T:System.Diagnostics.Activity"/> being enriched.</item>
+            <item>The name of the event. Currently only <c>"OnCustom"</c> is
+            used but more events may be added in the future.</item>
+            <item>The raw <c>SqlCommand</c> object from which additional
+            information can be extracted to enrich the <see
+            cref="T:System.Diagnostics.Activity"/>.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions.Filter">
+            <summary>
+            Gets or sets a filter function that determines whether or not to
+            collect telemetry about a command.
+            </summary>
+            <remarks>
+            <para><b>Filter is only executed on .NET and .NET Core
+            runtimes.</b></para>
+            Notes:
+            <list type="bullet">
+            <item>The first parameter passed to the filter function is the raw
+            <c>SqlCommand</c> object for the command being executed.</item>
+            <item>The return value for the filter function is interpreted as:
+            <list type="bullet">
+            <item>If filter returns <see langword="true" />, the command is
+            collected.</item>
+            <item>If filter returns <see langword="false" /> or throws an
+            exception the command is NOT collected.</item>
+            </list></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions.RecordException">
+            <summary>
+            Gets or sets a value indicating whether the exception will be
+            recorded as <see cref="T:System.Diagnostics.ActivityEvent"/> or not. Default value: <see
+            langword="false"/>.
+            </summary>
+            <remarks>
+            <para><b>RecordException is only supported on .NET and .NET Core
+            runtimes.</b></para>
+            <para>For specification details see: <see
+            href="https://github.com/open-telemetry/semantic-conventions/blob/main/docs/exceptions/exceptions-spans.md"/>.</para>
+            </remarks>
+        </member>
+        <member name="M:OpenTelemetry.Instrumentation.DiagnosticSourceSubscriber.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:OpenTelemetry.Instrumentation.ListenerHandler">
+            <summary>
+            ListenerHandler base class.
+            </summary>
+        </member>
+        <member name="M:OpenTelemetry.Instrumentation.ListenerHandler.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenTelemetry.Instrumentation.ListenerHandler"/> class.
+            </summary>
+            <param name="sourceName">The name of the <see cref="T:OpenTelemetry.Instrumentation.ListenerHandler"/>.</param>
+        </member>
+        <member name="P:OpenTelemetry.Instrumentation.ListenerHandler.SourceName">
+            <summary>
+            Gets the name of the <see cref="T:OpenTelemetry.Instrumentation.ListenerHandler"/>.
+            </summary>
+        </member>
+        <member name="P:OpenTelemetry.Instrumentation.ListenerHandler.SupportsNullActivity">
+            <summary>
+            Gets a value indicating whether the <see cref="T:OpenTelemetry.Instrumentation.ListenerHandler"/> supports NULL <see cref="T:System.Diagnostics.Activity"/>.
+            </summary>
+        </member>
+        <member name="M:OpenTelemetry.Instrumentation.ListenerHandler.OnEventWritten(System.String,System.Object)">
+            <summary>
+            Method called for an event which does not have 'Start', 'Stop' or 'Exception' as suffix.
+            </summary>
+            <param name="name">Custom name.</param>
+            <param name="payload">An object that represent the value being passed as a payload for the event.</param>
+        </member>
+        <member name="T:OpenTelemetry.Instrumentation.PropertyFetcher`1">
+            <summary>
+            PropertyFetcher fetches a property from an object.
+            </summary>
+            <typeparam name="T">The type of the property being fetched.</typeparam>
+        </member>
+        <member name="M:OpenTelemetry.Instrumentation.PropertyFetcher`1.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenTelemetry.Instrumentation.PropertyFetcher`1"/> class.
+            </summary>
+            <param name="propertyName">Property name to fetch.</param>
+        </member>
+        <member name="M:OpenTelemetry.Instrumentation.PropertyFetcher`1.TryFetch(System.Object,`0@)">
+            <summary>
+            Try to fetch the property from the object.
+            </summary>
+            <param name="obj">Object to be fetched.</param>
+            <param name="value">Fetched value.</param>
+            <returns><see langword= "true"/> if the property was fetched.</returns>
+        </member>
+        <member name="M:OpenTelemetry.Internal.ExceptionExtensions.ToInvariantString(System.Exception)">
+            <summary>
+            Returns a culture-independent string representation of the given <paramref name="exception"/> object,
+            appropriate for diagnostics tracing.
+            </summary>
+            <param name="exception">Exception to convert to string.</param>
+            <returns>Exception as string with no culture.</returns>
+        </member>
+        <member name="T:OpenTelemetry.Internal.Guard">
+            <summary>
+            Methods for guarding against exception throwing values.
+            </summary>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfNull(System.Object,System.String)">
+            <summary>
+            Throw an exception if the value is null.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfNullOrEmpty(System.String,System.String)">
+            <summary>
+            Throw an exception if the value is null or empty.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfNullOrWhitespace(System.String,System.String)">
+            <summary>
+            Throw an exception if the value is null or whitespace.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfZero(System.Int32,System.String,System.String)">
+            <summary>
+            Throw an exception if the value is zero.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="message">The message to use in the thrown exception.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfInvalidTimeout(System.Int32,System.String)">
+            <summary>
+            Throw an exception if the value is not considered a valid timeout.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfOutOfRange(System.Int32,System.String,System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Throw an exception if the value is not within the given range.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+            <param name="min">The inclusive lower bound.</param>
+            <param name="max">The inclusive upper bound.</param>
+            <param name="minName">The name of the lower bound.</param>
+            <param name="maxName">The name of the upper bound.</param>
+            <param name="message">An optional custom message to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfOutOfRange(System.Double,System.String,System.Double,System.Double,System.String,System.String,System.String)">
+            <summary>
+            Throw an exception if the value is not within the given range.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+            <param name="min">The inclusive lower bound.</param>
+            <param name="max">The inclusive upper bound.</param>
+            <param name="minName">The name of the lower bound.</param>
+            <param name="maxName">The name of the upper bound.</param>
+            <param name="message">An optional custom message to use in the thrown exception.</param>
+        </member>
+        <member name="M:OpenTelemetry.Internal.Guard.ThrowIfNotOfType``1(System.Object,System.String)">
+            <summary>
+            Throw an exception if the value is not of the expected type.
+            </summary>
+            <param name="value">The value to check.</param>
+            <param name="paramName">The parameter name to use in the thrown exception.</param>
+            <typeparam name="T">The type attempted to convert to.</typeparam>
+            <returns>The value casted to the specified type.</returns>
+        </member>
+        <member name="T:OpenTelemetry.Trace.SemanticConventions">
+            <summary>
+            Constants for semantic attribute names outlined by the OpenTelemetry specifications.
+            <see href="https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/trace.md"/> and
+            <see href="https://github.com/open-telemetry/semantic-conventions/blob/main/docs/general/metrics.md"/>.
+            </summary>
+        </member>
+        <member name="T:OpenTelemetry.Trace.TracerProviderBuilderExtensions">
+            <summary>
+            Extension methods to simplify registering of dependency instrumentation.
+            </summary>
+        </member>
+        <member name="M:OpenTelemetry.Trace.TracerProviderBuilderExtensions.AddSqlClientInstrumentation(OpenTelemetry.Trace.TracerProviderBuilder)">
+            <summary>
+            Enables SqlClient instrumentation.
+            </summary>
+            <param name="builder"><see cref="T:OpenTelemetry.Trace.TracerProviderBuilder"/> being configured.</param>
+            <returns>The instance of <see cref="T:OpenTelemetry.Trace.TracerProviderBuilder"/> to chain the calls.</returns>
+        </member>
+        <member name="M:OpenTelemetry.Trace.TracerProviderBuilderExtensions.AddSqlClientInstrumentation(OpenTelemetry.Trace.TracerProviderBuilder,System.Action{OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions})">
+            <summary>
+            Enables SqlClient instrumentation.
+            </summary>
+            <param name="builder"><see cref="T:OpenTelemetry.Trace.TracerProviderBuilder"/> being configured.</param>
+            <param name="configureSqlClientTraceInstrumentationOptions">Callback action for configuring <see cref="T:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions"/>.</param>
+            <returns>The instance of <see cref="T:OpenTelemetry.Trace.TracerProviderBuilder"/> to chain the calls.</returns>
+        </member>
+        <member name="M:OpenTelemetry.Trace.TracerProviderBuilderExtensions.AddSqlClientInstrumentation(OpenTelemetry.Trace.TracerProviderBuilder,System.String,System.Action{OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions})">
+            <summary>
+            Enables SqlClient instrumentation.
+            </summary>
+            <param name="builder"><see cref="T:OpenTelemetry.Trace.TracerProviderBuilder"/> being configured.</param>
+            <param name="name">Name which is used when retrieving options.</param>
+            <param name="configureSqlClientTraceInstrumentationOptions">Callback action for configuring <see cref="T:OpenTelemetry.Instrumentation.SqlClient.SqlClientTraceInstrumentationOptions"/>.</param>
+            <returns>The instance of <see cref="T:OpenTelemetry.Trace.TracerProviderBuilder"/> to chain the calls.</returns>
+        </member>
+    </members>
+</doc>

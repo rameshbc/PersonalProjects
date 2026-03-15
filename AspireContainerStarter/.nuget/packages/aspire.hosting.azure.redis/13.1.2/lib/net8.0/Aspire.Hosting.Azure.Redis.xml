@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aspire.Hosting.Azure.Redis</name>
+    </assembly>
+    <members>
+        <member name="T:Aspire.Hosting.AzureManagedRedisExtensions">
+            <summary>
+            Provides extension methods for adding the Azure Managed Redis resources to the application model.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureManagedRedisExtensions.AddAzureManagedRedis(Aspire.Hosting.IDistributedApplicationBuilder,System.String)">
+             <summary>
+             Adds an Azure Managed Redis resource to the application model.
+             </summary>
+             <param name="builder">The builder for the distributed application.</param>
+             <param name="name">The name of the resource.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+             <remarks>
+             By default, the Azure Managed Redis resource is configured to use Microsoft Entra ID (Azure Active Directory) for authentication.
+             This requires changes to the application code to use an azure credential to authenticate with the resource. See
+             https://github.com/Azure/Microsoft.Azure.StackExchangeRedis for more information.
+            
+             <example>
+             The following example creates an Azure Managed Redis resource and referencing that resource in a .NET project.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var cache = builder.AddAzureManagedRedis("cache");
+            
+             builder.AddProject&lt;Projects.ProductService&gt;()
+                 .WithReference(cache);
+            
+             builder.Build().Run();
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureManagedRedisExtensions.RunAsContainer(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureManagedRedisResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.RedisResource}})">
+             <summary>
+             Configures an Azure Managed Redis resource to run locally in a container.
+             </summary>
+             <param name="builder">The Azure Managed Redis resource builder.</param>
+             <param name="configureContainer">Callback that exposes underlying container to allow for customization.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+             <remarks>
+             <example>
+             The following example creates an Azure Managed Redis resource that runs locally in a
+             Redis container and referencing that resource in a .NET project.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var cache = builder.AddAzureManagedRedis("cache")
+                 .RunAsContainer();
+            
+             builder.AddProject&lt;Projects.ProductService&gt;()
+                 .WithReference(cache);
+            
+             builder.Build().Run();
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureManagedRedisExtensions.WithAccessKeyAuthentication(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureManagedRedisResource})">
+             <summary>
+             Configures the resource to use access key authentication for Azure Managed Redis.
+             </summary>
+             <param name="builder">The Azure Managed Redis resource builder.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+             <remarks>
+             <example>
+             The following example creates an Azure Managed Redis resource that uses access key authentication.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var cache = builder.AddAzureManagedRedis("cache")
+                 .WithAccessKeyAuthentication();
+            
+             builder.AddProject&lt;Projects.ProductService&gt;()
+                 .WithReference(cache);
+            
+             builder.Build().Run();
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureManagedRedisExtensions.WithAccessKeyAuthentication(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureManagedRedisResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.IAzureKeyVaultResource})">
+            <summary>
+            Configures the resource to use access key authentication for Azure Managed Redis.
+            </summary>
+            <param name="builder">The Azure Managed Redis resource builder.</param>
+            <param name="keyVaultBuilder">The Azure Key Vault resource builder where the connection string used to connect to this AzureManagedRedisResource will be stored.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureManagedRedisResource">
+            <summary>
+            Represents an Azure Managed Redis resource.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureManagedRedisResource.#ctor(System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            Represents an Azure Managed Redis resource.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.ConnectionStringOutput">
+             <summary>
+             Gets the "connectionString" output reference from the bicep template for the Azure Managed Redis resource.
+            
+             This is used when Entra ID authentication is used. The connection string is an output of the bicep template.
+             </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.ConnectionStringSecretOutput">
+             <summary>
+             Gets the "connectionString" secret reference from the key vault associated with this resource.
+            
+             This is set when access key authentication is used. The connection string is stored in a secret in the Azure Key Vault.
+             </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.PrimaryAccessKeySecretOutput">
+             <summary>
+             Gets the "primaryAccessKey" secret reference from the key vault associated with this resource.
+            
+             This is set when access key authentication is used. The primary access key is stored in a secret in the Azure Key Vault.
+             </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.NameOutputReference">
+            <summary>
+            Gets the "name" output reference for the resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.HostNameOutput">
+            <summary>
+            Gets the "hostName" output reference from the bicep template for the Azure Redis resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.UseAccessKeyAuthentication">
+            <summary>
+            Gets a value indicating whether the resource uses access key authentication.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.InnerResource">
+            <summary>
+            Gets the inner Redis resource.
+            
+            This is set when RunAsContainer is called on the AzureManagedRedisResource resource to create a local Redis container.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.Annotations">
+            <inheritdoc />
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string template for the manifest for the Azure Managed Redis resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.HostName">
+            <summary>
+            Gets the host name for the Redis server.
+            </summary>
+            <remarks>
+            In container mode, resolves to the container's primary endpoint host and port.
+            In Azure mode, resolves to the Azure Redis server's hostname.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.Port">
+            <summary>
+            Gets the port for the Redis server.
+            </summary>
+            <remarks>
+            In container mode, resolves to the container's primary endpoint port.
+            In Azure mode, resolves to 10000.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.Password">
+            <summary>
+            Gets the password/access key for the Redis server.
+            </summary>
+            <remarks>
+            <list type="bullet">
+            <item>When running as a container, returns the password parameter value if one exists.</item>
+            <item>When using access key authentication in Azure mode, returns the primary access key from KeyVault.</item>
+            <item>When using Entra ID authentication in Azure mode, returns an empty expression.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureManagedRedisResource.UriExpression">
+            <summary>
+            Gets the connection URI expression for the Redis server.
+            </summary>
+            <remarks>
+            Format: <c>redis://[:{password}@]{host}:{port}</c>. The password segment is omitted when using Entra ID authentication in Azure mode.
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureManagedRedisResource.AddAsExistingResource(Aspire.Hosting.Azure.AzureResourceInfrastructure)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureManagedRedisResource.AddRoleAssignments(Aspire.Hosting.Azure.IAddRoleAssignmentsContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureRedisCacheResource">
+            <summary>
+            Represents an Azure Cache for Redis resource.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureRedisCacheResource.#ctor(System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            Represents an Azure Cache for Redis resource.
+            </summary>
+            <param name="name">The name of the resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.ConnectionStringOutput">
+             <summary>
+             Gets the "connectionString" output reference from the bicep template for the Azure Redis resource.
+            
+             This is used when Entra ID authentication is used. The connection string is an output of the bicep template.
+             </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.ConnectionStringSecretOutput">
+             <summary>
+             Gets the "connectionString" secret reference from the key vault associated with this resource.
+            
+             This is set when access key authentication is used. The connection string is stored in a secret in the Azure Key Vault.
+             </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.NameOutputReference">
+            <summary>
+            Gets the "name" output reference for the resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.HostNameOutput">
+            <summary>
+            Gets the "hostName" output reference from the bicep template for the Azure Redis resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.UseAccessKeyAuthentication">
+            <summary>
+            Gets a value indicating whether the resource uses access key authentication.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.InnerResource">
+            <summary>
+            Gets the inner Redis resource.
+            
+            This is set when RunAsContainer is called on the AzureRedisCacheResource resource to create a local Redis container.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.Annotations">
+            <inheritdoc />
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string template for the manifest for the Azure Cache for Redis resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.HostName">
+            <summary>
+            Gets the host name for the Redis server.
+            </summary>
+            <remarks>
+            In container mode, resolves to the container's primary endpoint host and port.
+            In Azure mode, resolves to the Azure Redis server's hostname.
+            </remarks>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisCacheResource.Password">
+            <summary>
+            Gets the password for the Redis server when running as a container.
+            </summary>
+            <remarks>
+            This property returns null when running in Azure mode, as Redis access is handled via connection strings.
+            When running as a container, it resolves to the password parameter value if one exists.
+            </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureRedisCacheResource.AddAsExistingResource(Aspire.Hosting.Azure.AzureResourceInfrastructure)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureRedisCacheResource.AddRoleAssignments(Aspire.Hosting.Azure.IAddRoleAssignmentsContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Aspire.Hosting.Azure.AzureRedisResource">
+            <summary>
+            Represents an Azure Redis resource.
+            </summary>
+            <param name="innerResource">The inner resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="M:Aspire.Hosting.Azure.AzureRedisResource.#ctor(Aspire.Hosting.ApplicationModel.RedisResource,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})">
+            <summary>
+            Represents an Azure Redis resource.
+            </summary>
+            <param name="innerResource">The inner resource.</param>
+            <param name="configureInfrastructure">Callback to configure the Azure resources.</param>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisResource.ConnectionString">
+            <summary>
+            Gets the "connectionString" output reference from the bicep template for the Azure Redis resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisResource.ConnectionStringExpression">
+            <summary>
+            Gets the connection string template for the manifest for the Azure Redis resource.
+            </summary>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisResource.Name">
+            <inheritdoc/>
+        </member>
+        <member name="P:Aspire.Hosting.Azure.AzureRedisResource.Annotations">
+            <inheritdoc />
+        </member>
+        <member name="T:Aspire.Hosting.AzureRedisExtensions">
+            <summary>
+            Provides extension methods for adding the Azure Redis resources to the application model.
+            </summary>
+        </member>
+        <member name="M:Aspire.Hosting.AzureRedisExtensions.PublishAsAzureRedis(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.RedisResource})">
+            <summary>
+            Configures the resource to be published as Azure Cache for Redis when deployed via Azure Developer CLI.
+            </summary>
+            <param name="builder">The <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureRedisExtensions.AsAzureRedis(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.RedisResource})">
+            <summary>
+            Configures resource to use Azure for local development and when doing a deployment via the Azure Developer CLI.
+            </summary>
+            <param name="builder">The <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+        </member>
+        <member name="M:Aspire.Hosting.AzureRedisExtensions.AddAzureRedis(Aspire.Hosting.IDistributedApplicationBuilder,System.String)">
+             <summary>
+             Adds an Azure Cache for Redis resource to the application model.
+             </summary>
+             <param name="builder">The builder for the distributed application.</param>
+             <param name="name">The name of the resource.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+             <remarks>
+             By default, the Azure Cache for Redis resource is configured to use Microsoft Entra ID (Azure Active Directory) for authentication.
+             This requires changes to the application code to use an azure credential to authenticate with the resource. See
+             https://github.com/Azure/Microsoft.Azure.StackExchangeRedis for more information.
+            
+             You can use the <see cref="M:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureRedisCacheResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.IAzureKeyVaultResource})"/> method to configure the resource to use access key authentication.
+             <example>
+             The following example creates an Azure Cache for Redis resource and referencing that resource in a .NET project.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var cache = builder.AddAzureRedis("cache");
+            
+             builder.AddProject&lt;Projects.ProductService&gt;()
+                 .WithReference(cache);
+            
+             builder.Build().Run();
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureRedisExtensions.RunAsContainer(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureRedisCacheResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.RedisResource}})">
+             <summary>
+             Configures an Azure Cache for Redis resource to run locally in a container.
+             </summary>
+             <param name="builder">The Azure Cache for Redis resource builder.</param>
+             <param name="configureContainer">Callback that exposes underlying container to allow for customization.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+             <remarks>
+             <example>
+             The following example creates an Azure Cache for Redis resource that runs locally in a
+             Redis container and referencing that resource in a .NET project.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var cache = builder.AddAzureRedis("cache")
+                 .RunAsContainer();
+            
+             builder.AddProject&lt;Projects.ProductService&gt;()
+                 .WithReference(cache);
+            
+             builder.Build().Run();
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureRedisCacheResource})">
+             <summary>
+             Configures the resource to use access key authentication for Azure Cache for Redis.
+             </summary>
+             <param name="builder">The Azure Cache for Redis resource builder.</param>
+             <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+             <remarks>
+             <example>
+             The following example creates an Azure Cache for Redis resource that uses access key authentication.
+             <code lang="csharp">
+             var builder = DistributedApplication.CreateBuilder(args);
+            
+             var cache = builder.AddAzureRedis("cache")
+                 .WithAccessKeyAuthentication();
+            
+             builder.AddProject&lt;Projects.ProductService&gt;()
+                 .WithReference(cache);
+            
+             builder.Build().Run();
+             </code>
+             </example>
+             </remarks>
+        </member>
+        <member name="M:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureRedisCacheResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.IAzureKeyVaultResource})">
+            <summary>
+            Configures the resource to use access key authentication for Azure Cache for Redis.
+            </summary>
+            <param name="builder">The Azure Cache for Redis resource builder.</param>
+            <param name="keyVaultBuilder">The Azure Key Vault resource builder where the connection string used to connect to this AzureRedisCacheResource will be stored.</param>
+            <returns>A reference to the <see cref="T:Aspire.Hosting.ApplicationModel.IResourceBuilder`1"/> builder.</returns>
+        </member>
+    </members>
+</doc>
