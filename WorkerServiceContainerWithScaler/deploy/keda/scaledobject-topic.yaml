@@ -1,0 +1,31 @@
+# KEDA ScaledObject — Topic/Subscription trigger (Managed Identity / Workload Identity)
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: keda-sb-auth-topic
+  namespace: default
+spec:
+  podIdentity:
+    provider: azure-workload
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: order-events-scaler
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: sample-worker-topic
+  minReplicaCount: 0
+  maxReplicaCount: 10
+  pollingInterval: 15
+  cooldownPeriod: 30
+  triggers:
+    - type: azure-servicebus
+      metadata:
+        namespace: myns.servicebus.windows.net
+        topicName: order-events
+        subscriptionName: shipping-sub
+        messageCount: "5"
+      authenticationRef:
+        name: keda-sb-auth-topic

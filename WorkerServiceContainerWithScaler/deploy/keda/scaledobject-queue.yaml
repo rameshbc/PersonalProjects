@@ -1,0 +1,31 @@
+# KEDA ScaledObject — Queue trigger (Managed Identity / Workload Identity)
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: keda-sb-auth
+  namespace: default
+spec:
+  podIdentity:
+    provider: azure-workload         # AKS workload identity
+    # identityId: "<user-assigned-mi-client-id>"  # uncomment for user-assigned MI
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: orders-queue-scaler
+  namespace: default
+spec:
+  scaleTargetRef:
+    name: sample-worker-queue        # Kubernetes Deployment name
+  minReplicaCount: 0                 # scale-to-zero
+  maxReplicaCount: 10
+  pollingInterval: 15                # seconds between KEDA checks
+  cooldownPeriod: 30
+  triggers:
+    - type: azure-servicebus
+      metadata:
+        namespace: myns.servicebus.windows.net   # no connection string — uses workload identity
+        queueName: orders-queue
+        messageCount: "5"            # messages per replica before scale-up
+      authenticationRef:
+        name: keda-sb-auth

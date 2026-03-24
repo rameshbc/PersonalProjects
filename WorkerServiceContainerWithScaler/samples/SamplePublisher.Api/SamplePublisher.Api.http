@@ -1,0 +1,6 @@
+@SamplePublisher.Api_HostAddress = http://localhost:5223
+
+GET {{SamplePublisher.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

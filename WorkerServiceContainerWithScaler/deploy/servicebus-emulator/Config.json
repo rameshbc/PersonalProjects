@@ -1,0 +1,41 @@
+{
+  "UserConfig": {
+    "Namespaces": [
+      {
+        "Name": "sbemulatorns",
+        "Queues": [
+          {
+            "Name": "orders-queue",
+            "Properties": {
+              "DeadLetteringOnMessageExpiration": true,
+              "MaxDeliveryCount": 10,
+              "LockDuration": "PT1M",
+              "DefaultMessageTimeToLive": "PT1H"
+            }
+          }
+        ],
+        "Topics": [
+          {
+            "Name": "order-events",
+            "Properties": {
+              "DefaultMessageTimeToLive": "PT1H"
+            },
+            "Subscriptions": [
+              {
+                "Name": "shipping-sub",
+                "Properties": {
+                  "DeadLetteringOnMessageExpiration": true,
+                  "MaxDeliveryCount": 10,
+                  "LockDuration": "PT1M"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Logging": {
+      "Type": "File"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+###############################################################################
+# Local development infrastructure
+#
+# Usage:
+#   cp .env.example .env          # fill in SA_PASSWORD
+#   docker-compose up -d          # start SQL Server + Service Bus Emulator
+#   docker-compose logs -f        # tail logs
+#   docker-compose down -v        # tear down (removes volumes)
+#
+# Run the sample apps locally (outside Docker) and point them at this infra
+# via user-secrets or ASPNETCORE_ environment variables — see .env.example.
+###############################################################################
+
+services:
+
+  # ── SQL Server 2022 ─────────────────────────────────────────────────────────
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: messaging-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      SA_PASSWORD: "${SA_PASSWORD:?SA_PASSWORD is required — copy .env.example to .env}"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      # sqlcmd path changed in mssql-tools18 — try both locations
+      test:
+        - CMD-SHELL
+        - |
+          /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$$SA_PASSWORD" -Q "SELECT 1" -C -No \
+          || /opt/mssql-tools/bin/sqlcmd  -S localhost -U sa -P "$$SA_PASSWORD" -Q "SELECT 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - messaging-net
+
+  # ── DB schema init (runs once, exits) ──────────────────────────────────────
+  db-init:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: messaging-db-init
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      SA_PASSWORD: "${SA_PASSWORD}"
+    volumes:
+      - ./deploy/sql:/sql:ro
+    entrypoint:
+      - /bin/bash
+      - -c
+      - |
+        echo "Creating database and applying schema..."
+        /opt/mssql-tools18/bin/sqlcmd \
+          -S sqlserver -U sa -P "$$SA_PASSWORD" \
+          -i /sql/001_CreateMessageAuditLog.sql \
+          -C -No \
+          && echo "Schema applied." \
+          || /opt/mssql-tools/bin/sqlcmd \
+               -S sqlserver -U sa -P "$$SA_PASSWORD" \
+               -i /sql/001_CreateMessageAuditLog.sql \
+          && echo "Schema applied."
+    networks:
+      - messaging-net
+    restart: "no"
+
+  # ── Azure Service Bus Emulator ───────────────────────────────────────────────
+  # The emulator uses SQL Server for internal state; point it at the sqlserver
+  # container above using SQL_SERVER + MSSQL_SA_PASSWORD env vars.
+  servicebus-emulator:
+    image: mcr.microsoft.com/azure-messaging/servicebus-emulator:latest
+    platform: linux/amd64          # emulator is amd64-only; runs via Rosetta on Apple Silicon
+    container_name: messaging-servicebus-emulator
+    environment:
+      ACCEPT_EULA: "Y"
+      SQL_SERVER: sqlserver
+      MSSQL_SA_PASSWORD: "${SA_PASSWORD}"
+    ports:
+      - "5672:5672"    # AMQP
+    volumes:
+      - ./deploy/servicebus-emulator/Config.json:/ServiceBus_Emulator/ConfigFiles/Config.json:ro
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    networks:
+      - messaging-net
+
+networks:
+  messaging-net:
+    driver: bridge
+
+volumes:
+  sqlserver-data:

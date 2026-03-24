@@ -1,0 +1,22 @@
+###############################################################################
+# Dev container service — used by .devcontainer/devcontainer.json
+#
+# Merged with docker-compose.yml so the devcontainer shares messaging-net
+# and can reach sqlserver (localhost:1433) and servicebus-emulator (localhost:5672)
+# via port-forwarding configured in devcontainer.json.
+###############################################################################
+
+services:
+  devcontainer:
+    image: mcr.microsoft.com/devcontainers/base:ubuntu-24.04
+    volumes:
+      - .:/workspace:cached
+    command: sleep infinity
+    networks:
+      - messaging-net
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+
+networks:
+  messaging-net:    # declared in docker-compose.yml; referenced here so Rider resolves it

@@ -1,0 +1,41 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.DotSettings.user
+
+## Secrets — never commit these
+.env
+appsettings.*.Local.json
+**/secrets.json
+**/appsettings.Local.json
+
+## User secrets (machine-specific)
+# %APPDATA%/Microsoft/UserSecrets is outside the repo; this covers any accidentally placed file
+secrets/
+
+## Logs
+*.log
+logs/
+
+## Docker
+docker-compose.override.yml
+
+## macOS
+.DS_Store
+
+## JetBrains
+.idea/
+*.iml
+
+## Coverage & test output
+coverage/
+TestResults/
+*.coverage
+*.coveragexml
+*.trx
+
+## Temp / local run logs
+/tmp/*.log

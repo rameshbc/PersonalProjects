@@ -1,0 +1,44 @@
+{
+  "name": "Messaging Library Dev",
+
+  // Start the local infra stack alongside the dev container
+  "dockerComposeFile": ["../docker-compose.yml", "../docker-compose.devcontainer.yml"],
+  "service": "devcontainer",          // defined in docker-compose.devcontainer.yml
+  "workspaceFolder": "/workspace",
+
+  // Forward SQL Server and Service Bus AMQP ports into the dev container
+  "forwardPorts": [1433, 5672],
+  "portsAttributes": {
+    "1433": { "label": "SQL Server" },
+    "5672": { "label": "Service Bus Emulator (AMQP)" }
+  },
+
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": { "version": "8" },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  "customizations": {
+    "jetbrains": {
+      "backend": "Rider"
+    },
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csdevkit",
+        "ms-azuretools.vscode-docker",
+        "humao.rest-client"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "dotnet.defaultSolution": "MessagingLibrary.sln"
+      }
+    }
+  },
+
+  // Rider manages its own container keep-alive; don't override the compose command
+  "overrideCommand": false,
+
+  // After container starts: restore packages and set up user-secrets
+  "postCreateCommand": "bash .devcontainer/post-create.sh"
+}
