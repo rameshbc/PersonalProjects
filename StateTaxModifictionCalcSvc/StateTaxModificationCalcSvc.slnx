@@ -1,9 +1,0 @@
-<Solution>
-  <Project Path="src/Domain/Domain.csproj" />
-  <Project Path="src/Calculation/Calculation.csproj" />
-  <Project Path="src/Application/Application.csproj" />
-  <Project Path="src/Infrastructure/Infrastructure.csproj" />
-  <Project Path="src/WorkerService/WorkerService.csproj" />
-  <Project Path="tests/Calculation.Tests/Calculation.Tests.csproj" />
-  <Project Path="tests/Calculation.Benchmarks/Calculation.Benchmarks.csproj" />
-</Solution>
