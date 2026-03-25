@@ -17,4 +17,10 @@ public interface IMessagePublisher
         MessageEnvelope envelope,
         PublishOptions? options = null,
         CancellationToken ct = default);
+
+    Task<IReadOnlyList<PublishResult>> PublishBatchAsync(
+        string destinationName,
+        IReadOnlyList<MessageEnvelope> envelopes,
+        PublishOptions? options = null,
+        CancellationToken ct = default);
 }

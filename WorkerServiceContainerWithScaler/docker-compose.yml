@@ -16,6 +16,7 @@ services:
   # ── SQL Server 2022 ─────────────────────────────────────────────────────────
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64          # SQL Server image is amd64-only; required on Apple Silicon
     container_name: messaging-sqlserver
     environment:
       ACCEPT_EULA: "Y"
@@ -42,6 +43,7 @@ services:
   # ── DB schema init (runs once, exits) ──────────────────────────────────────
   db-init:
     image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
     container_name: messaging-db-init
     depends_on:
       sqlserver:

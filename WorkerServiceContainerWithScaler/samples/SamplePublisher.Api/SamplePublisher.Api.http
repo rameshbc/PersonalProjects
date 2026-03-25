@@ -1,6 +1,58 @@
-@SamplePublisher.Api_HostAddress = http://localhost:5223
+@host = http://localhost:5223
 
-GET {{SamplePublisher.Api_HostAddress}}/weatherforecast/
+GET {{host}}/healthz
+Accept: application/json
+
+###
+
+# Single order publish
+POST {{host}}/orders
+Content-Type: application/json
+
+{
+  "clientId": "client-001",
+  "customerId": "cust-001",
+  "amount": 99.99
+}
+
+###
+
+# Batch publish — 20 orders (validates Service Bus SendMessagesAsync path)
+POST {{host}}/orders/batch
+Content-Type: application/json
+X-Correlation-Id: 11111111-2222-3333-4444-555555555555
+
+[
+  { "clientId": "client-001", "customerId": "cust-001", "amount": 10.00 },
+  { "clientId": "client-001", "customerId": "cust-002", "amount": 20.50 },
+  { "clientId": "client-001", "customerId": "cust-003", "amount": 35.75 },
+  { "clientId": "client-001", "customerId": "cust-004", "amount": 5.99 },
+  { "clientId": "client-001", "customerId": "cust-005", "amount": 150.00 },
+  { "clientId": "client-001", "customerId": "cust-006", "amount": 72.25 },
+  { "clientId": "client-001", "customerId": "cust-007", "amount": 9.49 },
+  { "clientId": "client-001", "customerId": "cust-008", "amount": 300.00 },
+  { "clientId": "client-001", "customerId": "cust-009", "amount": 44.99 },
+  { "clientId": "client-001", "customerId": "cust-010", "amount": 18.75 },
+  { "clientId": "client-002", "customerId": "cust-011", "amount": 60.00 },
+  { "clientId": "client-002", "customerId": "cust-012", "amount": 88.88 },
+  { "clientId": "client-002", "customerId": "cust-013", "amount": 12.34 },
+  { "clientId": "client-002", "customerId": "cust-014", "amount": 500.00 },
+  { "clientId": "client-002", "customerId": "cust-015", "amount": 25.00 },
+  { "clientId": "client-002", "customerId": "cust-016", "amount": 99.00 },
+  { "clientId": "client-002", "customerId": "cust-017", "amount": 3.50 },
+  { "clientId": "client-002", "customerId": "cust-018", "amount": 210.00 },
+  { "clientId": "client-002", "customerId": "cust-019", "amount": 47.60 },
+  { "clientId": "client-002", "customerId": "cust-020", "amount": 130.00 }
+]
+
+###
+
+# Audit trail — validate publish→complete lifecycle for orders-queue
+# Run after the batch publish (and after the worker has consumed the messages)
+# Each entry shows:
+#   Publish.Status:  Queued → Published  (set by SamplePublisher.Api)
+#   Receive.Status:  Received → Processing → Completed  (set by SampleWorker.Queue)
+GET {{host}}/audit/trail?destination=orders-queue&since=30
 Accept: application/json
 
 ###

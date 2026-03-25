@@ -136,6 +136,114 @@ internal sealed class MessagePublisher : IMessagePublisher
         }
     }
 
+    public async Task<IReadOnlyList<PublishResult>> PublishBatchAsync(
+        string destinationName,
+        IReadOnlyList<MessageEnvelope> envelopes,
+        PublishOptions? options = null,
+        CancellationToken ct = default)
+    {
+        if (envelopes.Count == 0)
+            return Array.Empty<PublishResult>();
+
+        // 1. Pending check — run once for the whole batch using the first envelope as key
+        int pendingCount = 0;
+        if (_opts.Audit.PendingCheck.Enabled)
+        {
+            var first = envelopes[0];
+            var maxPending = options?.MaxPendingBeforeSuppress
+                             ?? _opts.Audit.PendingCheck.MaxPendingBeforeSuppress;
+            var cutoff = DateTime.UtcNow.AddMinutes(-_opts.Audit.PendingCheck.LookbackWindowMinutes);
+
+            pendingCount = await _audit.CountPendingAsync(
+                first.ClientId, destinationName, first.Subject, cutoff, ct);
+
+            if (pendingCount >= maxPending)
+            {
+                var reason = $"Pending count {pendingCount} >= threshold {maxPending} " +
+                             $"(destination={destinationName})";
+                _logger.LogWarning("Suppressing batch of {Count} to {Destination}: {Reason}",
+                    envelopes.Count, destinationName, reason);
+
+                var suppressed = new List<PublishResult>(envelopes.Count);
+                foreach (var env in envelopes)
+                {
+                    var se = BuildAuditEntry(destinationName, env, MessageStatus.Suppressed);
+                    se.PendingCount = pendingCount;
+                    await _audit.InsertAsync(se, ct);
+                    suppressed.Add(PublishResult.Suppressed(env.MessageId, pendingCount, reason));
+                }
+                return suppressed;
+            }
+        }
+
+        // 2. Audit all envelopes as Queued
+        var auditEntries = new List<MessageAuditLog>(envelopes.Count);
+        foreach (var env in envelopes)
+        {
+            var entry = BuildAuditEntry(destinationName, env, MessageStatus.Queued);
+            entry.PendingCount = pendingCount;
+            await _audit.InsertAsync(entry, ct);
+            auditEntries.Add(entry);
+        }
+
+        // 3. Build Service Bus messages
+        var sbMessages = new List<ServiceBusMessage>(envelopes.Count);
+        for (int i = 0; i < envelopes.Count; i++)
+        {
+            var env = envelopes[i];
+            var (body, isCompressed, contentType) = PrepareBody(env, options);
+            var sbMsg = new ServiceBusMessage(body)
+            {
+                MessageId     = env.MessageId,
+                CorrelationId = env.CorrelationId,
+                Subject       = env.Subject,
+                ContentType   = contentType,
+                SessionId     = env.SessionId
+            };
+            if (env.ScheduledEnqueueTime.HasValue)
+                sbMsg.ScheduledEnqueueTime = env.ScheduledEnqueueTime.Value;
+            sbMsg.ApplicationProperties["x-messaging-client-id"] = env.ClientId;
+            sbMsg.ApplicationProperties["x-messaging-compressed"] = isCompressed;
+            foreach (var (k, v) in env.ApplicationProperties)
+                sbMsg.ApplicationProperties[k] = v;
+            sbMessages.Add(sbMsg);
+        }
+
+        // 4. Send as a single Service Bus batch via the resilience pipeline
+        var results = new PublishResult[envelopes.Count];
+        try
+        {
+            await _pipeline.ExecuteAsync(async token =>
+            {
+                var sender = _client.CreateSender(destinationName);
+                await using var _ = sender.ConfigureAwait(false);
+                await sender.SendMessagesAsync(sbMessages, token);
+            }, ct);
+
+            _logger.LogInformation("Published batch of {Count} messages to {Destination}",
+                envelopes.Count, destinationName);
+
+            for (int i = 0; i < envelopes.Count; i++)
+            {
+                await _audit.UpdateStatusAsync(auditEntries[i].Id, MessageStatus.Published, null, ct);
+                results[i] = PublishResult.Success(envelopes[i].MessageId);
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to publish batch of {Count} messages to {Destination}",
+                envelopes.Count, destinationName);
+
+            for (int i = 0; i < envelopes.Count; i++)
+            {
+                await _audit.UpdateStatusAsync(auditEntries[i].Id, MessageStatus.PublishFailed, ex.Message, ct);
+                results[i] = PublishResult.Failed(envelopes[i].MessageId, ex);
+            }
+        }
+
+        return results;
+    }
+
     private (BinaryData body, bool isCompressed, string contentType) PrepareBody(
         MessageEnvelope envelope, PublishOptions? options)
     {

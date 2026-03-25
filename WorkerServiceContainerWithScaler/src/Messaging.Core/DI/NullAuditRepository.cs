@@ -10,4 +10,6 @@ internal sealed class NullAuditRepository : IAuditRepository
     public Task InsertAsync(MessageAuditLog entry, CancellationToken ct = default) => Task.CompletedTask;
     public Task UpdateStatusAsync(long id, MessageStatus status, string? statusDetail, CancellationToken ct = default) => Task.CompletedTask;
     public Task<int> CountPendingAsync(string clientId, string destinationName, string? subject, DateTime cutoff, CancellationToken ct = default) => Task.FromResult(0);
+    public Task<IReadOnlyList<MessageAuditLog>> QueryRecentAsync(string? destinationName = null, DateTime? since = null, int limit = 200, CancellationToken ct = default)
+        => Task.FromResult<IReadOnlyList<MessageAuditLog>>(Array.Empty<MessageAuditLog>());
 }

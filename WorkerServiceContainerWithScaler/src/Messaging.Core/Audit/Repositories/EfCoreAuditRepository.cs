@@ -40,6 +40,24 @@ internal sealed class EfCoreAuditRepository : IAuditRepository
                     ct);
     }
 
+    public async Task<IReadOnlyList<MessageAuditLog>> QueryRecentAsync(
+        string? destinationName = null,
+        DateTime? since = null,
+        int limit = 200,
+        CancellationToken ct = default)
+    {
+        await using var db = await _factory.CreateDbContextAsync(ct);
+        var query = db.MessageAuditLogs.AsNoTracking();
+        if (destinationName is not null)
+            query = query.Where(x => x.DestinationName == destinationName);
+        if (since is not null)
+            query = query.Where(x => x.CreatedAt >= since.Value);
+        return await query
+            .OrderByDescending(x => x.CreatedAt)
+            .Take(limit)
+            .ToListAsync(ct);
+    }
+
     public async Task<int> CountPendingAsync(
         string clientId,
         string destinationName,

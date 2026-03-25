@@ -35,7 +35,7 @@
       }
     ],
     "Logging": {
-      "Type": "File"
+      "Type": "Console"
     }
   }
 }

@@ -1,16 +1,20 @@
-{
+ {
   "name": "Messaging Library Dev",
 
   // Start the local infra stack alongside the dev container
   "dockerComposeFile": ["../docker-compose.yml", "../docker-compose.devcontainer.yml"],
   "service": "devcontainer",          // defined in docker-compose.devcontainer.yml
+  "runServices": ["sqlserver", "servicebus-emulator", "db-init", "devcontainer"],
   "workspaceFolder": "/workspace",
 
   // Forward SQL Server and Service Bus AMQP ports into the dev container
-  "forwardPorts": [1433, 5672],
+  "forwardPorts": [1433, 5672, 5223, 7119, 8080],
   "portsAttributes": {
     "1433": { "label": "SQL Server" },
-    "5672": { "label": "Service Bus Emulator (AMQP)" }
+    "5672": { "label": "Service Bus Emulator (AMQP)" },
+    "5223": { "label": "SamplePublisher HTTP" },
+    "7119": { "label": "SamplePublisher HTTPS" },
+    "8080": { "label": "Container App HTTP" }
   },
 
   "features": {
@@ -38,6 +42,9 @@
 
   // Rider manages its own container keep-alive; don't override the compose command
   "overrideCommand": false,
+
+  // Ensure compose variable interpolation succeeds on first clone
+  "initializeCommand": "bash -lc '[ -f .env ] || cp .env.example .env'",
 
   // After container starts: restore packages and set up user-secrets
   "postCreateCommand": "bash .devcontainer/post-create.sh"

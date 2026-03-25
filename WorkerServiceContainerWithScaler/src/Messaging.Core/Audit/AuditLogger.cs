@@ -48,6 +48,10 @@ internal sealed class AuditLogger : BackgroundService, IAuditRepository
         return _inner.CountPendingAsync(clientId, destinationName, subject, cutoff, ct);
     }
 
+    public Task<IReadOnlyList<MessageAuditLog>> QueryRecentAsync(
+        string? destinationName = null, DateTime? since = null, int limit = 200, CancellationToken ct = default)
+        => _inner.QueryRecentAsync(destinationName, since, limit, ct);
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await foreach (var work in _channel.Reader.ReadAllAsync(stoppingToken))
