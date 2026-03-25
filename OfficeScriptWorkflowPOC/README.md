@@ -1,4 +1,4 @@
-# Office Script Workflow POC
+# Office Script Workflow 
 
 Enterprise-grade .NET Worker Service that drives Excel workbook operations via
 Power Automate and Office Scripts — replacing SpreadsheetGear/.NET Excel libraries
