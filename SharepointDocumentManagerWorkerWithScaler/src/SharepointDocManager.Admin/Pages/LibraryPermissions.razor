@@ -1,0 +1,49 @@
+@page "/clients/{ClientId}/permissions/{FolderId}"
+@using SharepointDocManager.Admin.Services
+@using SharepointDocManager.Core.Entities
+@inject AdminApiClient Api
+
+<h2>Folder Permissions</h2>
+<p>Client: <strong>@ClientId</strong> | Folder: <strong>@FolderId</strong></p>
+
+@if (_loading)
+{
+    <p>Loading folders...</p>
+}
+else
+{
+    <h3>Child Folders</h3>
+    @if (_folders is null || !_folders.Any())
+    {
+        <p>No child folders found.</p>
+    }
+    else
+    {
+        <ul>
+            @foreach (var folder in _folders)
+            {
+                <li>
+                    @folder.Name
+                    @if (folder.IsProtected)
+                    {
+                        <span class="badge badge-protected">Protected</span>
+                    }
+                </li>
+            }
+        </ul>
+    }
+}
+
+@code {
+    [Parameter] public string ClientId  { get; set; } = string.Empty;
+    [Parameter] public string FolderId  { get; set; } = string.Empty;
+
+    private List<DocumentFolder>? _folders;
+    private bool _loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _folders = await Api.GetFoldersAsync(ClientId, FolderId);
+        _loading = false;
+    }
+}

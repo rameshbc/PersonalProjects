@@ -1,0 +1,4 @@
+ClientId,SiteUrl,SiteId,Notes
+client-001,https://contoso.sharepoint.com/sites/client-001,,Leave SiteId blank — script will resolve it
+client-002,https://contoso.sharepoint.com/sites/client-002,,
+client-003,https://contoso.sharepoint.com/sites/client-003,,Protected site — verify manually after run

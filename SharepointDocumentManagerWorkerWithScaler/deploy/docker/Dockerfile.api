@@ -1,0 +1,37 @@
+# ── Stage 1: Build ────────────────────────────────────────────────────────────
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copy solution + project files first (layer-caches NuGet restore)
+COPY SharepointDocManager.sln .
+COPY src/SharepointDocManager.Core/SharepointDocManager.Core.csproj                     src/SharepointDocManager.Core/
+COPY src/SharepointDocManager.Infrastructure/SharepointDocManager.Infrastructure.csproj src/SharepointDocManager.Infrastructure/
+COPY src/SharepointDocManager.Application/SharepointDocManager.Application.csproj       src/SharepointDocManager.Application/
+COPY src/SharepointDocManager.Api/SharepointDocManager.Api.csproj                       src/SharepointDocManager.Api/
+
+RUN dotnet restore src/SharepointDocManager.Api/SharepointDocManager.Api.csproj
+
+# Copy full source and publish
+COPY src/ src/
+RUN dotnet publish src/SharepointDocManager.Api/SharepointDocManager.Api.csproj \
+    -c Release -o /app/publish --no-restore
+
+# ── Stage 2: Runtime ──────────────────────────────────────────────────────────
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+
+# Non-root user for least-privilege container execution
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+USER appuser
+
+COPY --from=build /app/publish .
+
+# Health check — liveness probe for AKS / App Service
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8080
+ENV DOTNET_RUNNING_IN_CONTAINER=true
+
+ENTRYPOINT ["dotnet", "SharepointDocManager.Api.dll"]

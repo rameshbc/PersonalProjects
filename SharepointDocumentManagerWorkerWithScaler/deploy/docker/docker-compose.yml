@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # SQL Server — local development database
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Dev_Password123!"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Dev_Password123!" -Q "SELECT 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # API service
+  api:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.api
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=SharepointDocManager;User Id=sa;Password=Dev_Password123!;TrustServerCertificate=True"
+      Graph__AuthMode: ClientCredentials
+      AZURE_TENANT_ID: ${AZURE_TENANT_ID:-your-tenant-id}
+      AZURE_CLIENT_ID: ${AZURE_CLIENT_ID:-your-client-id}
+      AZURE_CLIENT_SECRET: ${AZURE_CLIENT_SECRET:-your-client-secret}
+    ports:
+      - "7001:8080"
+    depends_on:
+      mssql:
+        condition: service_healthy
+    healthcheck:
+      test: curl -f http://localhost:8080/health || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Worker service
+  worker:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.worker
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=mssql,1433;Database=SharepointDocManager;User Id=sa;Password=Dev_Password123!;TrustServerCertificate=True"
+      Graph__AuthMode: ClientCredentials
+      AZURE_TENANT_ID: ${AZURE_TENANT_ID:-your-tenant-id}
+      AZURE_CLIENT_ID: ${AZURE_CLIENT_ID:-your-client-id}
+      AZURE_CLIENT_SECRET: ${AZURE_CLIENT_SECRET:-your-client-secret}
+    depends_on:
+      mssql:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+
+  # Admin portal
+  admin:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.admin
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      Api__BaseUrl: http://api:8080
+    ports:
+      - "7002:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  sqldata:

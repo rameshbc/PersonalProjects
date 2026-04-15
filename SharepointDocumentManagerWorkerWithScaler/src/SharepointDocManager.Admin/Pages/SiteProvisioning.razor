@@ -1,0 +1,120 @@
+@page "/clients/provision"
+@using SharepointDocManager.Admin.Services
+@using SharepointDocManager.Core.Enums
+@using SharepointDocManager.Core.Models
+@inject AdminApiClient Api
+@inject NavigationManager Nav
+
+<h2>Provision New Client Site</h2>
+
+<EditForm Model="_model" OnValidSubmit="SubmitAsync">
+    <DataAnnotationsValidator />
+
+    <div>
+        <label>Client ID</label>
+        <InputText @bind-Value="_model.ClientId" placeholder="e.g. client-001" />
+    </div>
+
+    <div>
+        <label>Tenant ID</label>
+        <InputText @bind-Value="_model.TenantId" placeholder="Entra tenant GUID" />
+    </div>
+
+    <div>
+        <label>Storage Backend</label>
+        <InputSelect @bind-Value="_model.StorageBackend">
+            <option value="SharePointOnline">SharePoint Online</option>
+            <option value="SharePointEmbedded">SharePoint Embedded</option>
+        </InputSelect>
+    </div>
+
+    @if (_model.StorageBackend == "SharePointOnline")
+    {
+        <div>
+            <label>SP Site URL</label>
+            <InputText @bind-Value="_model.SpSiteUrl" placeholder="https://tenant.sharepoint.com/sites/..." />
+        </div>
+    }
+    else
+    {
+        <div>
+            <label>SPE Container ID</label>
+            <InputText @bind-Value="_model.SpeContainerId" placeholder="Pre-created container driveId" />
+        </div>
+    }
+
+    <button type="submit" disabled="@_submitting">
+        @(_submitting ? "Provisioning…" : "Provision Client")
+    </button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(_error))
+{
+    <p class="error">@_error</p>
+}
+@if (!string.IsNullOrEmpty(_success))
+{
+    <p class="success">@_success</p>
+}
+
+@code {
+    private readonly ProvisionFormModel _model = new();
+    private bool   _submitting;
+    private string _error   = string.Empty;
+    private string _success = string.Empty;
+
+    private async Task SubmitAsync()
+    {
+        _submitting = true;
+        _error      = string.Empty;
+        _success    = string.Empty;
+
+        try
+        {
+            var backend = Enum.Parse<StorageBackend>(_model.StorageBackend);
+
+            // Default folder structure per the spec
+            var folderSpec = new FolderStructureSpec
+            {
+                ClientId = _model.ClientId,
+                RootName = "RootParent",
+                Children =
+                [
+                    new FolderNode { Name = "Parent-A", Level = Core.Enums.FolderLevel.Parent,
+                        Children = [ new FolderNode { Name = "Child-A", Level = Core.Enums.FolderLevel.Child } ] },
+                    new FolderNode { Name = "Parent-B", Level = Core.Enums.FolderLevel.Parent,
+                        Children = [ new FolderNode { Name = "Child-A", Level = Core.Enums.FolderLevel.Child } ] },
+                    new FolderNode { Name = "Parent-C", Level = Core.Enums.FolderLevel.Parent,
+                        Children =
+                        [
+                            new FolderNode { Name = "Child-A", Level = Core.Enums.FolderLevel.Child },
+                            new FolderNode { Name = "Child-B", Level = Core.Enums.FolderLevel.Child, IsProtected = true }
+                        ]}
+                ]
+            };
+
+            await Api.ProvisionClientAsync(
+                _model.ClientId, _model.TenantId, backend,
+                _model.SpSiteUrl, _model.SpeContainerId, folderSpec);
+
+            _success = $"Client '{_model.ClientId}' provisioned successfully.";
+        }
+        catch (Exception ex)
+        {
+            _error = $"Provisioning failed: {ex.Message}";
+        }
+        finally
+        {
+            _submitting = false;
+        }
+    }
+
+    private sealed class ProvisionFormModel
+    {
+        public string ClientId      { get; set; } = string.Empty;
+        public string TenantId      { get; set; } = string.Empty;
+        public string StorageBackend { get; set; } = "SharePointOnline";
+        public string SpSiteUrl     { get; set; } = string.Empty;
+        public string SpeContainerId { get; set; } = string.Empty;
+    }
+}

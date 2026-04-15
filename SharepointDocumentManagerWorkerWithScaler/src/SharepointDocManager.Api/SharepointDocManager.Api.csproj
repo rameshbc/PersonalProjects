@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>SharepointDocManager.Api</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharepointDocManager.Application\SharepointDocManager.Application.csproj" />
+    <ProjectReference Include="..\SharepointDocManager.Infrastructure\SharepointDocManager.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR"            Version="1.*" />
+    <PackageReference Include="Microsoft.Extensions.Resilience"         Version="8.*" />
+    <PackageReference Include="Serilog.AspNetCore"                      Version="8.*" />
+    <PackageReference Include="Serilog.Sinks.Console"                   Version="5.*" />
+    <PackageReference Include="Serilog.Formatting.Compact"              Version="2.*" />
+    <PackageReference Include="Swashbuckle.AspNetCore"                  Version="6.*" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting"        Version="1.*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.*" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http"      Version="1.*" />
+  </ItemGroup>
+</Project>

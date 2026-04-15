@@ -1,0 +1,24 @@
+// ── Bicep Parameters Template ─────────────────────────────────────────────
+// Copy this file to deploy/infrastructure/main.bicepparam and fill in values
+// See DEPLOYMENT.md for detailed instructions
+
+using './main.bicep'
+
+param projectName = 'spodm'
+param environment = 'prod'
+param location = 'eastus'
+param apiSku = 'B3'
+param adminSku = 'B2'
+param workerSku = 'B2'
+param sqlSku = 'Standard'
+param sqlCapacity = 100
+param acrSku = 'Standard'
+param kvSku = 'standard'
+param azureTenantId = 'your-tenant-id-here'
+param azureClientId = 'your-client-id-here'
+param azureClientSecret = 'your-client-secret-here'
+param sqlAdminUsername = 'sqladmin'
+param sqlAdminPassword = 'SecurePassword!2024'
+param imageTag = 'latest'
+param acrName = 'your-acr-name-here'
+param enableAppInsights = true

@@ -1,0 +1,15 @@
+# Build output
+**/bin/
+**/obj/
+
+# .NET
+*.user
+*.suo
+.vs/
+*.swp
+
+# Rider
+.idea/
+
+# macOS
+.DS_Store

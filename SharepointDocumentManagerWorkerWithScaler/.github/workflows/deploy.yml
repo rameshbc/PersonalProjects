@@ -1,0 +1,199 @@
+name: Deploy SharePoint Document Manager
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'deploy/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+
+env:
+  REGISTRY: ${{ secrets.AZURE_CONTAINER_REGISTRY_NAME }}.azurecr.io
+  API_IMAGE: sharepoint-doc-manager-api
+  WORKER_IMAGE: sharepoint-doc-manager-worker
+  ADMIN_IMAGE: sharepoint-doc-manager-admin
+
+jobs:
+  # ────────────────────────────────────────────────────────────────────────
+  # Build .NET Solution
+  # ────────────────────────────────────────────────────────────────────────
+  build:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.meta.outputs.tags }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run unit tests
+        run: dotnet test --configuration Release --no-build --verbosity normal
+
+      - name: Generate version tag
+        id: meta
+        run: echo "tags=$(echo ${{ github.run_number }} | xargs -I {} echo 'v{}-${{ github.sha }}')" >> $GITHUB_OUTPUT
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Build and Push Docker Images to ACR
+  # ────────────────────────────────────────────────────────────────────────
+  build-docker:
+    name: Build Docker Images
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+        image: [api, worker, admin]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure Container Registry login
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.REGISTRY }}
+          username: ${{ secrets.AZURE_CLIENT_ID }}
+          password: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+      - name: Build and push ${{ matrix.image }} image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: deploy/docker/Dockerfile.${{ matrix.image }}
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/sharepoint-doc-manager-${{ matrix.image }}:${{ needs.build.outputs.image-tag }}
+            ${{ env.REGISTRY }}/sharepoint-doc-manager-${{ matrix.image }}:latest
+          registry: ${{ env.REGISTRY }}
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Deploy Infrastructure and Applications to Azure
+  # ────────────────────────────────────────────────────────────────────────
+  deploy:
+    name: Deploy to Azure
+    runs-on: ubuntu-latest
+    needs: [build, build-docker]
+    environment:
+      name: ${{ github.event.inputs.environment || 'staging' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Set environment variables
+        run: |
+          ENV=${{ github.event.inputs.environment || 'staging' }}
+          echo "DEPLOYMENT_ENV=$ENV" >> $GITHUB_ENV
+
+      - name: Create Resource Group
+        run: |
+          az group create \
+            --name spodm-${{ env.DEPLOYMENT_ENV }}-rg \
+            --location eastus
+
+      - name: Deploy Bicep Infrastructure
+        run: |
+          az deployment group create \
+            --name spodm-${{ env.DEPLOYMENT_ENV }}-$(date +%s) \
+            --resource-group spodm-${{ env.DEPLOYMENT_ENV }}-rg \
+            --template-file deploy/infrastructure/main.bicep \
+            --parameters \
+              projectName=spodm \
+              environment=${{ env.DEPLOYMENT_ENV }} \
+              location=eastus \
+              apiSku=${{ env.DEPLOYMENT_ENV == 'prod' && 'B3' || 'B1' }} \
+              acrName=${{ secrets.AZURE_CONTAINER_REGISTRY_NAME }} \
+              azureTenantId=${{ secrets.AZURE_TENANT_ID }} \
+              azureClientId=${{ secrets.AZURE_CLIENT_ID }} \
+              azureClientSecret=${{ secrets.AZURE_CLIENT_SECRET }} \
+              sqlAdminUsername=${{ secrets.SQL_ADMIN_USERNAME }} \
+              sqlAdminPassword=${{ secrets.SQL_ADMIN_PASSWORD }} \
+              imageTag=${{ needs.build.outputs.image-tag }} \
+              enableAppInsights=${{ env.DEPLOYMENT_ENV == 'prod' }}
+
+      - name: Run EF Core Migrations
+        run: |
+          dotnet tool install --global dotnet-ef
+          dotnet ef database update \
+            --project src/SharepointDocManager.Infrastructure/SharepointDocManager.Infrastructure.csproj \
+            --startup-project src/SharepointDocManager.Api/SharepointDocManager.Api.csproj \
+            --configuration Release \
+            -- "--connection-string=Server=tcp:spodmsql$(echo ${{ github.sha }} | cut -c1-8).database.windows.net,1433;Initial Catalog=spodmdb;Authentication=Active Directory Default;Encrypt=true;TrustServerCertificate=false;Connection Timeout=30;"
+
+      - name: Update App Service Docker Images
+        env:
+          RESOURCE_GROUP: spodm-${{ env.DEPLOYMENT_ENV }}-rg
+        run: |
+          for service in api worker admin; do
+            az webapp config container set \
+              --resource-group $RESOURCE_GROUP \
+              --name spodm-${{ env.DEPLOYMENT_ENV }}-${service}-app \
+              --docker-custom-image-name ${{ env.REGISTRY }}/sharepoint-doc-manager-${service}:${{ needs.build.outputs.image-tag }} \
+              --docker-registry-server-url https://${{ env.REGISTRY }} \
+              --docker-registry-server-user ${{ secrets.AZURE_CLIENT_ID }} \
+              --docker-registry-server-password ${{ secrets.AZURE_CLIENT_SECRET }}
+          done
+
+      - name: Health Check
+        run: |
+          echo "Waiting for API to be healthy..."
+          for i in {1..30}; do
+            if curl -f https://spodm-${{ env.DEPLOYMENT_ENV }}-api-app.azurewebsites.net/health > /dev/null 2>&1; then
+              echo "✓ API is healthy"
+              exit 0
+            fi
+            echo "Attempt $i/30 - Waiting for API to start..."
+            sleep 10
+          done
+          echo "✗ API health check failed"
+          exit 1
+
+      - name: Slack Notification
+        if: always()
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "SharePoint Doc Manager deployment ${{ job.status }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*SharePoint Doc Manager*\nDeployment to `${{ env.DEPLOYMENT_ENV }}`: ${{ job.status }}\nCommit: ${{ github.sha }}\nAuthor: ${{ github.actor }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK

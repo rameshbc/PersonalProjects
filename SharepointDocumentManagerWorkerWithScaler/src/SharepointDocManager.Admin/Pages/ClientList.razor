@@ -1,0 +1,83 @@
+@page "/clients"
+@using SharepointDocManager.Admin.Services
+@using SharepointDocManager.Core.Entities
+@using SharepointDocManager.Core.Enums
+@inject AdminApiClient Api
+@inject NavigationManager Nav
+
+<h2>Client Sites</h2>
+
+@if (_loading)
+{
+    <p>Loading...</p>
+}
+else if (_clients is null || !_clients.Any())
+{
+    <p>No clients configured. <a href="/clients/provision">Provision a new client</a>.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Client ID</th>
+                <th>Storage Backend</th>
+                <th>SP Site ID</th>
+                <th>SPE Container ID</th>
+                <th>Updated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in _clients)
+            {
+                <tr>
+                    <td>@client.ClientId</td>
+                    <td>
+                        <span class="badge @(client.StorageBackend == StorageBackend.SharePointEmbedded ? "badge-spe" : "badge-sp")">
+                            @client.StorageBackend
+                        </span>
+                    </td>
+                    <td>@(client.SpSiteId.Length > 20 ? client.SpSiteId[..20] + "…" : client.SpSiteId)</td>
+                    <td>@(client.SpeContainerId.Length > 20 ? client.SpeContainerId[..20] + "…" : client.SpeContainerId)</td>
+                    <td>@client.UpdatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>
+                        <button @onclick="() => ViewDocuments(client.ClientId)">Documents</button>
+                        <button @onclick="() => SwitchBackend(client)">Switch Backend</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (!string.IsNullOrEmpty(_statusMessage))
+{
+    <p class="status">@_statusMessage</p>
+}
+
+@code {
+    private List<ClientSite>? _clients;
+    private bool   _loading = true;
+    private string _statusMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _clients = await Api.GetClientsAsync();
+        _loading = false;
+    }
+
+    private void ViewDocuments(string clientId)
+        => Nav.NavigateTo($"/clients/{clientId}/documents");
+
+    private async Task SwitchBackend(ClientSite client)
+    {
+        var newBackend = client.StorageBackend == StorageBackend.SharePointOnline
+            ? StorageBackend.SharePointEmbedded
+            : StorageBackend.SharePointOnline;
+
+        await Api.SwitchStorageBackendAsync(client.ClientId, newBackend);
+        client.StorageBackend = newBackend;
+        _statusMessage = $"Switched {client.ClientId} to {newBackend}.";
+    }
+}

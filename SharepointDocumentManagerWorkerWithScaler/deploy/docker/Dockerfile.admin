@@ -1,0 +1,29 @@
+# ── Stage 1: Build ────────────────────────────────────────────────────────────
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY SharepointDocManager.sln .
+COPY src/SharepointDocManager.Core/SharepointDocManager.Core.csproj                     src/SharepointDocManager.Core/
+COPY src/SharepointDocManager.Application/SharepointDocManager.Application.csproj       src/SharepointDocManager.Application/
+COPY src/SharepointDocManager.Admin/SharepointDocManager.Admin.csproj                   src/SharepointDocManager.Admin/
+
+RUN dotnet restore src/SharepointDocManager.Admin/SharepointDocManager.Admin.csproj
+
+COPY src/ src/
+RUN dotnet publish src/SharepointDocManager.Admin/SharepointDocManager.Admin.csproj \
+    -c Release -o /app/publish --no-restore
+
+# ── Stage 2: Runtime ──────────────────────────────────────────────────────────
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+USER appuser
+
+COPY --from=build /app/publish .
+
+EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8080
+ENV DOTNET_RUNNING_IN_CONTAINER=true
+
+ENTRYPOINT ["dotnet", "SharepointDocManager.Admin.dll"]

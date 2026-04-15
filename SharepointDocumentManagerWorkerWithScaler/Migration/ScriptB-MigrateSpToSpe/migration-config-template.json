@@ -1,0 +1,34 @@
+{
+  "_comment": "Copy this file to migration-config.json and populate before running Migrate-SpToSpe.ps1",
+
+  "tenantId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+
+  "auth": {
+    "mode": "ClientCredentials",
+    "_modeOptions": ["ClientCredentials", "ManagedIdentity", "Interactive"],
+    "clientIdEnvVar":     "MI_APP_ID",
+    "clientSecretEnvVar": "MI_APP_SECRET"
+  },
+
+  "sharePoint": {
+    "targetLibraryName": "DocLibrary-A"
+  },
+
+  "behaviour": {
+    "dryRun": true,
+    "_dryRunNote": "Set false only after a successful dry run.",
+    "maxParallelUploads": 4,
+    "smallFileThresholdBytes": 4194304,
+    "preserveFolderPermissions": true
+  },
+
+  "clients": [
+    {
+      "clientId":      "client-001",
+      "spSiteUrl":     "https://contoso.sharepoint.com/sites/client-001",
+      "spSiteId":      "",
+      "spDriveId":     "",
+      "speContainerId": ""
+    }
+  ]
+}
